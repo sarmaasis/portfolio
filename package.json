@@ -5,18 +5,26 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    "build": "vite build",
+    "build:lambda": "tsc lambda/index.ts --outDir dist-lambda",
+    "prepare:deploy": "npm run build && npm run build:lambda"
   },
   "dependencies": {
     "express": "^5.1.0",
+    "ignore-styles": "^5.0.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "serverless-http": "^3.2.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.27.2",
+    "@babel/core": "^7.27.1",
+    "@babel/node": "^7.27.1",
+    "@babel/preset-env": "^7.27.2",
+    "@babel/preset-react": "^7.27.1",
+    "@babel/preset-typescript": "^7.27.1",
     "@eslint/js": "^9.25.0",
+    "@types/aws-lambda": "^8.10.149",
     "@types/express": "^5.0.1",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",

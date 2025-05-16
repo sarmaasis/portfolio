@@ -3,6 +3,7 @@ import express from 'express'
 import { renderToString } from 'react-dom/server'
 import React from 'react'
 import App from './src/App'
+import 'ignore-styles';
 
 const app = express()
 
