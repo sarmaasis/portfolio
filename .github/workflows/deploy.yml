@@ -12,8 +12,9 @@ jobs:
 
     env:
       FUNCTION_NAME: portfolio-ssr
+      AWS_REGION: ap-south-1
       HANDLER: index.handler
-      RUNTIME: nodejs18.x
+      RUNTIME: nodejs10.x
       ZIP_FILE: lambda.zip
 
     steps:
@@ -42,6 +43,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
 
       - name: Check if Lambda function exists
         id: lambda-check
@@ -60,6 +62,7 @@ jobs:
             --role arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/${{ secrets.LAMBDA_EXECUTION_ROLE }} \
             --handler $HANDLER \
             --zip-file fileb://$ZIP_FILE \
+            --region $AWS_REGION
 
       - name: Update Lambda function code
         if: steps.lambda-check.outputs.exists == '0'
@@ -67,3 +70,4 @@ jobs:
           aws lambda update-function-code \
             --function-name $FUNCTION_NAME \
             --zip-file fileb://$ZIP_FILE \
+            --region $AWS_REGION
