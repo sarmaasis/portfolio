@@ -1,0 +1,14 @@
+# filepath: /home/sarmaasis/projects/portfolio/serverless.yml
+service: portfolio-ssr
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  region: ap-south-1
+
+functions:
+  app:
+    handler: lambda.handler
+    events:
+      - http: ANY /
+      - http: 'ANY {proxy+}'
