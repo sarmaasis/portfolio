@@ -7,7 +7,6 @@ export function render() {
   <head><title>My SSR App</title></head>
   <body>
     <div id="root">${renderToString(<App />)}</div>
-    <script type="module" src="/main.js"></script>
   </body>
 </html>`;
 }
