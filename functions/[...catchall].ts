@@ -1,4 +1,3 @@
-import { PagesFunction } from '@cloudflare/workers-types';
 import { render } from '../dist/server/server.js'; // SSR render function
 
 export const onRequest = async (context) => {
