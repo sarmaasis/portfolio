@@ -33,7 +33,7 @@ jobs:
         run: npm run build
 
       - name: Compile Lambda entrypoint
-        run: npx tsc lambda/index.ts --outDir dist-lambda
+        run: tsc index.ts --outDir dist
 
       - name: Zip Lambda
         run: zip -j ${{ env.ZIP_FILE }} dist/*
