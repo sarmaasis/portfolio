@@ -5,9 +5,12 @@ import ThemeToggle from './components/ThemeToggle'
 function App() {
   const [theme, setTheme] = useState("dark")
 
+  // Only run browser-specific code on the client
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme)
-    localStorage.setItem('theme', theme)
+    if (typeof window !== "undefined" && typeof document !== "undefined") {
+      document.documentElement.setAttribute('data-theme', theme)
+      localStorage.setItem('theme', theme)
+    }
   }, [theme])
 
   const toggleTheme = () => {
@@ -16,8 +19,8 @@ function App() {
 
   return (
     <div className="app-container">
-        <ThemeToggle onToggle={toggleTheme} theme={theme} />
-        <h1>Ashish Sharma</h1>
+      <ThemeToggle onToggle={toggleTheme} theme={theme} />
+      <h1>Ashish Sharma</h1>
       <main className="main-content">
         <section className="hero">
           <h2>Software Enginner</h2>
