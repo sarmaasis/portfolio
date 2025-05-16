@@ -3,21 +3,28 @@ import './App.css'
 import ThemeToggle from './components/ThemeToggle'
 
 function App() {
-  // Always start with "dark" for SSR
   const [theme, setTheme] = useState("dark")
+  const [mounted, setMounted] = useState(false)
 
-  // On mount (client), update theme from localStorage if available
   useEffect(() => {
     const stored = localStorage.getItem('theme')
-    if (stored && stored !== theme) setTheme(stored)
+    if (stored) setTheme(stored)
+    setMounted(true)
   }, [])
 
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme)
-    localStorage.setItem('theme', theme)
-  }, [theme])
+    if (mounted) {
+      document.documentElement.setAttribute('data-theme', theme)
+      localStorage.setItem('theme', theme)
+    }
+  }, [theme, mounted])
 
   const toggleTheme = () => setTheme(theme === 'light' ? 'dark' : 'light')
+
+  if (!mounted) {
+    // Prevent hydration mismatch by not rendering until client-side
+    return null
+  }
 
   return (
     <div className="app-container">
