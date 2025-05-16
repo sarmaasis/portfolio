@@ -5,10 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build --outDir dist/client",
     "lint": "eslint .",
     "preview": "vite preview",
-    "build:ssr": "npm run build && vite build --ssr src/server.tsx"
+    "build:ssr": "npm run build && vite build --outDir dist/server --ssr src/server.tsx"
   },
   "dependencies": {
     "@cloudflare/workers-types": "^4.20250515.0",
