@@ -1,6 +1,7 @@
+
 import { render } from '../dist/server/server.js'; // SSR render function
 
-export const onRequest = async (context, next) => {
+export const onRequest = async (context) => {
 
   const url = new URL(context.request.url);
   // Let static assets pass through
@@ -12,7 +13,7 @@ export const onRequest = async (context, next) => {
     url.pathname.endsWith('.svg') ||
     url.pathname.endsWith('.ico')
   ) {
-    return next();
+    return context.next();
   }
 
   const html = await render();
