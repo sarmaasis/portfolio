@@ -11,7 +11,7 @@ export function render() {
   return `<!DOCTYPE html>
 <html>
  <head>
-    <title>My SSR App</title>
+    <title>@sarmaasis</title>
     ${cssLinks}
   </head>
   <body>

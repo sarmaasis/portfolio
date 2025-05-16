@@ -3,10 +3,8 @@ import './App.css'
 import ThemeToggle from './components/ThemeToggle'
 
 function App() {
-  // Always start with "dark" for SSR and initial client render
   const [theme, setTheme] = useState("dark")
 
-  // On mount (client), update theme from localStorage if available
   useEffect(() => {
     const stored = localStorage.getItem('theme')
     if (stored && stored !== theme) setTheme(stored)
@@ -25,7 +23,7 @@ function App() {
       <h1>Ashish Sharma</h1>
       <main className="main-content">
         <section className="hero">
-          <h2>Software Enginner</h2>
+          <h2>Software Engineer</h2>
           <p>Welcome to my portfolio. I create modern web applications.</p>
         </section>
         <section className="projects">
