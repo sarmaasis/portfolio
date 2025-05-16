@@ -13,5 +13,5 @@
     "allowJs": true,
     "resolveJsonModule": true,
   },
-  "include": ["src", "lambda"]
+  "include": ["src", "lambda", "index.ts"]
 }
