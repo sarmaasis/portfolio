@@ -1,11 +1,18 @@
 import { render } from '../dist/server/server.js'; // SSR render function
 
-export const onRequest = async (context) => {
-  
+export const onRequest = async (context, next) => {
+
   const url = new URL(context.request.url);
-  // If the request is for an asset, let Cloudflare serve it
-  if (url.pathname.startsWith('/assets/') || url.pathname.startsWith('/favicon') || url.pathname.endsWith('.css')) {
-    return context.next();
+  // Let static assets pass through
+  if (
+    url.pathname.startsWith('/assets/') ||
+    url.pathname.startsWith('/favicon') ||
+    url.pathname.endsWith('.css') ||
+    url.pathname.endsWith('.js') ||
+    url.pathname.endsWith('.svg') ||
+    url.pathname.endsWith('.ico')
+  ) {
+    return next();
   }
 
   const html = await render();
