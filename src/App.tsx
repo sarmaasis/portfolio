@@ -1,13 +1,37 @@
+import { useEffect, useState } from 'react'
 import './App.css'
+import ThemeToggle from './components/ThemeToggle'
 
 function App() {
+  const [theme, setTheme] = useState("dark")
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme)
+    localStorage.setItem('theme', theme)
+  }, [theme])
+
+  const toggleTheme = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light')
+  }
 
   return (
-    <>
-      <div>
-          Development in progress.
-      </div>
-    </>
+    <div className="app-container">
+        <ThemeToggle onToggle={toggleTheme} theme={theme} />
+        <h1>Ashish Sharma</h1>
+      <main className="main-content">
+        <section className="hero">
+          <h2>Software Enginner</h2>
+          <p>Welcome to my portfolio. I create modern web applications.</p>
+        </section>
+        <section className="projects">
+          <h3>Projects</h3>
+          {/* Project cards will go here */}
+        </section>
+      </main>
+      <footer className="footer">
+        <p>© {new Date().getFullYear()} Ashish Sharma</p>
+      </footer>
+    </div>
   )
 }
 
