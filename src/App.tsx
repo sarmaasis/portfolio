@@ -3,19 +3,21 @@ import './App.css'
 import ThemeToggle from './components/ThemeToggle'
 
 function App() {
+  // Always start with "dark" for SSR
   const [theme, setTheme] = useState("dark")
 
-  // Only run browser-specific code on the client
+  // On mount (client), update theme from localStorage if available
   useEffect(() => {
-    if (typeof window !== "undefined" && typeof document !== "undefined") {
-      document.documentElement.setAttribute('data-theme', theme)
-      localStorage.setItem('theme', theme)
-    }
+    const stored = localStorage.getItem('theme')
+    if (stored && stored !== theme) setTheme(stored)
+  }, [])
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme)
+    localStorage.setItem('theme', theme)
   }, [theme])
 
-  const toggleTheme = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light')
-  }
+  const toggleTheme = () => setTheme(theme === 'light' ? 'dark' : 'light')
 
   return (
     <div className="app-container">
@@ -28,7 +30,6 @@ function App() {
         </section>
         <section className="projects">
           <h3>Projects</h3>
-          {/* Project cards will go here */}
         </section>
       </main>
       <footer className="footer">
