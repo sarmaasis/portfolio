@@ -1,4 +1,4 @@
-name: Deploy to AWS Lambda
+name: Deploy to Cloudflare Pages
 
 on:
   push:
@@ -7,67 +7,23 @@ on:
 
 jobs:
   deploy:
-    name: Deploy Lambda Function
     runs-on: ubuntu-latest
-
-    env:
-      FUNCTION_NAME: portfolio-ssr
-      AWS_REGION: ap-south-1
-      HANDLER: index.handler
-      RUNTIME: nodejs10.x
-      ZIP_FILE: lambda.zip
-
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 20
+        uses: actions/checkout@v4
 
       - name: Install dependencies
-        run: npm ci
+        run: |
+          npm install
 
-      - name: Build app
-        run: npm run build
+      - name: Build project
+        run: |
+          npm run build:ssr
 
-      - name: Compile Lambda entrypoint
-        run: tsc index.ts --outDir dist
-
-      - name: Zip Lambda
-        run: zip -j ${{ env.ZIP_FILE }} dist/*
-
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v3
+      - name: Publish to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ env.AWS_REGION }}
-
-      - name: Check if Lambda function exists
-        id: lambda-check
-        run: |
-          set +e
-          aws lambda get-function --function-name $FUNCTION_NAME > /dev/null 2>&1
-          echo "exists=$?" >> $GITHUB_OUTPUT
-          set -e
-
-      - name: Create Lambda function if not exists
-        if: steps.lambda-check.outputs.exists != '0'
-        run: |
-          aws lambda create-function \
-            --function-name $FUNCTION_NAME \
-            --runtime $RUNTIME \
-            --role arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/${{ secrets.LAMBDA_EXECUTION_ROLE }} \
-            --handler $HANDLER \
-            --zip-file fileb://$ZIP_FILE \
-            --region $AWS_REGION
-
-      - name: Update Lambda function code
-        if: steps.lambda-check.outputs.exists == '0'
-        run: |
-          aws lambda update-function-code \
-            --function-name $FUNCTION_NAME \
-            --zip-file fileb://$ZIP_FILE \
-            --region $AWS_REGION
+          apiToken: ${{ secrets.CF_API_TOKEN }}
+          accountId: ${{ secrets.CF_ACCOUNT_ID }}
+          projectName: ${{ secrets.CF_PROJECT_NAME }}
+          directory: ./dist

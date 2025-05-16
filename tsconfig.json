@@ -1,17 +1,7 @@
 {
-  "compilerOptions": {
-    "target": "ES2020",
-    "module": "ES2022",
-    "lib": ["DOM", "ES2022"],
-    "moduleResolution": "Node",
-    "outDir": "./dist-lambda",
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "jsx": "react-jsx",
-    "skipLibCheck": true,
-    "allowJs": true,
-    "resolveJsonModule": true,
-  },
-  "include": ["src", "lambda", "index.ts"]
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ]
 }

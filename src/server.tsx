@@ -1,16 +1,13 @@
-import React from 'react';
 import { renderToString } from 'react-dom/server';
 import App from './App';
 
 export function render() {
-  const html = renderToString(<App />);
-  return `
-<!DOCTYPE html>
+  return `<!DOCTYPE html>
 <html>
-  <head><title>SSR</title></head>
+  <head><title>My SSR App</title></head>
   <body>
-    <div id="root">${html}</div>
-    <script type="module" src="/src/client.tsx"></script>
+    <div id="root">${renderToString(<App />)}</div>
+    <script type="module" src="/main.js"></script>
   </body>
 </html>`;
 }
