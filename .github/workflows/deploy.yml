@@ -60,7 +60,6 @@ jobs:
             --role arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/${{ secrets.LAMBDA_EXECUTION_ROLE }} \
             --handler $HANDLER \
             --zip-file fileb://$ZIP_FILE \
-            --region $AWS_REGION
 
       - name: Update Lambda function code
         if: steps.lambda-check.outputs.exists == '0'
@@ -68,4 +67,3 @@ jobs:
           aws lambda update-function-code \
             --function-name $FUNCTION_NAME \
             --zip-file fileb://$ZIP_FILE \
-            --region $AWS_REGION
