@@ -10,13 +10,24 @@ export function render() {
   ).join('\n');
   return `<!DOCTYPE html>
 <html>
+
+<html>
   <head>
-    <title>My SSR App</title>
-    ${cssLinks}
+    <title>SSR Test</title>
   </head>
   <body>
-    <div id="root">${renderToString(<App />)}</div>
-    <script type="module" src="/${clientEntry}"></script>
+    <div id="root">SSR TEST</div>
   </body>
+ 
 </html>`;
 }
+
+
+//  <head>
+//     <title>My SSR App</title>
+//     ${cssLinks}
+//   </head>
+//   <body>
+//     <div id="root">${renderToString(<App />)}</div>
+//     <script type="module" src="/${clientEntry}"></script>
+//   </body>
