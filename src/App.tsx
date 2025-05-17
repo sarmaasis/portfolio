@@ -56,7 +56,7 @@ function App() {
             <div className="card-grid">
               <article className="card">
                 {/* <img src="./images/logo-adobe.svg" width="24" height="24" alt="Adobe logo" className="card-icon"/> */}
-                <h3><a href="https://www.whydonate.com">Whydonete.com</a></h3>
+                <h3><a href="https://www.whydonate.com">Whydonate.com</a></h3>
                 <p>Full Stack Developer</p>
               </article>
               <article className="card">
