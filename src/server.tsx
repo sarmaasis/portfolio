@@ -22,15 +22,15 @@ export function render() {
     <!-- Open Graph Tags (for social sharing) -->
     <meta property="og:title" content="Ashish Sharma - Full Stack Developer Portfolio" />
     <meta property="og:description" content="Building practical solutions with efficiency and simplicity. Check out my projects and experience." />
-    <meta property="og:image" content="https://your-domain.com/path-to-og-image.jpg" /> <!-- Replace with actual image URL -->
-    <meta property="og:url" content="https://your-domain.com" />
+    <meta property="og:image" content="https://ashishsharma.xyz/" /> <!-- Replace with actual image URL (e.g., https://ashishsharma.xyz/images/portfolio-screenshot.jpg) -->
+    <meta property="og:url" content="https://ashishsharma.xyz" />
     <meta property="og:type" content="website" />
     
     <!-- Twitter Card Tags -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Ashish Sharma - Full Stack Developer Portfolio" />
     <meta name="twitter:description" content="Building practical solutions with efficiency and simplicity." />
-    <meta name="twitter:image" content="https://your-domain.com/path-to-twitter-image.jpg" /> <!-- Replace with actual image URL -->
+    <meta name="twitter:image" content="https://ashishsharma.xyz/" /> <!-- Replace with actual image URL -->
     
     <!-- Structured Data (JSON-LD) for rich snippets -->
     <script type="application/ld+json">
@@ -38,7 +38,7 @@ export function render() {
       "@context": "https://schema.org",
       "@type": "Person",
       "name": "Ashish Sharma",
-      "url": "https://your-domain.com",
+      "url": "https://ashishsharma.xyz",
       "sameAs": [
         "https://x.com/sarmaasis",
         "https://www.linkedin.com/in/sarmaasis",
