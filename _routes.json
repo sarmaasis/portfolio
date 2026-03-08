@@ -9,6 +9,7 @@
     "/favicon.svg",
     "/llm.txt",
     "/sitemap.xml",
-    "/robots.txt"
+    "/robots.txt",
+    "/BingSiteAuth.xml"
   ]
 }
