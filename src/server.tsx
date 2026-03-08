@@ -2,6 +2,7 @@ import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom/server';
 import { HelmetProvider } from 'react-helmet-async';
 import manifest from '../dist/client/.vite/manifest.json';
+import './index.css';
 import App from './App';
 
 export function render(url: string) {
