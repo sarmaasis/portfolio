@@ -22,17 +22,21 @@ export function render(url: string) {
     </HelmetProvider>
   );
 
-  const { helmet } = helmetContext;
+  const helmet = helmetContext.helmet;
+  const title = helmet?.title?.toString() || '<title>Ashish Sharma</title>';
+  const meta = helmet?.meta?.toString() || '';
+  const documentLink = helmet?.link?.toString() || '';
+  const script = helmet?.script?.toString() || '';
 
   return `<!DOCTYPE html>
 <html lang="en">
  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    ${helmet.title.toString()}
-    ${helmet.meta.toString()}
-    ${helmet.link.toString()}
-    ${helmet.script.toString()}
+    ${title}
+    ${meta}
+    ${documentLink}
+    ${script}
     ${cssLinks}
   </head>
   <body>

@@ -12,16 +12,10 @@ export const onRequest = async (context: any) => {
     url.pathname.endsWith('.js') ||
     url.pathname.endsWith('.svg') ||
     url.pathname.endsWith('.ico') ||
-    url.pathname === '/sitemap.xml'    // Keep: Allow sitemap.xml to be served as static (working)
+    url.pathname.endsWith('.txt') ||
+    url.pathname.endsWith('.xml')
   ) {
     return context.next();
-  }
-
-  // Directly serve robots.txt content
-  if (url.pathname === '/robots.txt') {
-    return new Response(`User-agent: *\nAllow: /\nSitemap: https://ashishsharma.xyz/sitemap.xml`, {
-      headers: { 'Content-Type': 'text/plain' },
-    });
   }
 
   // @ts-ignore
