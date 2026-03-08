@@ -5,9 +5,10 @@
   ],
   "exclude": [
     "/assets/*",
-    "/*.ico",
-    "/*.svg",
-    "/*.txt",
-    "/*.xml"
+    "/favicon.ico",
+    "/favicon.svg",
+    "/llm.txt",
+    "/sitemap.xml",
+    "/robots.txt"
   ]
 }
