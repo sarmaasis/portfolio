@@ -8,12 +8,15 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "build:ssr": "vite build --outDir dist/client && vite build --ssr src/server.tsx --outDir dist/server"
+    "sitemap": "npx tsx scripts/generate-sitemap.ts",
+    "build:ssr": "npm run sitemap && vite build --outDir dist/client && vite build --ssr src/server.tsx --outDir dist/server"
   },
   "dependencies": {
     "@cloudflare/workers-types": "^4.20250515.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-helmet-async": "^3.0.0",
+    "react-router-dom": "^6.30.3",
     "serverless-http": "^3.2.0"
   },
   "devDependencies": {
@@ -21,6 +24,7 @@
     "@types/express": "^5.0.1",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
+    "@types/react-helmet-async": "^1.0.1",
     "@vitejs/plugin-react": "^4.4.1",
     "eslint": "^9.25.0",
     "eslint-plugin-react-hooks": "^5.2.0",

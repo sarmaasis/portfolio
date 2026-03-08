@@ -1,6 +1,13 @@
 import { useEffect, useState } from 'react'
+import { Routes, Route, Link } from 'react-router-dom'
 import './App.css'
 import ThemeToggle from './components/ThemeToggle'
+import HomePage from './components/HomePage'
+import ReviewsPage from './components/ReviewsPage'
+import ServicesPage from './components/ServicesPage'
+import PricingPage from './components/PricingPage'
+import AboutPage from './components/AboutPage'
+import DynamicServicePage from './components/DynamicServicePage'
 
 function App() {
   const [theme, setTheme] = useState("dark")
@@ -8,9 +15,9 @@ function App() {
   const [copied, setCopied] = useState(false)
   const email = "sarmaasis@gmail.com"
 
+  // Force dark theme based on the request to make it kopakov.com inspired premium feeling
   useEffect(() => {
-    const stored = localStorage.getItem('theme')
-    if (stored && stored !== theme) setTheme(stored)
+    setTheme("dark")
   }, [])
 
   useEffect(() => {
@@ -39,54 +46,67 @@ function App() {
       <ThemeToggle onToggle={toggleTheme} theme={theme} />
       <div className="page-wrapper">
         <header className="header">
-          <div className="container">
-            {/* <img src="./images/logo.svg" width="36" height="36" alt="Mighty Tools Logo" className="logo" loading="eager"/> */}
-            <h1>
-              <span className="title">Ashish Sharma</span>
-              <span className="byline">@sarmaasis</span>
-            </h1>
-            <p className="header-desc">
-              Building practical solutions that prioritize efficiency and simplicity.
-            </p>
+          <div className="container header-container">
+            <div className="header-brand">
+              <h1 style={{ margin: 0 }}>
+                <Link to="/" className="title">Ashish Sharma</Link>
+              </h1>
+              <p className="header-desc" style={{ margin: 0, fontSize: '0.85rem' }}>
+                Senior Full-Stack &amp; Infrastructure Engineer.
+              </p>
+            </div>
+            <nav className="header-nav">
+              <Link to="/about" className="nav-link">About</Link>
+              <Link to="/services" className="nav-link">Services</Link>
+              <Link to="/pricing" className="nav-link">Pricing</Link>
+              <Link to="/reviews" className="nav-link">Recommendations</Link>
+            </nav>
           </div>
         </header>
         <main className="container">
-          <section className="companies">
-            <h2>Companies I Have Worked With</h2>
-            <div className="card-grid">
-              <article className="card">
-                {/* <img src="./images/logo-adobe.svg" width="24" height="24" alt="Adobe logo" className="card-icon"/> */}
-                <h3><a href="https://www.whydonate.com">Whydonate.com</a></h3>
-                <p>Full Stack Developer</p>
-              </article>
-              <article className="card">
-                {/* <img src="./images/logo-grammarly.svg" width="24" height="24" alt="Grammarly logo" className="card-icon"/> */}
-                <h3>Seezil Technology Pvt. Ltd.</h3>
-                <p>Software Developer</p>
-              </article>
-              <article className="card">
-                {/* <img src="./images/logo-grammarly.svg" width="24" height="24" alt="Grammarly logo" className="card-icon"/> */}
-                <h3>Blue Bell</h3>
-                <p>Software Developer</p>
-              </article>
-              <article className="card">
-                {/* <img src="./images/logo-startups.svg" width="24" height="24" alt="Your Company" className="card-icon"> */}
-                <h3><a href="#" onClick={handleEmailPopup} data-popup-title="Let's work together">Your Company</a><span className="cursor"></span></h3>
-                <p>Looking for a full stack developer who ships? I blend empathy, design craft, and technical understanding to deliver user-centered solutions.</p>
-              </article>
-            </div>
-          </section>
+          <Routes>
+            <Route path="/" element={<HomePage region="global" handleEmailPopup={handleEmailPopup} />} />
+            <Route path="/en-us" element={<HomePage region="us" handleEmailPopup={handleEmailPopup} />} />
+            <Route path="/en-eu" element={<HomePage region="eu" handleEmailPopup={handleEmailPopup} />} />
+            <Route path="/reviews" element={<ReviewsPage />} />
+            <Route path="/services" element={<ServicesPage />} />
+            <Route path="/services/:slug" element={<DynamicServicePage />} />
+            <Route path="/pricing" element={<PricingPage />} />
+            <Route path="/about" element={<AboutPage />} />
+          </Routes>
         </main>
         <footer className="footer">
-        <div className="container">
-          <div className="social-links">
-            <a href="https://x.com/sarmaasis" target="_blank" aria-label="Follow me on X" className="social-link">X</a>
-            <a href="https://www.linkedin.com/in/sarmaasis" target="_blank" aria-label="Connect with me on LinkedIn" className="social-link">LinkedIn</a>
-            <a href="https://github.com/sarmaasis" target="_blank" aria-label="Check out my GitHub" className="social-link">GitHub</a>
-            <a href="#" onClick={handleEmailPopup} data-popup-title="Get in touch" aria-label="Send me an email" className="social-link">Email</a>
+          <div className="container">
+            <div className="footer-grid">
+              <div className="footer-col">
+                <h3>Ashish Sharma</h3>
+                <p>Senior Full Stack Engineer. Specializing in Python, Node.js, and high-volume edge systems.</p>
+                <div className="status-indicator">
+                  <span className="dot pulse"></span>
+                  <span>Available for freelance opportunities.</span>
+                </div>
+              </div>
+              <div className="footer-col">
+                <h3>Connect</h3>
+                <ul className="footer-links">
+                  <li><a href="https://x.com/sarmaasis" target="_blank" rel="noopener noreferrer">X (Twitter)</a></li>
+                  <li><a href="https://www.linkedin.com/in/sarmaasis" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+                  <li><a href="https://github.com/sarmaasis" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+                  <li><a href="https://www.upwork.com/freelancers/sarmaasis" target="_blank" rel="noopener noreferrer">Upwork</a></li>
+                </ul>
+              </div>
+              <div className="footer-col">
+                <h3>Contact</h3>
+                <ul className="footer-links">
+                  <li><a href="#" onClick={handleEmailPopup} data-popup-title="Get in touch" aria-label="Send me an email">Email Me</a></li>
+                </ul>
+              </div>
+            </div>
+            <div className="footer-bottom">
+              <p>&copy; {new Date().getFullYear()} Ashish Sharma. All rights reserved.</p>
+            </div>
           </div>
-        </div>
-      </footer>
+        </footer>
         {showPopup && (
           <div className="popup-wraper">
             <div className="popup-overlay" onClick={closePopup}>

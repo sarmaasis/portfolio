@@ -1,4 +1,14 @@
 import { hydrateRoot } from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import App from './App';
 
-hydrateRoot(document.getElementById('root')!, <App />);
+hydrateRoot(
+    document.getElementById('root')!,
+    // @ts-ignore: React 19 type mismatch for react-helmet-async
+    <HelmetProvider>
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
+    </HelmetProvider>
+);

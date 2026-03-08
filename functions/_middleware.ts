@@ -1,6 +1,7 @@
 import { render } from '../dist/server/server.js'; // SSR render function
 
-export const onRequest = async (context) => {
+// @ts-ignore
+export const onRequest = async (context: any) => {
 
   const url = new URL(context.request.url);
   // Let static assets pass through
@@ -23,7 +24,8 @@ export const onRequest = async (context) => {
     });
   }
 
-  const html = await render();
+  // @ts-ignore
+  const html = await render(url.pathname);
   return new Response(html, {
     headers: { 'Content-Type': 'text/html' },
   });

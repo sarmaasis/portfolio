@@ -1,3 +1,10 @@
 User-agent: *
 Allow: /
+Allow: /en-us/
+Allow: /en-eu/
+Allow: /services/
+Allow: /pricing/
+Allow: /about/
+Allow: /reviews/
+
 Sitemap: https://ashishsharma.xyz/sitemap.xml
