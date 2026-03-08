@@ -1,3 +1,13 @@
 {
-  "include": ["/*"]
+  "version": 1,
+  "include": [
+    "/*"
+  ],
+  "exclude": [
+    "/assets/*",
+    "/*.ico",
+    "/*.svg",
+    "/*.txt",
+    "/*.xml"
+  ]
 }
