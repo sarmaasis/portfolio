@@ -1,9 +1,18 @@
 import { render } from '../dist/server/server.js'; // SSR render function
 
-// @ts-ignore
-export const onRequest = async (context: any) => {
+interface CloudflareContext {
+  request: Request;
+  next: () => Promise<Response>;
+}
+
+export const onRequest = async (context: CloudflareContext) => {
 
   const url = new URL(context.request.url);
+  // Serve llm.txt directly with explicit content-type
+  if (url.pathname === '/llm.txt') {
+    return context.next();
+  }
+
   // Let static assets pass through
   if (
     url.pathname.startsWith('/assets/') ||
@@ -18,7 +27,6 @@ export const onRequest = async (context: any) => {
     return context.next();
   }
 
-  // @ts-ignore
   const html = await render(url.pathname);
   return new Response(html, {
     headers: { 'Content-Type': 'text/html' },

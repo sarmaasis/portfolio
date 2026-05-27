@@ -1,6 +1,6 @@
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom/server';
-import { HelmetProvider } from 'react-helmet-async';
+import { HelmetProvider, type HelmetServerState } from 'react-helmet-async';
 import manifest from '../dist/client/.vite/manifest.json';
 import './index.css';
 import App from './App';
@@ -12,10 +12,9 @@ export function render(url: string) {
     (href) => `<link rel="stylesheet" href="/${href}">`
   ).join('\n');
 
-  const helmetContext = {} as any;
+  const helmetContext: { helmet?: HelmetServerState } = {};
 
   const appHtml = renderToString(
-    // @ts-ignore: React 19 type mismatch
     <HelmetProvider context={helmetContext}>
       <StaticRouter location={url}>
         <App />
@@ -24,7 +23,7 @@ export function render(url: string) {
   );
 
   const helmet = helmetContext.helmet;
-  const title = helmet?.title?.toString() || '<title>Ashish Sharma</title>';
+  const title = helmet?.title?.toString() || '<title>Ashish Sharma | Senior Backend Engineer | Go, Node.js & Cloudflare Architecture</title>';
   const meta = helmet?.meta?.toString() || '';
   const documentLink = helmet?.link?.toString() || '';
   const script = helmet?.script?.toString() || '';
@@ -35,6 +34,7 @@ export function render(url: string) {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="llms-txt" href="/llm.txt" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />

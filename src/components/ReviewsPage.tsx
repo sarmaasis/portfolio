@@ -1,8 +1,8 @@
-import React from 'react';
+import { type FC } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 
-export const ReviewsPage: React.FC = () => {
+export const ReviewsPage: FC = () => {
     const currentUrl = typeof window !== 'undefined' ? window.location.href : 'https://ashishsharma.xyz/reviews';
     const title = 'Client Reviews & Recommendations - Ashish Sharma';
     const description = 'Read reviews and recommendations from clients who have worked with Ashish Sharma on backend, infrastructure, and full-stack engineering projects.';

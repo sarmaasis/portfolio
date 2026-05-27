@@ -1,8 +1,8 @@
-import React from 'react';
+import { type FC } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 
-export const AboutPage: React.FC = () => {
+export const AboutPage: FC = () => {
     const currentUrl = typeof window !== 'undefined' ? window.location.href : 'https://ashishsharma.xyz/about';
     const title = 'About Ashish Sharma - Senior Full Stack Engineer';
     const description = 'Learn more about Ashish Sharma, a senior backend and full-stack engineer with deep expertise in scalable infrastructure and edge computing.';

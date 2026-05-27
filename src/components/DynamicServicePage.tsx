@@ -1,8 +1,8 @@
-import React from 'react';
+import { type FC } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 
-export const DynamicServicePage: React.FC = () => {
+export const DynamicServicePage: FC = () => {
     const { slug } = useParams<{ slug: string }>();
 
     // Fallback if slug isn't present for some reason

@@ -1,10 +1,12 @@
 User-agent: *
 Allow: /
-Allow: /en-us/
-Allow: /en-eu/
-Allow: /services/
-Allow: /pricing/
-Allow: /about/
-Allow: /reviews/
+Disallow: /api/
+Disallow: /admin/
 
-Sitemap: https://ashishsharma.xyz/sitemap.xml
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+Sitemap: https://sarmaasis.com/sitemap.xml

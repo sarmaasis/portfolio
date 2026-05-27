@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, type MouseEvent } from 'react'
 import { Routes, Route, Link } from 'react-router-dom'
 import './App.css'
 import ThemeToggle from './components/ThemeToggle'
@@ -27,7 +27,7 @@ function App() {
 
   const toggleTheme = () => setTheme(theme === 'light' ? 'dark' : 'light')
 
-  const handleEmailPopup = (e: React.MouseEvent) => {
+  const handleEmailPopup = (e: MouseEvent) => {
     e.preventDefault()
     setShowPopup(true)
     setCopied(false)
@@ -52,7 +52,7 @@ function App() {
                 <Link to="/" className="title">Ashish Sharma</Link>
               </h1>
               <p className="header-desc" style={{ margin: 0, fontSize: '0.85rem' }}>
-                Senior Full-Stack &amp; Infrastructure Engineer.
+                Senior Backend Engineer. Go, Node.js, Cloudflare.
               </p>
             </div>
             <nav className="header-nav">
@@ -80,10 +80,10 @@ function App() {
             <div className="footer-grid">
               <div className="footer-col">
                 <h3>Ashish Sharma</h3>
-                <p>Senior Full Stack Engineer. Specializing in Python, Node.js, and high-volume edge systems.</p>
+                <p>Senior Backend Engineer. Go, Node.js, Cloudflare edge infrastructure for HealthTech and PropTech startups.</p>
                 <div className="status-indicator">
                   <span className="dot pulse"></span>
-                  <span>Available for freelance opportunities.</span>
+                  <span>Available for new contracts.</span>
                 </div>
               </div>
               <div className="footer-col">
@@ -92,7 +92,6 @@ function App() {
                   <li><a href="https://x.com/sarmaasis" target="_blank" rel="noopener noreferrer">X (Twitter)</a></li>
                   <li><a href="https://www.linkedin.com/in/sarmaasis" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
                   <li><a href="https://github.com/sarmaasis" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-                  <li><a href="https://www.upwork.com/freelancers/sarmaasis" target="_blank" rel="noopener noreferrer">Upwork</a></li>
                 </ul>
               </div>
               <div className="footer-col">

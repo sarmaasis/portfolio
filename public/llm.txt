@@ -1,42 +1,45 @@
 # Ashish Sharma
 
-Senior Full-Stack & Infrastructure Engineer.
-Building practical solutions that prioritize efficiency and simplicity.
-Website: https://ashishsharma.xyz
+Senior Backend Engineer. Go, Node.js, Cloudflare edge infrastructure.
+Building sub-100ms APIs and high-performance backend systems for HealthTech and PropTech startups.
+Website: https://sarmaasis.com
 Email: sarmaasis@gmail.com
 Links:
 - X (Twitter): https://x.com/sarmaasis
 - LinkedIn: https://www.linkedin.com/in/sarmaasis
 - GitHub: https://github.com/sarmaasis
-- Upwork: https://www.upwork.com/freelancers/sarmaasis
+- Book a Call: https://calendly.com/sarmaasis
 
-## About Me
-Engineer, Architect, and Problem Solver. I build systems designed to scale without breaking a sweat.
-- Top Rated Plus on Upwork with a 100% Job Success Score.
-- Architected systems handling over 2 Million+ API requests daily.
-- Specialized in high-concurrency Edge Computing (Cloudflare) & AWS.
-- Founding engineer for multiple successfully launched platforms.
+## About
+Senior Backend Engineer specializing in architecture, scaling, and cloud cost optimization for seed and Series A startups. Founding engineer for multiple production platforms. Architect of systems handling 2M+ API requests per day. Focused exclusively on HealthTech and PropTech B2B contracts.
 
-## Experience & Client Projects
-- **Aa.health**: Founding Senior Full Stack Engineer - Built the core backend infrastructure from scratch, ensuring high availability and scalability for healthcare data.
-- **Whydonate.com**: Senior Software Engineer - Handling 2M+ API requests/day, scaled infrastructure using Python, PostgreSQL, and Cloudflare.
-- **Wakamiapp.com**: Founding Full Stack Engineer - Architected and developed the multi-tenant backend and API layers from the ground up to support high-concurrency user flows.
-- **Cipherandrow.com**: Founding Full Stack Engineer - Designed the initial system architecture and implemented the core backend services, focusing on performance and robust infrastructure.
-- **Hudpro.com**: Founding Full Stack Engineer - Spearheaded the development of the platform's backend infrastructure and architecture from scratch, driving it from concept to production.
+## Case Studies
+- **aa.health**: Built HIPAA-compliant backend infrastructure from scratch. Secure patient management, production-grade privacy controls, and audit-ready data flows for a regulated healthcare environment.
+- **Hudpro.com**: Designed database architecture powering nationwide real estate inventory. High-concurrency queries across millions of property records with no latency spikes under production load.
+- **Whydonate.com**: Scaled API layer to 2M+ requests per day using Python, PostgreSQL, and Cloudflare. Stable under sustained donor campaign traffic spikes.
+- **Wakamiapp.com**: Architected multi-tenant backend and API layers from the ground up to support high-concurrency user flows.
+- **Cipherandrow.com**: Designed initial system architecture and core backend services focused on performance and robust infrastructure.
 
-## Services & Expertise
-- **Backend Infrastructure**: Designing and building robust, scalable backend systems from scratch. Python, Node.js, Go.
-- **Cloud & Edge Computing**: Deep expertise in AWS and Cloudflare ecosystems. Architecting global edge applications utilizing Cloudflare Workers, KV, and R2.
-- **High-Concurrency Scaling**: Optimizing existing infrastructure to handle millions of requests using Redis, RabbitMQ, and load balancing.
-- **AI Integration Pipeline**: Building production-ready AI pipelines, including RAG architectures, OpenAI, and Vector Databases.
-- **System Architecture & Refactoring**: Auditing legacy codebases and designing complex system migrations.
+## Services
+- **Architecture & Scaling**: Migrating monolithic MVPs to high-performance microservices. Designed for Series A load.
+- **Cloud Cost Optimization**: Moving heavy AWS workloads to edge-first Cloudflare infrastructure. Replacing AWS Elasticsearch with Typesense on Cloudflare Workers to cut latency and server bills.
+- **B2B Workflow Automation**: Secure internal tools and micro-SaaS backends for compliance-sensitive industries. HIPAA-ready, audit-friendly.
+
+## Tech Stack
+- Languages: Go, Node.js, Python
+- Edge & Cloud: Cloudflare Workers, D1, R2, KV; AWS
+- Databases: PostgreSQL, MySQL, Redis, Typesense, Vector DBs
+- Infrastructure: Microservices, message queues (RabbitMQ), high-concurrency scaling
 
 ## Availability
-Available for new opportunities:
-- Full-stack Development (Remote • Contract/Freelance)
-- System Architecture & Scaling (Remote • Consulting)
+Available for new contracts (Remote):
+- Architecture & Scaling
+- Cloud Cost Optimization
+- B2B Workflow Automation
+Book a free Architecture Audit: https://calendly.com/sarmaasis
 
-## Pricing & Engagements
-- **Hourly Engagement**: Best for ongoing consulting, code audits, or dynamic pipelines.
-- **Fixed Price Project**: Ideal for well-defined scope (e.g., MVP builds, specific API integrations).
-- **Stage-by-Stage / Retainer**: Best for large, phased architectures and long-term scaling.
+## Pricing
+- **Hourly**: Code audits, architecture consulting, ongoing advisory.
+- **Fixed Price**: Well-scoped projects — MVP builds, API integrations, migrations.
+- **Retainer**: Large phased architectures and long-term scaling engagements.
+

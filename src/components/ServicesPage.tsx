@@ -1,8 +1,8 @@
-import React from 'react';
+import { type FC } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 
-export const ServicesPage: React.FC = () => {
+export const ServicesPage: FC = () => {
     const currentUrl = typeof window !== 'undefined' ? window.location.href : 'https://ashishsharma.xyz/services';
     const title = 'Capabilities & Services - Ashish Sharma';
     const description = 'Explore the specific technical services I offer, including backend architecture, Cloudflare edge computing, and AI integrations.';

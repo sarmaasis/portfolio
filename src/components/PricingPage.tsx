@@ -1,8 +1,8 @@
-import React from 'react';
+import { type FC } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 
-export const PricingPage: React.FC = () => {
+export const PricingPage: FC = () => {
     const currentUrl = typeof window !== 'undefined' ? window.location.href : 'https://ashishsharma.xyz/pricing';
     const title = 'Pricing & Engagement Models - Ashish Sharma';
     const description = 'Transparent pricing and engagement models for backend engineering, consulting, and full-stack development.';
