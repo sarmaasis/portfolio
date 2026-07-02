@@ -1,29 +1,25 @@
 import fs from 'fs';
 import path from 'path';
 import process from 'process';
+import { sitemapPaths } from '../src/data/site';
 
 const BASE_URL = 'https://sarmaasis.com';
 const SITEMAP_PATH = path.join(process.cwd(), 'public', 'sitemap.xml');
 
-// Only list pages that are live and render real content.
-// Add a new entry here ONLY after the corresponding route and page component exist.
-const pages: { path: string; priority: string; changefreq: string }[] = [
-  { path: '/',         priority: '1.0', changefreq: 'weekly'  },
-  { path: '/services', priority: '0.8', changefreq: 'monthly' },
-  { path: '/pricing',  priority: '0.7', changefreq: 'monthly' },
-  { path: '/about',    priority: '0.7', changefreq: 'monthly' },
-  { path: '/reviews',  priority: '0.7', changefreq: 'monthly' },
-];
-
 const today = new Date().toISOString().split('T')[0];
 
-const urlEntries = pages.map(({ path: p, priority, changefreq }) => `
+const urlEntries = sitemapPaths.map((pagePath) => {
+  const priority = pagePath === '/' ? '1.0' : pagePath.startsWith('/blog/') || pagePath.startsWith('/work/') ? '0.8' : '0.7';
+  const changefreq = pagePath === '/blog' || pagePath.startsWith('/blog/') ? 'monthly' : 'weekly';
+
+  return `
   <url>
-    <loc>${BASE_URL}${p}</loc>
+    <loc>${BASE_URL}${pagePath === '/' ? '' : pagePath}</loc>
     <lastmod>${today}</lastmod>
     <changefreq>${changefreq}</changefreq>
     <priority>${priority}</priority>
-  </url>`).join('');
+  </url>`;
+}).join('');
 
 const xmlContent = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urlEntries}
@@ -31,4 +27,4 @@ const xmlContent = `<?xml version="1.0" encoding="UTF-8"?>
 `;
 
 fs.writeFileSync(SITEMAP_PATH, xmlContent, 'utf-8');
-console.log(`Sitemap written to ${SITEMAP_PATH} with ${pages.length} URLs.`);
+console.log(`Sitemap written to ${SITEMAP_PATH} with ${sitemapPaths.length} URLs.`);

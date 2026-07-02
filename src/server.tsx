@@ -35,9 +35,17 @@ export function render(url: string) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="llms-txt" href="/llm.txt" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <script>
+      (function () {
+        try {
+          var storedTheme = localStorage.getItem('theme');
+          var theme = storedTheme || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+          document.documentElement.setAttribute('data-theme', theme);
+        } catch (_) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      })();
+    </script>
     ${title}
     ${meta}
     ${documentLink}

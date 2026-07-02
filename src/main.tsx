@@ -5,13 +5,14 @@ import { HelmetProvider } from 'react-helmet-async'
 import './index.css'
 import App from './App.tsx'
 
+const AppHelmetProvider = HelmetProvider as React.ElementType
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    {/* @ts-ignore: React 19 type mismatch for react-helmet-async */}
-    <HelmetProvider>
+    <AppHelmetProvider>
       <BrowserRouter>
         <App />
       </BrowserRouter>
-    </HelmetProvider>
+    </AppHelmetProvider>
   </StrictMode>,
 )

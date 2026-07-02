@@ -4,12 +4,13 @@ import { HelmetProvider } from 'react-helmet-async';
 import './index.css';
 import App from './App';
 
+const AppHelmetProvider = HelmetProvider as React.ElementType;
+
 hydrateRoot(
     document.getElementById('root')!,
-    // @ts-ignore: React 19 type mismatch for react-helmet-async
-    <HelmetProvider>
+    <AppHelmetProvider>
         <BrowserRouter>
             <App />
         </BrowserRouter>
-    </HelmetProvider>
+    </AppHelmetProvider>
 );

@@ -1,119 +1,157 @@
-import { type FC, type MouseEvent } from 'react';
+import { Link } from 'react-router-dom';
 import { SEO } from './SEO';
+import {
+  CALENDLY_URL,
+  EMAIL,
+  OFFER,
+  POSITIONING,
+  articles,
+  caseStudies,
+  landingPages,
+  marketSignals,
+  services,
+  testimonials,
+} from '../data/site';
 
-interface HomePageProps {
-    region?: 'us' | 'eu' | 'global';
-    handleEmailPopup: (e: MouseEvent) => void;
+export default function HomePage() {
+  const emailHref = `mailto:${EMAIL}?subject=Backend%20engineering%20project`;
+
+  return (
+    <>
+      <SEO
+        title="Ashish Sharma | Cloudflare Workers, Node.js & AI/RAG Backend Engineer"
+        description="Senior Backend Engineer helping funded startups and agencies scale APIs, cut cloud costs, and ship AI/RAG production backends."
+        path="/"
+      />
+
+      <section className="hero">
+        <p className="eyebrow">{POSITIONING}</p>
+        <h1>Scale APIs, cut cloud costs, and ship AI backends without technical debt.</h1>
+        <p className="hero-subtitle">{OFFER}</p>
+        <div className="hero-actions">
+          <Link className="btn-primary" to="/contact">
+            Start a project
+          </Link>
+          <a className="btn-secondary" href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">
+            Book architecture audit
+          </a>
+        </div>
+        <ul className="signal-list" aria-label="Availability and market fit">
+          {marketSignals.map((signal) => (
+            <li key={signal}>{signal}</li>
+          ))}
+        </ul>
+      </section>
+
+      <section>
+        <div className="section-heading">
+          <h2>Services</h2>
+          <Link to="/services">View all services</Link>
+        </div>
+        <div className="card-grid">
+          {services.slice(0, 3).map((service) => (
+            <article className="card" key={service.title}>
+              <h3>{service.title}</h3>
+              <p>{service.description}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section>
+        <div className="section-heading">
+          <h2>Selected Work</h2>
+          <Link to="/work">Read case studies</Link>
+        </div>
+        <div className="card-grid">
+          {caseStudies.map((caseStudy) => (
+            <article className="card" key={caseStudy.slug}>
+              <p className="meta">{caseStudy.company}</p>
+              <h3>
+                <Link to={`/work/${caseStudy.slug}`}>{caseStudy.title}</Link>
+              </h3>
+              <p>{caseStudy.summary}</p>
+              <ul className="compact-list">
+                {caseStudy.metrics.slice(0, 2).map((metric) => (
+                  <li key={metric}>{metric}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section>
+        <div className="section-heading">
+          <h2>Technical Writing</h2>
+          <Link to="/blog">Read the blog</Link>
+        </div>
+        <div className="stacked-list">
+          {articles.map((article) => (
+            <article className="row-card" key={article.slug}>
+              <div>
+                <p className="meta">{article.tags.join(' / ')}</p>
+                <h3>
+                  <Link to={`/blog/${article.slug}`}>{article.title}</Link>
+                </h3>
+                <p>{article.capsule}</p>
+              </div>
+              <Link className="text-link" to={`/blog/${article.slug}`}>
+                Read
+              </Link>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section>
+        <div className="section-heading">
+          <h2>Hiring Search Pages</h2>
+          <Link to="/services">View service details</Link>
+        </div>
+        <div className="card-grid">
+          {landingPages.slice(0, 3).map((page) => (
+            <article className="card" key={page.slug}>
+              <h3>
+                <Link to={`/${page.slug}`}>{page.title.replace(' | Ashish Sharma', '')}</Link>
+              </h3>
+              <p>{page.capsule}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section>
+        <div className="section-heading">
+          <h2>Client Feedback</h2>
+          <Link to="/reviews">More reviews</Link>
+        </div>
+        <div className="card-grid">
+          {testimonials.slice(0, 3).map((testimonial) => (
+            <figure className="testimonial-card" key={testimonial.project}>
+              <blockquote>{testimonial.quote}</blockquote>
+              <figcaption>
+                {testimonial.project} · {testimonial.region}
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+
+      <section className="cta-band">
+        <h2>Need a backend that can survive the next growth phase?</h2>
+        <p>
+          Send the context, the constraints, and the business goal. I will reply with the next practical step.
+        </p>
+        <div className="hero-actions">
+          <Link className="btn-primary" to="/contact">
+            Contact Ashish
+          </Link>
+          <a className="btn-secondary" href={emailHref}>
+            Email directly
+          </a>
+        </div>
+      </section>
+    </>
+  );
 }
-
-export const HomePage: FC<HomePageProps> = ({ region = 'global', handleEmailPopup }) => {
-    return (
-        <>
-            <SEO region={region} />
-
-            <section className="hero">
-                <h2 className="hero-title">Backend Infrastructure Built for Your Next Round</h2>
-                <p className="hero-subtitle">
-                    I build sub-100ms APIs, optimize database architecture, and cut cloud costs for fast-growing HealthTech and PropTech startups—using Go, Node.js, and Cloudflare edge infrastructure.
-                </p>
-                <a
-                    href="https://calendly.com/sarmaasis"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn-primary"
-                >
-                    Book a Free Architecture Audit
-                </a>
-            </section>
-
-            <section className="services">
-                <h2>What I Do</h2>
-                <div className="card-grid">
-                    <article className="card">
-                        <h3>Architecture & Scaling</h3>
-                        <p>Migrating monolithic MVPs to high-performance microservices. Designed for Series A load—not weekend hobby traffic. Systems that won't become technical debt six months post-launch.</p>
-                    </article>
-                    <article className="card">
-                        <h3>Cloud Cost Optimization</h3>
-                        <p>Moving heavy AWS workloads to edge-first Cloudflare infrastructure. I've replaced AWS Elasticsearch with Typesense on Cloudflare Workers—cutting both search latency and server bills.</p>
-                    </article>
-                    <article className="card">
-                        <h3>B2B Workflow Automation</h3>
-                        <p>Secure internal tools and micro-SaaS backends for compliance-sensitive industries. HIPAA-ready, audit-friendly, and built to integrate cleanly with your existing stack.</p>
-                    </article>
-                </div>
-            </section>
-
-            <section className="companies">
-                <h2>Case Studies</h2>
-                <div className="card-grid">
-                    <article className="card">
-                        <h3><a href="https://aa.health" target="_blank" rel="noopener noreferrer">aa.health</a></h3>
-                        <p>Built the HIPAA-compliant backend infrastructure from scratch. Secure patient management, production-grade privacy controls, and audit-ready data flows for a regulated healthcare environment.</p>
-                    </article>
-                    <article className="card">
-                        <h3><a href="https://app.hudpro.com" target="_blank" rel="noopener noreferrer">Hudpro.com</a></h3>
-                        <p>Designed the database architecture powering nationwide real estate inventory. High-concurrency queries across millions of property records—no latency spikes under production load.</p>
-                    </article>
-                    <article className="card">
-                        <h3><a href="https://www.whydonate.com" target="_blank" rel="noopener noreferrer">Whydonate.com</a></h3>
-                        <p>Scaled the API layer to handle 2M+ requests per day. Infrastructure runs on Python, PostgreSQL, and Cloudflare—stable under sustained donor campaign traffic spikes.</p>
-                    </article>
-                    <article className="card highlight-card">
-                        <h3><a href="#" onClick={handleEmailPopup} data-popup-title="Let's work together">Your Company</a><span className="cursor"></span></h3>
-                        <p>If your API is slow, your cloud bill is climbing, or your MVP architecture won't survive your next growth phase—let's talk.</p>
-                    </article>
-                </div>
-            </section>
-
-            <section className="availability">
-                <div className="status-indicator">
-                    <span className="dot pulse"></span>
-                    <p>Available for new contracts</p>
-                </div>
-                <ul className="list-group">
-                    <li className="list-item">
-                        <strong>Architecture & Scaling</strong>
-                        <span>Remote • Contract</span>
-                    </li>
-                    <li className="list-item">
-                        <strong>Cloud Cost Optimization</strong>
-                        <span>Remote • Consulting</span>
-                    </li>
-                    <li className="list-item">
-                        <strong>B2B Workflow Automation</strong>
-                        <span>Remote • Contract</span>
-                    </li>
-                </ul>
-            </section>
-
-            <section className="testimonials">
-                <h2>Client Feedback</h2>
-                <div className="card-grid">
-                    <article className="testimonial-card">
-                        <div className="rating">⭐⭐⭐⭐⭐</div>
-                        <p>"Ashish delivered exceptional work on a highly technical Cloudflare/Workers project. He produced a very detailed and well-structured architecture document..."</p>
-                        <span className="client-project">Cloudflare Edge Architecture</span>
-                    </article>
-                    <article className="testimonial-card">
-                        <div className="rating">⭐⭐⭐⭐⭐</div>
-                        <p>"Ashish is a fantastic dev. Very hardworking and was always able to come up with solutions for my project. I would highly recommend him to anyone else."</p>
-                        <span className="client-project">Cloudflare Worker + Supabase Integration</span>
-                    </article>
-                    <article className="testimonial-card">
-                        <div className="rating">⭐⭐⭐⭐⭐</div>
-                        <p>"I'd love to work with Ashish again. He really writes clean, great code."</p>
-                        <span className="client-project">ASN1/DER Parsing on Cloudflare Edge</span>
-                    </article>
-                    <article className="testimonial-card">
-                        <div className="rating">⭐⭐⭐⭐⭐</div>
-                        <p>"Was great working with him. He made everything work and went above and beyond."</p>
-                        <span className="client-project">Custom Webhook with Reverse Proxy</span>
-                    </article>
-                </div>
-            </section>
-        </>
-    );
-};
-
-export default HomePage;
