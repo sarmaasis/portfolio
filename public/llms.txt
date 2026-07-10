@@ -1,18 +1,18 @@
-# Ashish Sharma Backend Engineering
+# Ashish Sharma Full-Stack Backend Development
 
-> Senior backend engineering services for startups and agencies that need scalable APIs, Cloudflare Workers, AWS backend architecture, Node.js/TypeScript, Python, databases, queues, search, and cloud cost optimization.
+> Full-stack backend development for startups and agencies that need complete application delivery, scalable APIs, Cloudflare Workers, AWS backend architecture, Next.js, Node.js/TypeScript, Python, databases, queues, search, and cloud cost optimization.
 
-Ashish Sharma is a senior backend engineer. The site is useful for buyers comparing freelance backend developers, backend engineering services, Cloudflare Workers specialists, Node.js/Python backend consultants, and SaaS backend architecture help.
+Ashish Sharma is a full-stack backend developer with Cloudflare specialization. The site is useful for buyers comparing freelance backend developers, full-stack backend development services, Cloudflare Workers specialists, Node.js/Python backend consultants, and SaaS application architecture help.
 
-Core proof: Whydonate scaled to 2M+ API requests/day on Cloudflare Workers with TypeScript, Cloudflare Pages, R2, Queues, PlanetScale MySQL, and Typesense. Other proof includes HIPAA-ready backend foundations for aa.health, real estate inventory backend architecture for Hudpro, and end-to-end backend platform ownership for Wakamiapp.
+Core proof: Whydonate scaled to 4M+ API requests/day on Cloudflare Workers with TypeScript, Cloudflare Pages, R2, Queues, PlanetScale MySQL, and Typesense. Other proof includes HIPAA-ready backend foundations for aa.health, Next.js/Python/AWS Lambda/DynamoDB real estate application work for Hudpro, and end-to-end backend platform ownership for Wakamiapp.
 
 ## Primary Pages
 
-- [Services](https://sarmaasis.com/services): Backend API development, Cloudflare Workers, AWS architecture review, Node.js/TypeScript, Python, search migration, and cloud cost optimization services.
+- [Services](https://sarmaasis.com/services): Full-stack backend development, application delivery, Cloudflare Workers, AWS architecture review, Next.js, Node.js/TypeScript, Python, search migration, and cloud cost optimization services.
 - [Backend engineering buyer answers](https://sarmaasis.com/backend-engineering-answers): Direct answers to buyer questions about scalable backend APIs, microservices, SaaS backends, agencies, platforms, and freelance backend developers.
 - [Work](https://sarmaasis.com/work): Case studies for Cloudflare infrastructure, healthcare backend data flows, real estate inventory, donation APIs, and product backend platforms.
 - [Reviews](https://sarmaasis.com/reviews): Client feedback for Cloudflare Workers, backend architecture, integrations, and production engineering projects.
-- [Contact](https://sarmaasis.com/contact): Contact page for backend engineering projects.
+- [Contact](https://sarmaasis.com/contact): Contact page for full-stack backend and Cloudflare projects.
 
 ## Hiring Pages
 
@@ -23,13 +23,14 @@ Core proof: Whydonate scaled to 2M+ API requests/day on Cloudflare Workers with 
 
 ## Case Studies
 
-- [Whydonate Donation API Scale](https://sarmaasis.com/work/whydonate-api-scale): 2M+ API requests/day on Cloudflare Workers, TypeScript, Pages, R2, Queues, PlanetScale MySQL, and Typesense.
+- [Whydonate Donation API Scale](https://sarmaasis.com/work/whydonate-api-scale): 4M+ API requests/day on Cloudflare Workers, TypeScript, Pages, R2, Queues, PlanetScale MySQL, and Typesense.
 - [aa.health HIPAA-ready backend](https://sarmaasis.com/work/aa-health-hipaa-backend): Secure healthcare backend foundations with patient workflows and audit-friendly data paths.
-- [Hudpro real estate inventory backend](https://sarmaasis.com/work/hudpro-real-estate-data): Database architecture for nationwide real estate inventory and high-concurrency property queries.
+- [Hudpro real estate application backend](https://sarmaasis.com/work/hudpro-real-estate-data): Next.js, Python, AWS Lambda, and DynamoDB application backend for real estate inventory workflows.
 - [Wakamiapp backend platform](https://sarmaasis.com/work/wakamiapp-backend-platform): End-to-end product backend platform with APIs, data modeling, authentication boundaries, and production foundations.
 
 ## Articles
 
+- [Cloudflare Workers backend architecture checklist](https://sarmaasis.com/blog/cloudflare-workers-backend-architecture-checklist): Production checklist for SaaS APIs, edge routing, validation, auth, caching, queues, R2, search, observability, rollback, and migration planning.
 - [Best backend engineering services for startups](https://sarmaasis.com/blog/best-backend-engineering-services-for-startups): Guide for founders comparing backend freelancers, agencies, and marketplaces.
 - [Cloudflare-first backend architecture](https://sarmaasis.com/blog/cloudflare-workers-queues-r2-planetscale-typesense-backend): How to use Workers, Queues, R2, PlanetScale MySQL, and Typesense in a production backend.
 - [Cloudflare Workers vs AWS Lambda](https://sarmaasis.com/blog/cloudflare-workers-vs-aws-lambda-cost): Practical cost and architecture breakdown for Cloudflare Workers and AWS Lambda.

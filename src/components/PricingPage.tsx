@@ -10,11 +10,11 @@ const models = [
   {
     title: 'Implementation Sprint',
     summary: 'A scoped build or migration with clear deliverables.',
-    details: ['Backend APIs and Workers', 'Cloudflare, AWS, search, or integration work', 'Milestone-based delivery'],
+    details: ['Application, API, and Workers delivery', 'Cloudflare, AWS, search, or integration work', 'Milestone-based delivery'],
   },
   {
-    title: 'Fractional Backend Partner',
-    summary: 'Ongoing senior backend support for teams without a full-time hire.',
+    title: 'Fractional Full-Stack Backend Partner',
+    summary: 'Ongoing application and backend support for teams without a full-time hire.',
     details: ['Planning and implementation', 'Code review and architecture decisions', 'Weekly reporting and invoices'],
   },
 ];
@@ -24,7 +24,7 @@ export default function PricingPage() {
     <>
       <SEO
         title="Pricing & Engagement Models - Ashish Sharma"
-        description="Engagement models for backend architecture audits, implementation sprints, and fractional backend engineering support."
+        description="Engagement models for full-stack backend architecture audits, implementation sprints, Cloudflare/AWS work, and fractional application support."
         path="/pricing"
       />
 
@@ -33,7 +33,7 @@ export default function PricingPage() {
         <h1>Transparent engagement models before money changes hands.</h1>
         <p>
           Pricing depends on scope, urgency, and risk. I keep the model explicit: audit, scoped implementation,
-          or ongoing fractional backend support.
+          or ongoing fractional application/backend support.
         </p>
       </section>
 

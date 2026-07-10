@@ -1,4 +1,5 @@
-import { Link, NavLink, Route, Routes } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, Route, Routes } from 'react-router-dom';
 import './App.css';
 import AboutPage from './components/AboutPage';
 import BackendAnswersPage from './components/BackendAnswersPage';
@@ -12,17 +13,32 @@ import HomePage from './components/HomePage';
 import PricingPage from './components/PricingPage';
 import ReviewsPage from './components/ReviewsPage';
 import ServicesPage from './components/ServicesPage';
+import ThemeToggle from './components/ThemeToggle';
 import WorkPage from './components/WorkPage';
 import { COPYRIGHT_YEAR, OFFER, POSITIONING, UPWORK_URL, primaryLandingPages } from './data/site';
 
 const navItems = [
-  { to: '/services', label: 'Services' },
-  { to: '/work', label: 'Work' },
-  { to: '/blog', label: 'Writing' },
-  { to: '/contact', label: 'Contact' },
+  { href: '/#services', label: 'Services' },
+  { href: '/#work', label: 'Work' },
+  { href: '/#writing', label: 'Writing' },
+  { href: '/#contact', label: 'Hire Me' },
 ];
 
 function App() {
+  const [theme, setTheme] = useState<'light' | 'dark'>('dark');
+
+  useEffect(() => {
+    const savedTheme = window.localStorage.getItem('theme');
+    const nextTheme = savedTheme === 'dark' || savedTheme === 'light' ? savedTheme : 'dark';
+
+    setTheme(nextTheme);
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+    window.localStorage.setItem('theme', theme);
+  }, [theme]);
+
   return (
     <>
       <a className="skip-link" href="#main-content">
@@ -39,15 +55,15 @@ function App() {
             </div>
             <nav className="header-nav" aria-label="Primary navigation">
               {navItems.map((item) => (
-                <NavLink
-                  key={item.to}
-                  to={item.to}
-                  className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
-                >
+                <a key={item.href} href={item.href} className="nav-link">
                   {item.label}
-                </NavLink>
+                </a>
               ))}
             </nav>
+            <ThemeToggle
+              theme={theme}
+              onToggle={() => setTheme((currentTheme) => (currentTheme === 'light' ? 'dark' : 'light'))}
+            />
           </div>
         </header>
 

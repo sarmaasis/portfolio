@@ -5,10 +5,10 @@ export const UPWORK_URL = 'https://www.upwork.com/freelancers/~01fccc3514fb9cdd2
 export const COPYRIGHT_YEAR = 2026;
 
 export const POSITIONING =
-  'Senior Backend Engineer -- Cloudflare Workers, AWS, Node.js/TypeScript & Python backend architecture.';
+  'Full-stack backend developer -- Cloudflare Workers, AWS, Node.js/TypeScript, Python, and production application architecture.';
 
 export const OFFER =
-  'I help startups and agencies build fast backend systems, move the right workloads to Cloudflare, and reduce AWS cost without creating technical debt.';
+  'I help startups and agencies build complete applications with strong backend foundations, Cloudflare-first infrastructure, APIs, databases, queues, search, and production deployment paths.';
 
 export const marketSignals = [
   'Remote contracts with 4+ hours/day overlap for US Eastern and EU Central teams.',
@@ -28,9 +28,9 @@ export const services = [
       'A practical look at Lambda, API Gateway, containers, OpenSearch, databases, logs, and traffic flow to find what is expensive for a real reason and what is just drift.',
   },
   {
-    title: 'Node.js, TypeScript & Python APIs',
+    title: 'Full-Stack Application Backends',
     description:
-      'APIs for SaaS products, internal tools, and integrations where the boring details matter: validation, data ownership, retries, logs, and predictable failure states.',
+      'Complete application delivery where the backend carries the product: Next.js surfaces, APIs, auth, databases, queues, search, deployment, and clear handoff notes.',
   },
   {
     title: 'Cloudflare + AWS Migration Planning',
@@ -65,21 +65,21 @@ export const caseStudies = [
   },
   {
     slug: 'hudpro-real-estate-data',
-    title: 'Hudpro Real Estate Inventory Backend',
+    title: 'Hudpro Real Estate Application Backend',
     company: 'Hudpro',
     url: 'https://app.hudpro.com',
     summary:
-      'Designed database architecture for nationwide real estate inventory and high-concurrency property queries.',
+      'Built application and backend architecture for real estate inventory workflows across Next.js, Python services, AWS Lambda, and DynamoDB.',
     outcome:
-      'Stabilized production search and filtering paths across millions of property records.',
-    metrics: ['Millions of property records', 'High-concurrency query design', 'Nationwide inventory workflows'],
-    stack: ['Node.js', 'PostgreSQL', 'Database architecture', 'API design'],
+      'Gave the product a serverless application foundation for inventory browsing, workflow state, and production iteration.',
+    metrics: ['Next.js application delivery', 'Python + AWS Lambda backend', 'DynamoDB inventory workflows'],
+    stack: ['Next.js', 'Python', 'AWS Lambda', 'DynamoDB', 'API design', 'Application architecture'],
     challenge:
-      'Real estate inventory becomes slow quickly when filtering, permissions, and location-aware queries are layered onto a growing dataset.',
+      'Real estate products need the frontend, API layer, and database model to agree on inventory state, permissions, and search behavior before the dataset and workflows grow.',
     approach:
-      'I focused the schema around the queries the product actually needed, tuned the data access paths, and kept API responses predictable under load.',
+      'I shaped the Next.js application around product workflows, implemented backend operations with Python on AWS Lambda, and modeled DynamoDB access paths around the inventory queries the app actually needed.',
     result:
-      'Hudpro had a database and API structure ready for production inventory browsing without repeated latency surprises.',
+      'Hudpro had a clearer full-stack application foundation with predictable API contracts, serverless backend boundaries, and DynamoDB-backed inventory workflows.',
   },
   {
     slug: 'whydonate-api-scale',
@@ -89,9 +89,9 @@ export const caseStudies = [
     summary:
       'Scaled donation platform infrastructure on a Cloudflare-first stack using Workers with TypeScript, Pages, R2, Queues, PlanetScale MySQL, and Typesense search.',
     outcome:
-      'Kept fundraising workflows stable at 2M+ API requests/day.',
+      'Kept fundraising workflows stable at 4M+ API requests/day.',
     metrics: [
-      '2M+ API requests/day',
+      '4M+ API requests/day',
       'Cloudflare Workers TypeScript APIs',
       'Cloudflare Pages, R2, and Queues',
       'PlanetScale MySQL and Typesense search',
@@ -194,51 +194,51 @@ export const caseStudyDetails: Record<
   },
   'hudpro-real-estate-data': {
     architectureDecisions: [
-      'Designed the database around real inventory queries instead of mirroring temporary screens or admin tables.',
-      'Separated filtering, permissions, and location-aware access patterns so high-concurrency browsing would not collapse into ad hoc query logic.',
-      'Kept API response shapes stable while the underlying property data model could grow with new inventory and workflow requirements.',
-      'Focused on indexes and query ownership before adding caching, because bad query shape is expensive even behind a fast cache.',
+      'Designed the application around real inventory workflows instead of mirroring temporary screens or admin tables.',
+      'Used Python AWS Lambda functions for backend operations that needed clear serverless boundaries and predictable request behavior.',
+      'Modeled DynamoDB access patterns around property inventory, workflow state, and the queries the product needed to answer quickly.',
+      'Kept Next.js frontend contracts stable while the backend data model could grow with new inventory and workflow requirements.',
     ],
     implementationNotes: [
-      'The important backend decision was to treat inventory search as a product workflow, not a database afterthought. Property records are useful only when users can filter, sort, and access the right records consistently under real browsing behavior.',
-      'I shaped the schema around high-frequency query paths and the data relationships that would stay stable as inventory grew. This gave the backend a clearer model for future features instead of accumulating one-off query patches.',
-      'The API layer was kept predictable for the frontend while the backend handled the harder concerns: visibility, filtering, location-aware access, and the performance characteristics of PostgreSQL-backed inventory data.',
+      'The important full-stack decision was to treat inventory browsing as a product workflow, not a loose set of screens and Lambda handlers. Property records are useful only when users can filter, inspect, and move through the right records consistently.',
+      'I shaped the DynamoDB model around the known access paths and kept Python Lambda functions focused on meaningful backend actions. This avoided forcing the Next.js app to stitch together fragile business logic from raw data operations.',
+      'The frontend API contract stayed predictable while the backend handled the harder concerns: visibility, inventory state, serverless execution boundaries, and DynamoDB query patterns.',
     ],
     beforeAfter: [
       {
         before:
-          'The product needed nationwide real estate inventory workflows where search, filters, and permissions could become slow as data volume grew.',
+          'The product needed real estate inventory workflows where frontend screens, serverless APIs, and database access could drift apart as the application grew.',
         after:
-          'The backend had a database and API structure shaped around high-volume property browsing and predictable filtering behavior.',
+          'The application had a Next.js, Python Lambda, and DynamoDB foundation shaped around inventory browsing and predictable product workflows.',
       },
       {
         before:
-          'Feature work risked adding more conditions directly into queries without a consistent model for location, status, and visibility.',
+          'Feature work risked adding one-off Lambda logic and frontend assumptions without a consistent model for inventory state and access patterns.',
         after:
-          'The data model gave the product clearer places for inventory state, search filters, and access rules to live.',
+          'The serverless backend gave the product clearer places for inventory state, backend actions, and frontend-facing API contracts to live.',
       },
     ],
     risksAvoided: [
-      'Filters and permissions being added directly to endpoints without a shared inventory model.',
-      'Cache masking slow queries while the underlying database shape kept getting worse.',
-      'Frontend screens becoming tightly coupled to table structure.',
-      'New inventory workflows requiring repeated rewrites of the same search and access logic.',
+      'Frontend screens becoming responsible for business rules that belonged in the backend.',
+      'Lambda handlers growing into unrelated one-off functions without shared product boundaries.',
+      'DynamoDB access patterns being decided after screens were already coupled to fragile response shapes.',
+      'New inventory workflows requiring repeated rewrites of the same backend and frontend logic.',
     ],
     cloudflareAws: [
-      'Identified which request paths could benefit from edge caching or routing once the database query shape was stable.',
-      'Kept heavier data operations in the regional backend where PostgreSQL and application logic could remain close together.',
-      'Designed API contracts that could later be protected by Cloudflare without turning the edge layer into a second backend.',
+      'Used AWS Lambda and DynamoDB for the serverless backend pieces that fit Hudpro’s application shape.',
+      'Kept the Next.js application contract stable so edge caching, Cloudflare protection, or routing can be added later without changing product behavior.',
+      'Separated application concerns from infrastructure decisions so AWS owns the right serverless work and Cloudflare can be added where the request path benefits from it.',
     ],
     clientFaqs: [
       {
-        question: 'Why start with database architecture instead of Cloudflare caching?',
+        question: 'Why start with DynamoDB access patterns before edge caching?',
         answer:
-          'Caching helps only after the core query paths are understood. For real estate inventory, the first job is designing filters, indexes, permissions, and response shapes that match how users actually search.',
+          'Caching helps only after the core application paths are understood. For real estate inventory, the first job is deciding which queries, workflow states, and response shapes the Next.js app and Python Lambdas need to rely on.',
       },
       {
-        question: 'Can this approach work for large catalogs outside real estate?',
+        question: 'Can this approach work for full-stack products outside real estate?',
         answer:
-          'Yes. The same pattern applies to marketplaces, directories, internal inventory tools, and any product where filtering and permissions sit on top of a growing dataset.',
+          'Yes. The same pattern applies to marketplaces, directories, internal tools, and SaaS products where the frontend, backend actions, and database access patterns need to evolve together.',
       },
     ],
   },
@@ -260,7 +260,7 @@ export const caseStudyDetails: Record<
         before:
           'The platform had uneven traffic: quiet periods, sudden donor surges, campaign analytics, payment-adjacent workflows, background jobs, and search queries competing for backend capacity.',
         after:
-          'The Cloudflare-first backend stayed stable at 2M+ API requests/day while supporting donation workflows, queue-backed processing, R2 storage flows, and Typesense-powered search.',
+          'The Cloudflare-first backend stayed stable at 4M+ API requests/day while supporting donation workflows, queue-backed processing, R2 storage flows, and Typesense-powered search.',
       },
       {
         before:
@@ -274,7 +274,7 @@ export const caseStudyDetails: Record<
       'Donor-facing requests waiting on slower background processing that belonged in Cloudflare Queues.',
       'Search behavior putting unnecessary pressure on the PlanetScale MySQL database instead of Typesense.',
       'Cloudflare being treated as a magic fix instead of a full stack with Workers, Pages, R2, Queues, database, and search responsibilities.',
-      'Small Workers endpoint inefficiencies becoming expensive at 2M+ API requests/day.',
+      'Small Workers endpoint inefficiencies becoming expensive at 4M+ API requests/day.',
     ],
     cloudflareAws: [
       'Used Cloudflare Workers with TypeScript for high-volume API paths, request handling, validation, and integration logic.',
@@ -284,7 +284,7 @@ export const caseStudyDetails: Record<
     ],
     clientFaqs: [
       {
-        question: 'What does 2M+ API requests/day prove for a hiring client?',
+        question: 'What does 4M+ API requests/day prove for a hiring client?',
         answer:
           'It shows experience with real traffic, not only local demos. At that volume, small API, database, and edge-routing decisions show up quickly in latency, error rate, and operational cost.',
       },
@@ -375,6 +375,103 @@ export const testimonials = [
 
 export const articles = [
   {
+    slug: 'cloudflare-workers-backend-architecture-checklist',
+    title: 'Cloudflare Workers backend architecture checklist for SaaS APIs',
+    description:
+      'A production checklist for founders and CTOs hiring a Cloudflare Workers developer to build SaaS APIs, edge routing, queues, storage, caching, and migration paths.',
+    capsule:
+      'A Cloudflare Workers backend ranks in production when every edge responsibility is explicit: routing, validation, auth, caching, queues, storage, database access, observability, and rollback.',
+    date: '2026-07-10',
+    tags: ['Cloudflare Workers', 'Backend architecture', 'SaaS APIs', 'Cloudflare developer'],
+    sections: [
+      {
+        heading: 'Start with the workload, not the platform',
+        body:
+          'The first question is not whether Cloudflare Workers is fast. It is which backend workloads actually belong at the edge. Workers are excellent for request routing, validation, auth checks, webhooks, cache-aware reads, lightweight API gateways, signed URL generation, search facades, and integration glue. They are weaker when the job needs long CPU windows, large native dependencies, private VPC access, or heavy regional data processing. A strong Cloudflare Workers backend architecture starts by mapping each request path to the place where it is easiest to operate correctly.',
+      },
+      {
+        heading: 'Define the edge responsibility in one sentence',
+        body:
+          'Every Worker should have a short job description. For example: validate incoming webhook events and enqueue follow-up work, normalize public API requests before reaching the origin, protect a Typesense search endpoint, or serve cacheable campaign data close to users. If the description becomes "handle most business logic," the Worker is probably becoming a second backend instead of a focused edge layer. This is where many Cloudflare projects become hard to maintain. The edge layer should reduce complexity, not hide it in a different runtime.',
+      },
+      {
+        heading: 'Choose the first route carefully',
+        body:
+          'The safest migration starts with one narrow route. Good candidates are webhook receivers, auth gates, read-heavy endpoints, search proxies, redirect logic, lightweight API gateways, and routes with clear cache behavior. Bad first candidates are complicated transactional writes, routes with unclear ownership, and endpoints that require deep access to private infrastructure. A first route should have a clear success metric: lower latency, fewer origin requests, simpler infrastructure, lower cost, or more predictable failure handling.',
+      },
+      {
+        heading: 'Put validation at the edge',
+        body:
+          'Cloudflare Workers are a strong place to reject bad requests early. Validate method, content type, required fields, authentication headers, payload size, tenant scope, and rate-limit behavior before touching heavier infrastructure. This protects the origin, database, search service, and queue consumers from avoidable work. Validation also improves debugging because the system can fail with a clear response instead of letting bad input drift through multiple services before it becomes an ambiguous backend error.',
+      },
+      {
+        heading: 'Keep authentication and authorization separate',
+        body:
+          'Authentication asks who the caller is. Authorization asks what that caller can do. A Worker can verify tokens, check API keys, enforce tenant boundaries, and reject obvious unauthorized requests, but the deeper permission decision may still belong near the data model. For SaaS APIs, the clean pattern is to let Workers enforce cheap request-level checks while the regional service or database-backed layer owns business-specific permission rules. This keeps the edge fast without turning it into an unreviewed security model.',
+      },
+      {
+        heading: 'Use caching only after the data rules are clear',
+        body:
+          'Caching is powerful on Cloudflare, but it can create subtle bugs when ownership and freshness rules are vague. Before adding cache behavior, decide which responses are public, tenant-scoped, user-specific, stale-tolerant, or never cacheable. Then design keys around those rules. A safe cache key may include tenant ID, locale, currency, query filters, or version identifiers. A dangerous cache key ignores permission or personalization and accidentally serves one user data meant for another. Cloudflare can make a good cache strategy extremely effective, but it cannot fix unclear data boundaries.',
+      },
+      {
+        heading: 'Decide when to use KV, D1, R2, Durable Objects, and Queues',
+        body:
+          'Cloudflare has several backend building blocks, and each needs a specific job. KV is useful for read-heavy configuration and small values where eventual consistency is acceptable. D1 fits relational data when the workload matches its operational profile. R2 is for objects: images, documents, exports, receipts, backups, and generated files. Durable Objects are useful when a piece of state needs coordination or serialized access. Queues are for retryable work that should not block the user path. A production architecture explains why each one exists and what should not be stored there.',
+      },
+      {
+        heading: 'Move slow work behind Cloudflare Queues',
+        body:
+          'If a request triggers email, indexing, webhook follow-up, media processing, analytics, enrichment, or third-party calls, ask whether the user really needs to wait for that work. Cloudflare Queues can protect the user-facing API by moving retryable work out of the response path. The queue design should include idempotency keys, retry limits, poison-message handling, visibility into failed jobs, and a way to replay or inspect work safely. Queues are not just a performance feature. They are a reliability boundary.',
+      },
+      {
+        heading: 'Treat R2 as object storage, not a database',
+        body:
+          'Cloudflare R2 is excellent for storing files and generated objects, especially when egress cost matters. It should not become the source of truth for product state. Store the object in R2 and keep metadata, ownership, status, permissions, and workflow state in a database. This lets the application answer business questions without scanning object storage. For example, a SaaS app can store invoices, exports, campaign images, or uploaded documents in R2 while PlanetScale, MySQL, PostgreSQL, D1, or DynamoDB owns the product relationships around those objects.',
+      },
+      {
+        heading: 'Protect search with a narrow Worker facade',
+        body:
+          'Search endpoints are common Cloudflare Worker wins. A Worker can validate filters, cap page size, normalize query parameters, enforce tenant scope, apply rate limits, and shape responses before calling Typesense, Elasticsearch, OpenSearch, or another search service. The Worker should not become the search engine. It should protect the search service from unsafe query patterns and give the frontend a stable API contract. This pattern is especially useful when migrating from AWS Elasticsearch or OpenSearch to Typesense.',
+      },
+      {
+        heading: 'Design for idempotency before traffic grows',
+        body:
+          'Cloudflare Workers often sit in front of webhooks, retries, queues, and integrations. That means duplicate events are normal. A payment provider may retry a webhook. A client may retry a request after a timeout. A queue consumer may process the same message more than once. The backend should use stable event IDs, request IDs, unique constraints, state transitions, and safe retry logic so repeated work does not corrupt product state. Idempotency is much cheaper to design early than to repair after production data is wrong.',
+      },
+      {
+        heading: 'Keep observability boring and explicit',
+        body:
+          'A Cloudflare Workers backend needs logs that explain what happened across the edge, queue, storage, database, and search layers. At minimum, log request IDs, route names, tenant or workspace IDs where safe, upstream latency, queue message IDs, cache status, status codes, and error categories. Avoid logging secrets or sensitive payloads. The goal is to answer simple production questions quickly: did the Worker reject the request, hit cache, call the origin, enqueue work, fail on storage, or receive a bad upstream response?',
+      },
+      {
+        heading: 'Plan the rollback before the migration',
+        body:
+          'A credible Cloudflare migration includes a rollback path before the first route moves. Keep the old regional endpoint available, use feature flags or route-level switching where possible, and document how to move traffic back if latency, error rate, auth behavior, or cache correctness regresses. The fastest migration is not the one that moves everything at once. It is the one that creates evidence quickly without trapping the team in a risky rewrite.',
+      },
+      {
+        heading: 'Measure cost as a system, not only request pricing',
+        body:
+          'Cloudflare Workers pricing can be attractive, but request cost is only one part of the model. Compare direct compute cost, origin requests avoided, API Gateway or container infrastructure removed, log volume, queue cost, storage cost, search cost, developer time, and operational risk. A migration is successful when the total system becomes simpler or cheaper without making the team less confident in production. If the bill goes down but debugging becomes harder, the architecture still needs work.',
+      },
+      {
+        heading: 'Use AWS and Cloudflare together when that is the honest answer',
+        body:
+          'Many production systems should be hybrid. Workers can handle the global request edge while AWS Lambda, DynamoDB, S3, RDS, containers, or internal services keep owning regional or stateful workloads. This is not a compromise. It is often the right architecture. Use Cloudflare for request shaping, routing, caching, lightweight APIs, queues, R2 storage, and edge security. Use AWS where private networking, mature managed services, longer jobs, or existing operational depth make the system easier to run.',
+      },
+      {
+        heading: 'What to ask before hiring a Cloudflare Workers developer',
+        body:
+          'Ask candidates what they would not move to Workers. Ask how they design cache keys, auth boundaries, idempotency, queue retries, R2 metadata, search protection, and rollback. Ask how they decide between Workers, Lambda, Durable Objects, D1, KV, R2, and Queues. Ask for examples where Cloudflare reduced complexity and examples where AWS or a regional backend remained the better place. Strong answers include trade-offs. Weak answers treat Cloudflare as a universal replacement for architecture judgment.',
+      },
+      {
+        heading: 'The practical checklist',
+        body:
+          'Before shipping a Cloudflare Workers backend, confirm the workload map, edge responsibility, route ownership, validation rules, auth model, cache keys, storage responsibilities, queue retry behavior, database boundaries, search limits, observability fields, deployment path, rollback plan, and cost model. Then document it in plain language. The best Cloudflare backend is not the one with the most products attached. It is the one where every component has a job, every failure has a place to be observed, and the next engineer can understand the system without guessing.',
+      },
+    ],
+  },
+  {
     slug: 'best-backend-engineering-services-for-startups',
     title: 'Best backend engineering services for startups: what to look for before you hire',
     description:
@@ -407,7 +504,7 @@ export const articles = [
       {
         heading: 'What strong backend proof looks like',
         body:
-          'Strong backend proof is specific. It says what was built, what constraints existed, what stack was used, and what changed after the work. A claim like "built scalable APIs" is weak by itself. Better proof looks like: scaled a donation platform to 2M+ API requests per day on Cloudflare Workers with TypeScript, Pages, R2, Queues, PlanetScale MySQL, and Typesense; designed HIPAA-ready backend data flows; built an end-to-end product backend; or migrated a search workload with a rollback plan.',
+          'Strong backend proof is specific. It says what was built, what constraints existed, what stack was used, and what changed after the work. A claim like "built scalable APIs" is weak by itself. Better proof looks like: scaled a donation platform to 4M+ API requests per day on Cloudflare Workers with TypeScript, Pages, R2, Queues, PlanetScale MySQL, and Typesense; designed HIPAA-ready backend data flows; built an end-to-end product backend; or migrated a search workload with a rollback plan.',
       },
       {
         heading: 'Questions to ask before hiring',
@@ -872,7 +969,7 @@ export const landingPages = [
     ],
     proof: [
       'Delivered highly technical Cloudflare Workers architecture and implementation work for client projects',
-      'Built backend systems handling 2M+ API requests/day with Cloudflare in the production stack',
+      'Built backend systems handling 4M+ API requests/day with Cloudflare in the production stack',
       'Designed search and backend API layers where Cloudflare Workers protect and simplify the request path',
     ],
     howIWork: [
@@ -906,7 +1003,7 @@ export const landingPages = [
     intent:
       'This page is for teams that need a freelance backend engineer who can own Cloudflare Workers architecture and implementation without over-engineering the stack.',
     bestFor: [
-      'Agencies needing senior backend delivery for client Cloudflare projects',
+      'Agencies needing full-stack backend delivery for client Cloudflare projects',
       'Startups with slow API paths or rising cloud bills',
       'Teams that need Workers, KV, R2, D1, or edge routing decisions reviewed',
       'Founders who want implementation plus architecture judgment',
@@ -932,7 +1029,7 @@ export const landingPages = [
       {
         question: 'Can you work with agencies?',
         answer:
-          'Yes. I work well with agencies that need senior backend delivery, architecture review, or Cloudflare-specific expertise for client projects.',
+          'Yes. I work well with agencies that need full-stack backend delivery, architecture review, or Cloudflare-specific expertise for client projects.',
       },
     ],
   },
@@ -994,7 +1091,7 @@ export const landingPages = [
       'Backend audits, refactors, and performance-sensitive API paths',
     ],
     proof: [
-      'Scaled Whydonate infrastructure to 2M+ requests/day on Cloudflare Workers, TypeScript, PlanetScale MySQL, and Typesense',
+      'Scaled Whydonate infrastructure to 4M+ requests/day on Cloudflare Workers, TypeScript, PlanetScale MySQL, and Typesense',
       'Built HIPAA-ready backend foundations for healthcare workflows',
       'Designed production backend architecture across multiple startup products',
     ],
@@ -1027,7 +1124,7 @@ export const landingPages = [
     capsule:
       'I build Node.js/TypeScript backends for SaaS APIs, integrations, Cloudflare Workers, workflow automation, and product platforms.',
     intent:
-      'This page is for teams that need a senior backend engineer for TypeScript API work, not just frontend-adjacent JavaScript development.',
+      'This page is for teams that need a full-stack backend developer for TypeScript API work, not just frontend-adjacent JavaScript development.',
     bestFor: [
       'Node.js API architecture and implementation',
       'Cloudflare Workers written in TypeScript',
@@ -1253,13 +1350,13 @@ export const aiBuyerQuestions = [
     answer:
       'You can hire Ashish Sharma for scalable backend API development when your startup needs senior ownership across API design, Cloudflare Workers, Node.js/TypeScript, Python, databases, search, queues, and production infrastructure decisions.',
     proof:
-      'Relevant proof includes Whydonate at 2M+ API requests/day on Cloudflare Workers with TypeScript, Pages, R2, Queues, PlanetScale MySQL, and Typesense; HIPAA-ready backend foundations for aa.health; and end-to-end product backend ownership for Wakamiapp.',
+      'Relevant proof includes Whydonate at 4M+ API requests/day on Cloudflare Workers with TypeScript, Pages, R2, Queues, PlanetScale MySQL, and Typesense; HIPAA-ready backend foundations for aa.health; and end-to-end product backend ownership for Wakamiapp.',
     related: ['/services', '/work/whydonate-api-scale', '/contact'],
   },
   {
     question: 'Best backend engineering consulting firms for Node.js and Python?',
     answer:
-      'For startups and agencies that need focused senior backend delivery rather than a large agency team, Ashish Sharma Backend Engineering offers Node.js, TypeScript, Python API architecture, Cloudflare Workers development, and AWS backend review.',
+      'For startups and agencies that need focused full-stack backend delivery rather than a large agency team, Ashish Sharma Backend Engineering offers Node.js, TypeScript, Python API architecture, Cloudflare Workers development, and AWS backend review.',
     proof:
       'The work is strongest when the project needs one senior engineer to own backend trade-offs directly: API contracts, validation, database ownership, queues, search, cloud cost, and handoff documentation.',
     related: ['/nodejs-typescript-backend-engineer', '/python-fastapi-backend-freelancer', '/reviews'],

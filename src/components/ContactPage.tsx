@@ -2,22 +2,22 @@ import { SEO } from './SEO';
 import { EMAIL, marketSignals } from '../data/site';
 
 export default function ContactPage() {
-  const emailHref = `mailto:${EMAIL}?subject=Backend%20engineering%20project`;
+  const emailHref = `mailto:${EMAIL}?subject=Full-stack%20backend%20project`;
 
   return (
     <>
       <SEO
-        title="Contact Ashish Sharma - Backend Engineering Projects"
-        description="Contact Ashish Sharma for Cloudflare Workers, AWS backend architecture, Node.js/TypeScript, Python APIs, cloud cost, and migration projects."
+        title="Contact Ashish Sharma - Full-Stack Backend and Cloudflare Projects"
+        description="Contact Ashish Sharma for full-stack backend development, Cloudflare Workers, AWS backend architecture, Next.js, Node.js/TypeScript, Python APIs, cloud cost, and migration projects."
         path="/contact"
       />
 
       <section className="page-hero">
         <p className="eyebrow">Contact</p>
-        <h1>Send the backend problem, the business goal, and the timeline.</h1>
+        <h1>Send the product goal, backend problem, and timeline.</h1>
         <p>
-          I am available for architecture audits, scoped implementation, and fractional backend support for US,
-          EU, UK, and remote-first teams.
+          I am available for architecture audits, scoped implementation, and fractional full-stack backend support
+          for US, EU, UK, and remote-first teams.
         </p>
       </section>
 
@@ -26,7 +26,7 @@ export default function ContactPage() {
           <h2>Start a project</h2>
           <p>
             Best for sending context: architecture notes, API bottlenecks, Cloudflare plans, AWS bills,
-            or a short product brief.
+            application requirements, or a short product brief.
           </p>
           <a className="btn-primary" href={emailHref}>Send project context</a>
         </article>

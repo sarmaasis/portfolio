@@ -16,9 +16,9 @@ export interface SEOState {
   type: 'website' | 'article' | 'profile';
 }
 
-const defaultTitle = 'Ashish Sharma - Cloudflare Workers Backend Engineer';
+const defaultTitle = 'Ashish Sharma - Full-Stack Backend Developer for Cloudflare and AWS';
 const defaultDescription =
-  'Senior Backend Engineer for Cloudflare Workers, AWS, Node.js/TypeScript, Python APIs, backend architecture, cloud cost optimization, and migrations.';
+  'Full-stack backend developer specializing in Cloudflare Workers, AWS, Node.js/TypeScript, Python, Next.js, APIs, databases, queues, search, and production application architecture.';
 
 const personSchema = {
   '@context': 'https://schema.org',
@@ -26,7 +26,7 @@ const personSchema = {
   name: 'Ashish Sharma',
   url: SITE_URL,
   email: 'mailto:sarmaasis@gmail.com',
-  jobTitle: 'Senior Backend Engineer',
+  jobTitle: 'Full-Stack Backend Developer',
   description: `${POSITIONING} ${OFFER}`,
   sameAs: [
     'https://www.linkedin.com/in/sarmaasis',
@@ -40,9 +40,12 @@ const personSchema = {
     'TypeScript',
     'Python',
     'FastAPI',
+    'Next.js',
     'AWS Lambda',
+    'DynamoDB',
     'AWS cost optimization',
     'Backend architecture',
+    'Full-stack application development',
     'Cloud cost optimization',
   ],
 };
@@ -59,7 +62,7 @@ const organizationSchema = {
     url: SITE_URL,
   },
   description:
-    'Backend engineering services for Cloudflare Workers, AWS backend architecture, Node.js/TypeScript APIs, Python APIs, API scaling, search migration, and cloud cost optimization.',
+    'Full-stack backend development services for Cloudflare Workers, AWS backend architecture, Next.js applications, Node.js/TypeScript APIs, Python APIs, API scaling, search migration, and cloud cost optimization.',
   sameAs: [
     'https://www.linkedin.com/in/sarmaasis',
     'https://github.com/sarmaasis',
@@ -80,9 +83,11 @@ const professionalServiceSchema = {
   },
   areaServed: ['United States', 'European Union', 'United Kingdom', 'Worldwide'],
   serviceType: [
+    'Full-stack backend development',
     'Cloudflare Workers backend development',
     'AWS backend architecture',
     'AWS cost optimization',
+    'Next.js application backend development',
     'Node.js backend engineering',
     'Python FastAPI backend engineering',
     'Cloud cost optimization',

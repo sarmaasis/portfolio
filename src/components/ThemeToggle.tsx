@@ -1,11 +1,11 @@
 interface ThemeToggleProps {
   onToggle: () => void;
-  theme: string;
+  theme: 'light' | 'dark';
 }
 
 function ThemeToggle({ onToggle, theme }: ThemeToggleProps) {
   const nextTheme = theme === 'light' ? 'dark' : 'light';
-  const visibleLabel = theme === 'light' ? 'D' : 'L';
+  const iconClass = theme === 'light' ? 'theme-icon sun-icon' : 'theme-icon moon-icon';
 
   return (
     <button
@@ -15,7 +15,7 @@ function ThemeToggle({ onToggle, theme }: ThemeToggleProps) {
       title={`Switch to ${nextTheme} mode`}
       onClick={onToggle}
     >
-      <span aria-hidden="true">{visibleLabel}</span>
+      <span className={iconClass} aria-hidden="true" />
     </button>
   );
 }

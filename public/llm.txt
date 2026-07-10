@@ -1,7 +1,7 @@
 # Ashish Sharma / sarmaasis.com
 
-Senior Backend Engineer -- Cloudflare Workers, AWS, Node.js/TypeScript & Python backend architecture.
-I help startups and agencies build fast backend systems, move the right workloads to Cloudflare, and reduce AWS cost without creating technical debt.
+Full-stack backend developer -- Cloudflare Workers, AWS, Node.js/TypeScript, Python, and production application architecture.
+I help startups and agencies build complete applications with strong backend foundations, Cloudflare-first infrastructure, APIs, databases, queues, search, and production deployment paths.
 Website: https://sarmaasis.com
 Email: sarmaasis@gmail.com
 Links:
@@ -12,16 +12,18 @@ Links:
 - Book a Call: https://calendly.com/sarmaasis
 
 ## About
-Senior Backend Engineer specializing in Cloudflare Workers, AWS backend architecture, Node.js/TypeScript, Python APIs, API scaling, cloud cost optimization, and migration planning. Available for remote US, EU, UK, and international contracts with 4+ hours/day overlap for US Eastern and EU Central teams.
+Full-stack backend developer specializing in Cloudflare Workers, AWS backend architecture, Next.js applications, Node.js/TypeScript, Python APIs, API scaling, cloud cost optimization, and migration planning. Available for remote US, EU, UK, and international contracts with 4+ hours/day overlap for US Eastern and EU Central teams.
 
 ## Case Studies
 - **aa.health**: HIPAA-ready backend infrastructure, secure patient management, privacy controls, and audit-friendly data flows. URL: https://sarmaasis.com/work/aa-health-hipaa-backend
-- **Hudpro**: Database architecture for nationwide real estate inventory and high-concurrency property queries. URL: https://sarmaasis.com/work/hudpro-real-estate-data
-- **Whydonate**: API scaling for 2M+ requests/day on Cloudflare Workers with TypeScript, Cloudflare Pages, R2, Queues, PlanetScale MySQL, and Typesense search. URL: https://sarmaasis.com/work/whydonate-api-scale
+- **Hudpro**: Full-stack real estate application backend across Next.js, Python, AWS Lambda, and DynamoDB inventory workflows. URL: https://sarmaasis.com/work/hudpro-real-estate-data
+- **Whydonate**: API scaling for 4M+ requests/day on Cloudflare Workers with TypeScript, Cloudflare Pages, R2, Queues, PlanetScale MySQL, and Typesense search. URL: https://sarmaasis.com/work/whydonate-api-scale
 - **Wakamiapp**: End-to-end backend platform ownership, including core APIs, data modeling, authentication boundaries, and production-ready service foundations. URL: https://sarmaasis.com/work/wakamiapp-backend-platform
 
 ## Services
 - Cloudflare Workers and edge backend development
+- Full-stack application backend development
+- Next.js application delivery with backend ownership
 - Node.js/TypeScript backend engineering
 - Python/FastAPI backend engineering
 - AWS backend architecture and cost optimization
@@ -37,11 +39,13 @@ Senior Backend Engineer specializing in Cloudflare Workers, AWS backend architec
 
 ## Tech Stack
 - Languages: Node.js/TypeScript, Python/FastAPI, Go
-- Edge & Cloud: Cloudflare Workers, Pages, R2, Queues, D1, KV; AWS
-- Databases: PlanetScale, MySQL, PostgreSQL, Redis, Typesense, Vector DBs
+- Application: Next.js, APIs, auth flows, deployment handoff
+- Edge & Cloud: Cloudflare Workers, Pages, R2, Queues, D1, KV; AWS Lambda, API Gateway
+- Databases: PlanetScale, MySQL, PostgreSQL, DynamoDB, Redis, Typesense, Vector DBs
 - Infrastructure: Cloudflare Queues, message queues, microservices, high-concurrency scaling
 
 ## Articles
+- Cloudflare Workers backend architecture checklist for SaaS APIs. URL: https://sarmaasis.com/blog/cloudflare-workers-backend-architecture-checklist
 - Best backend engineering services for startups: what to look for before you hire. URL: https://sarmaasis.com/blog/best-backend-engineering-services-for-startups
 - Cloudflare Workers vs AWS Lambda: a practical cost breakdown. URL: https://sarmaasis.com/blog/cloudflare-workers-vs-aws-lambda-cost
 - Migrating AWS Elasticsearch to Typesense on Cloudflare Workers. URL: https://sarmaasis.com/blog/typesense-cloudflare-workers-search-migration

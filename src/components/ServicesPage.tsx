@@ -3,19 +3,21 @@ import { SEO } from './SEO';
 import { SITE_URL, primaryLandingPages, services } from '../data/site';
 
 const engagementNotes = [
-  'Architecture audit and migration planning',
-  'Implementation sprints for APIs, Workers, and data flows',
-  'Ongoing fractional backend support for agencies and startups',
+  'Architecture audit and Cloudflare/AWS migration planning',
+  'Implementation sprints for applications, APIs, Workers, and data flows',
+  'Ongoing fractional full-stack backend support for agencies and startups',
 ];
 
 export default function ServicesPage() {
   const serviceSchema = {
     '@context': 'https://schema.org',
     '@type': 'Service',
-    name: 'Backend Engineering Services',
+    name: 'Full-Stack Backend Development Services',
     serviceType: [
+      'Full-stack backend development',
       'Backend API development',
       'Cloudflare Workers development',
+      'Next.js application development',
       'Node.js TypeScript backend engineering',
       'Python backend engineering',
       'AWS backend architecture',
@@ -33,7 +35,7 @@ export default function ServicesPage() {
     },
     areaServed: ['United States', 'European Union', 'United Kingdom', 'Worldwide'],
     description:
-      'Backend engineering services for startups and agencies that need scalable APIs, Cloudflare Workers, AWS backend architecture, Node.js/TypeScript, Python, PlanetScale MySQL, Typesense search, and production infrastructure support.',
+      'Full-stack backend development services for startups and agencies that need complete application delivery, scalable APIs, Cloudflare Workers, AWS backend architecture, Next.js, Node.js/TypeScript, Python, PlanetScale MySQL, DynamoDB, Typesense search, and production infrastructure support.',
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
       name: 'Backend engineering offers',
@@ -51,18 +53,18 @@ export default function ServicesPage() {
   return (
     <>
       <SEO
-        title="Backend Engineering Services - Cloudflare Workers, AWS, Node.js and Python"
-        description="Cloudflare Workers, AWS backend architecture, Node.js/TypeScript APIs, Python backends, migration planning, and cloud cost optimization."
+        title="Full-Stack Backend Development Services - Cloudflare Workers, AWS, Next.js and Python"
+        description="Full-stack backend development for Cloudflare Workers, AWS architecture, Next.js applications, Node.js/TypeScript APIs, Python backends, migration planning, and cloud cost optimization."
         path="/services"
         structuredData={serviceSchema}
       />
 
       <section className="page-hero">
         <p className="eyebrow">Services</p>
-        <h1>Cloudflare and AWS backend systems built for production.</h1>
+        <h1>Complete applications with Cloudflare-specialized backend foundations.</h1>
         <p>
-          Focused support for teams that need senior backend delivery, Cloudflare Workers expertise,
-          AWS cost review, and migration plans without avoidable infrastructure weight.
+          Focused support for teams that need application delivery, backend ownership, Cloudflare Workers
+          expertise, AWS cost review, and migration plans without avoidable infrastructure weight.
         </p>
       </section>
 
@@ -90,7 +92,7 @@ export default function ServicesPage() {
           <h2>Good Fit</h2>
           <p>
             Funded startups, product agencies, and SaaS teams with backend bottlenecks, Cloudflare plans,
-            AWS cost pressure, or API performance problems that need an engineering-led review.
+            AWS cost pressure, application delivery needs, or API performance problems that need an engineering-led review.
           </p>
           <Link className="text-link" to="/pricing">View engagement models</Link>
         </aside>

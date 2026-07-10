@@ -6,15 +6,15 @@ export default function AboutPage() {
   return (
     <>
       <SEO
-        title="About Ashish Sharma - Senior Backend Engineer"
-        description="About Ashish Sharma, a senior backend engineer specializing in Cloudflare Workers, AWS, Node.js/TypeScript, Python APIs, and backend architecture."
+        title="About Ashish Sharma - Full-Stack Backend Developer"
+        description="About Ashish Sharma, a full-stack backend developer specializing in Cloudflare Workers, AWS, Next.js, Node.js/TypeScript, Python APIs, and production application architecture."
         path="/about"
         type="profile"
       />
 
       <section className="page-hero">
         <p className="eyebrow">About</p>
-        <h1>Senior backend engineering for teams that need clear architecture and reliable delivery.</h1>
+        <h1>Full-stack backend development for teams that need clear architecture and reliable delivery.</h1>
         <p>{POSITIONING} {OFFER}</p>
       </section>
 
@@ -22,9 +22,9 @@ export default function AboutPage() {
         <article>
           <h2>How I Work</h2>
           <p>
-            I help founders, agencies, and engineering teams make backend decisions that hold up under real traffic.
-            The work usually sits at the point where product pressure meets infrastructure risk: scaling APIs,
-            untangling data flows, reducing AWS cost, or moving the right request paths to Cloudflare.
+            I help founders, agencies, and engineering teams ship applications whose backend decisions hold up under
+            real traffic. The work usually sits where product delivery meets infrastructure risk: Next.js surfaces,
+            APIs, data flows, AWS cost, or moving the right request paths to Cloudflare.
           </p>
           <p>
             My bias is toward boring, inspectable systems: explicit service boundaries, clear data ownership,
@@ -52,9 +52,10 @@ export default function AboutPage() {
             </p>
           </article>
           <article className="card">
-            <h3>Production Backend Builds</h3>
+            <h3>Full-Stack Backend Builds</h3>
             <p>
-              APIs and data models for healthcare, real estate, donation platforms, SaaS workflows, and internal tools.
+              Next.js application surfaces, APIs, data models, auth flows, and deployment paths for healthcare, real
+              estate, donation platforms, SaaS workflows, and internal tools.
             </p>
           </article>
           <article className="card">

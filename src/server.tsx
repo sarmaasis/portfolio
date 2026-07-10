@@ -21,10 +21,13 @@ export function render(url: string) {
   const seoHeadTags = getSEOHeadTags();
 
   return `<!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="llms-txt" href="/llms.txt" />
     <link rel="alternate" type="text/plain" href="/llm.txt" />

@@ -7,14 +7,14 @@ export default function BlogIndexPage() {
   return (
     <>
       <SEO
-        title="Backend Engineering Blog - Cloudflare, AWS and API Scaling"
-        description="Technical articles on Cloudflare Workers, AWS backend architecture, API scaling, search migration, and cloud cost optimization."
+        title="Full-Stack Backend Blog - Cloudflare, AWS and API Scaling"
+        description="Technical articles on Cloudflare Workers, AWS backend architecture, full-stack backend delivery, API scaling, search migration, and cloud cost optimization."
         path="/blog"
       />
 
       <section className="page-hero blog-index-hero">
         <p className="eyebrow">Blog</p>
-        <h1>Technical notes for founders and CTOs making backend decisions.</h1>
+        <h1>Technical notes for founders and CTOs making application and backend decisions.</h1>
         <p>
           Specific answers on Cloudflare Workers, AWS cost, backend architecture, API scaling, search migrations,
           and infrastructure trade-offs.

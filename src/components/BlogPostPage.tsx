@@ -34,15 +34,27 @@ export default function BlogPostPage() {
   const readingMinutes = getReadingMinutes(article);
   const schema = {
     '@context': 'https://schema.org',
-    '@type': 'Article',
+    '@type': 'BlogPosting',
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `${SITE_URL}${path}`,
+    },
     headline: article.title,
     description: article.description,
+    articleSection: article.tags[0],
+    keywords: article.tags,
+    inLanguage: 'en',
     datePublished: article.date,
     dateModified: article.date,
     url: `${SITE_URL}${path}`,
     author: {
       '@type': 'Person',
       name: 'Ashish Sharma',
+      url: SITE_URL,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Ashish Sharma Full-Stack Backend Development',
       url: SITE_URL,
     },
   };
