@@ -2,6 +2,7 @@ export const SITE_URL = 'https://sarmaasis.com';
 export const EMAIL = 'sarmaasis@gmail.com';
 export const CALENDLY_URL = 'https://calendly.com/sarmaasis';
 export const UPWORK_URL = 'https://www.upwork.com/freelancers/~01fccc3514fb9cdd2a';
+export const COPYRIGHT_YEAR = 2026;
 
 export const POSITIONING =
   'Senior Backend Engineer -- Cloudflare Workers, AWS, Node.js/TypeScript & Python backend architecture.';

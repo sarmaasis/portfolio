@@ -13,7 +13,7 @@ import PricingPage from './components/PricingPage';
 import ReviewsPage from './components/ReviewsPage';
 import ServicesPage from './components/ServicesPage';
 import WorkPage from './components/WorkPage';
-import { OFFER, POSITIONING, UPWORK_URL, primaryLandingPages } from './data/site';
+import { COPYRIGHT_YEAR, OFFER, POSITIONING, UPWORK_URL, primaryLandingPages } from './data/site';
 
 const navItems = [
   { to: '/services', label: 'Services' },
@@ -115,7 +115,7 @@ function App() {
             </div>
           </div>
           <div className="container footer-bottom">
-            <p>&copy; {new Date().getFullYear()} Ashish Sharma. All rights reserved.</p>
+            <p>&copy; {COPYRIGHT_YEAR} Ashish Sharma. All rights reserved.</p>
           </div>
         </footer>
       </div>
