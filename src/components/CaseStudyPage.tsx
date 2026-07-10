@@ -1,6 +1,6 @@
 import { Link, useParams } from 'react-router-dom';
 import { SEO } from './SEO';
-import { SITE_URL, caseStudies } from '../data/site';
+import { SITE_URL, caseStudies, caseStudyDetails } from '../data/site';
 
 export default function CaseStudyPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -17,6 +17,7 @@ export default function CaseStudyPage() {
   }
 
   const path = `/work/${caseStudy.slug}`;
+  const details = caseStudyDetails[caseStudy.slug];
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'CreativeWork',
@@ -33,7 +34,7 @@ export default function CaseStudyPage() {
   return (
     <>
       <SEO
-        title={`${caseStudy.title} | Backend Case Study`}
+        title={`${caseStudy.title} - Backend Case Study`}
         description={caseStudy.summary}
         path={path}
         structuredData={schema}
@@ -78,6 +79,64 @@ export default function CaseStudyPage() {
             ))}
           </ul>
         </section>
+
+        {details ? (
+          <>
+            <section className="prose">
+              <h2>Architecture Decisions</h2>
+              <ul>
+                {details.architectureDecisions.map((decision) => (
+                  <li key={decision}>{decision}</li>
+                ))}
+              </ul>
+            </section>
+
+            <section className="prose">
+              <h2>Implementation Notes</h2>
+              {details.implementationNotes.map((note) => (
+                <p key={note}>{note}</p>
+              ))}
+            </section>
+
+            <section>
+              <h2 className="section-title">Before and After</h2>
+              <div className="proof-grid">
+                {details.beforeAfter.map((item) => (
+                  <article className="panel" key={item.before}>
+                    <h3>Before</h3>
+                    <p>{item.before}</p>
+                    <h3>After</h3>
+                    <p>{item.after}</p>
+                  </article>
+                ))}
+              </div>
+            </section>
+
+            <section className="prose">
+              <h2>Risks Avoided</h2>
+              <ul>
+                {details.risksAvoided.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+
+              <h2>Cloudflare and AWS Relevance</h2>
+              <ul>
+                {details.cloudflareAws.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+
+              <h2>Client Questions</h2>
+              {details.clientFaqs.map((faq) => (
+                <div key={faq.question}>
+                  <h3>{faq.question}</h3>
+                  <p>{faq.answer}</p>
+                </div>
+              ))}
+            </section>
+          </>
+        ) : null}
       </article>
 
       <section className="cta-band">

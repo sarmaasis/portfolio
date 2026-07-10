@@ -5,7 +5,7 @@ export default function ReviewsPage() {
   return (
     <>
       <SEO
-        title="Client Reviews | Ashish Sharma Backend Engineering"
+        title="Client Reviews - Ashish Sharma Backend Engineering"
         description="Client feedback for Cloudflare Workers, backend architecture, integrations, and production engineering projects with Ashish Sharma."
         path="/reviews"
       />

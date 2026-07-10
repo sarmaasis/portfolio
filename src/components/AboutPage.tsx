@@ -6,8 +6,8 @@ export default function AboutPage() {
   return (
     <>
       <SEO
-        title="About Ashish Sharma | Senior Backend Engineer"
-        description="About Ashish Sharma, a senior backend engineer specializing in Cloudflare Workers, Node.js/TypeScript, Python/FastAPI, and AI/RAG systems."
+        title="About Ashish Sharma - Senior Backend Engineer"
+        description="About Ashish Sharma, a senior backend engineer specializing in Cloudflare Workers, AWS, Node.js/TypeScript, Python APIs, and backend architecture."
         path="/about"
         type="profile"
       />
@@ -24,7 +24,7 @@ export default function AboutPage() {
           <p>
             I help founders, agencies, and engineering teams make backend decisions that hold up under real traffic.
             The work usually sits at the point where product pressure meets infrastructure risk: scaling APIs,
-            untangling data flows, reducing cloud cost, or making AI integrations production-ready.
+            untangling data flows, reducing AWS cost, or moving the right request paths to Cloudflare.
           </p>
           <p>
             My bias is toward boring, inspectable systems: explicit service boundaries, clear data ownership,
@@ -58,10 +58,10 @@ export default function AboutPage() {
             </p>
           </article>
           <article className="card">
-            <h3>AI/RAG Backends</h3>
+            <h3>AWS Cost & Migration Review</h3>
             <p>
-              Retrieval pipelines, OpenAI integrations, vector search, ingestion jobs, and the operational pieces
-              demos usually skip.
+              Lambda, API Gateway, containers, search, logs, databases, and traffic paths reviewed for practical
+              cost and performance improvements.
             </p>
           </article>
         </div>
@@ -70,7 +70,7 @@ export default function AboutPage() {
       <section className="cta-band">
         <h2>Want to check whether I fit your project?</h2>
         <p>Send the current architecture, the bottleneck, or the goal you are trying to reach.</p>
-        <Link className="btn-primary" to="/contact">Contact Ashish</Link>
+        <Link className="btn-primary" to="/contact">Start a project</Link>
       </section>
     </>
   );

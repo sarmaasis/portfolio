@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { Link, NavLink, Route, Routes } from 'react-router-dom';
 import './App.css';
 import AboutPage from './components/AboutPage';
@@ -12,39 +11,17 @@ import HomePage from './components/HomePage';
 import PricingPage from './components/PricingPage';
 import ReviewsPage from './components/ReviewsPage';
 import ServicesPage from './components/ServicesPage';
-import ThemeToggle from './components/ThemeToggle';
 import WorkPage from './components/WorkPage';
-import { CALENDLY_URL, EMAIL, OFFER, POSITIONING, landingPages } from './data/site';
+import { OFFER, POSITIONING, UPWORK_URL, primaryLandingPages } from './data/site';
 
 const navItems = [
   { to: '/services', label: 'Services' },
   { to: '/work', label: 'Work' },
-  { to: '/blog', label: 'Blog' },
-  { to: '/pricing', label: 'Pricing' },
-  { to: '/about', label: 'About' },
+  { to: '/blog', label: 'Writing' },
   { to: '/contact', label: 'Contact' },
 ];
 
-function getInitialTheme() {
-  if (typeof window === 'undefined') return 'dark';
-
-  const storedTheme = window.localStorage.getItem('theme');
-  if (storedTheme === 'light' || storedTheme === 'dark') return storedTheme;
-
-  return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-}
-
 function App() {
-  const [theme, setTheme] = useState(getInitialTheme);
-  const emailHref = `mailto:${EMAIL}?subject=Backend%20engineering%20project`;
-
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
-  }, [theme]);
-
-  const toggleTheme = () => setTheme((currentTheme) => (currentTheme === 'light' ? 'dark' : 'light'));
-
   return (
     <>
       <a className="skip-link" href="#main-content">
@@ -70,7 +47,6 @@ function App() {
                 </NavLink>
               ))}
             </nav>
-            <ThemeToggle onToggle={toggleTheme} theme={theme} />
           </div>
         </header>
 
@@ -89,7 +65,7 @@ function App() {
             <Route path="/blog/:slug" element={<BlogPostPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/reviews" element={<ReviewsPage />} />
-            {landingPages.map((page) => (
+            {primaryLandingPages.map((page) => (
               <Route key={page.slug} path={`/${page.slug}`} element={<HiringLandingPage page={page} />} />
             ))}
           </Routes>
@@ -106,12 +82,7 @@ function App() {
               <h2>Contact</h2>
               <ul className="link-list">
                 <li>
-                  <a href={emailHref}>Email Ashish</a>
-                </li>
-                <li>
-                  <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">
-                    Book architecture audit
-                  </a>
+                  <Link to="/contact">Start a project</Link>
                 </li>
               </ul>
             </div>
@@ -131,6 +102,11 @@ function App() {
                 <li>
                   <a href="https://x.com/sarmaasis" target="_blank" rel="noopener noreferrer">
                     X
+                  </a>
+                </li>
+                <li>
+                  <a href={UPWORK_URL} target="_blank" rel="noopener noreferrer">
+                    Upwork
                   </a>
                 </li>
               </ul>

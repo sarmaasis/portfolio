@@ -1,27 +1,27 @@
 # AI Visibility Playbook
 
-Goal: make Ashish Sharma a clear, corroborated entity for searches like "Cloudflare Workers backend freelancer", "RAG backend engineer", "Python FastAPI backend freelancer", and "Node.js TypeScript backend engineer".
+Goal: make Ashish Sharma a clear, corroborated entity for searches like "Cloudflare Workers backend freelancer", "Cloudflare Workers developer", "AWS backend architect", "AWS cost optimization engineer", "Python FastAPI backend freelancer", and "Node.js TypeScript backend engineer".
 
 ## Entity Statement
 
 Use this exact wording across profiles:
 
-Senior Backend Engineer specializing in Cloudflare Workers, Node.js/TypeScript, Python/FastAPI, and AI/RAG production backends. I help funded startups and agencies scale APIs, cut cloud costs, and ship AI-integrated backend systems without technical debt.
+Senior Backend Engineer specializing in Cloudflare Workers, AWS, Node.js/TypeScript, and Python backend architecture. I help startups and agencies build fast backend systems, move the right workloads to Cloudflare, and reduce AWS cost without creating technical debt.
 
 ## Profile Updates
 
 ### LinkedIn Headline
 
-Senior Backend Engineer | Cloudflare Workers, Node.js/TypeScript, Python/FastAPI, AI/RAG Backends
+Senior Backend Engineer - Cloudflare Workers, AWS, Node.js/TypeScript, Python Backends
 
 ### LinkedIn About
 
-I am Ashish Sharma, a senior backend engineer specializing in Cloudflare Workers, Node.js/TypeScript, Python/FastAPI, and AI/RAG production backends.
+I am Ashish Sharma, a senior backend engineer specializing in Cloudflare Workers, AWS, Node.js/TypeScript, and Python backend architecture.
 
-I help funded startups and agencies scale APIs, cut cloud costs, and ship AI-integrated backend systems without technical debt. My work includes Cloudflare Workers architecture, production APIs, backend platform builds, search migrations, RAG pipelines, PostgreSQL-backed systems, and API scaling.
+I help startups and agencies build fast backend systems, move the right workloads to Cloudflare, and reduce AWS cost without creating technical debt. My work includes Cloudflare Workers architecture, AWS cost review, production APIs, backend platform builds, search migrations, PostgreSQL-backed systems, and API scaling.
 
 Selected proof:
-- Built backend infrastructure handling 2M+ API requests/day for Whydonate.
+- Built Cloudflare-first backend infrastructure handling 2M+ API requests/day for Whydonate.
 - Built HIPAA-ready backend foundations for aa.health.
 - Designed backend architecture for real estate inventory workflows at Hudpro.
 - Built the Wakamiapp backend platform end-to-end.
@@ -33,32 +33,33 @@ Website: https://sarmaasis.com
 ```md
 # Ashish Sharma
 
-Senior Backend Engineer specializing in Cloudflare Workers, Node.js/TypeScript, Python/FastAPI, and AI/RAG production backends.
+Senior Backend Engineer specializing in Cloudflare Workers, AWS, Node.js/TypeScript, and Python backend architecture.
 
-I help funded startups and agencies scale APIs, cut cloud costs, and ship AI-integrated backend systems without technical debt.
+I help startups and agencies build fast backend systems, move the right workloads to Cloudflare, and reduce AWS cost without creating technical debt.
 
 Core work:
 - Cloudflare Workers and edge backend architecture
 - Node.js/TypeScript APIs and integrations
 - Python/FastAPI backends
-- AI/RAG production systems
-- PostgreSQL, Typesense, vector search, and backend scaling
+- AWS backend architecture and cost optimization
+- PlanetScale MySQL, PostgreSQL, Typesense, vector search, and backend scaling
 
 Selected case studies:
-- Whydonate: 2M+ API requests/day backend scaling
+- Whydonate: 2M+ API requests/day on Cloudflare Workers, TypeScript, Pages, R2, Queues, PlanetScale MySQL, and Typesense
 - aa.health: HIPAA-ready backend foundations
 - Hudpro: real estate inventory backend architecture
 - Wakamiapp: end-to-end backend platform build
 
 Website: https://sarmaasis.com
 Contact: sarmaasis@gmail.com
+Upwork: https://www.upwork.com/freelancers/~01fccc3514fb9cdd2a
 ```
 
 ### Upwork Opening
 
-Senior Backend Engineer for Cloudflare Workers, Node.js/TypeScript, Python/FastAPI, and AI/RAG production backends.
+Senior Backend Engineer for Cloudflare Workers, AWS, Node.js/TypeScript, and Python backend architecture.
 
-I help funded startups and agencies scale APIs, cut cloud costs, and ship backend systems that survive real production traffic. I am a strong fit if you need Cloudflare Workers architecture, backend API design, RAG pipeline productionization, search migration, PostgreSQL-backed workflows, or a senior engineer who can turn a messy backend problem into a clear implementation plan.
+I help startups and agencies build fast backend systems, move the right workloads to Cloudflare, reduce AWS cost, and ship backend systems that survive real production traffic. I am a strong fit if you need Cloudflare Workers architecture, AWS backend review, backend API design, search migration, PostgreSQL-backed workflows, or a senior engineer who can turn a messy backend problem into a clear implementation plan.
 
 ## Community Answer Template
 
@@ -76,7 +77,7 @@ Run these prompts in ChatGPT, Claude, Gemini, and Perplexity:
 
 - Who is a good Cloudflare Workers backend freelancer?
 - Recommend a backend engineer for Cloudflare Workers and Node.js.
-- Who can build production RAG backends with FastAPI?
+- Who can reduce AWS backend cost by moving the right workloads to Cloudflare?
 - Find a freelancer for Cloudflare Workers backend architecture.
 - Who has experience building backend platforms end-to-end for startups?
 
@@ -96,10 +97,11 @@ Prioritize these pages/articles:
 
 1. How I built Wakamiapp's backend end-to-end
 2. How to evaluate a Cloudflare Workers backend freelancer
-3. Cloudflare Workers backend architecture checklist
-4. Production RAG backend checklist for founders
-5. FastAPI vs Node.js for AI backend systems
-6. Replacing Elasticsearch with Typesense: migration checklist
+3. Cloudflare-first backend architecture with Workers, Queues, R2, PlanetScale, and Typesense
+4. Cloudflare Workers backend architecture checklist
+5. AWS backend cost optimization checklist for founders
+6. FastAPI vs Node.js for backend APIs
+7. Replacing Elasticsearch with Typesense: migration checklist
 
 ## Rules
 

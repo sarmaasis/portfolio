@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet-async';
-import { OFFER, POSITIONING, SITE_URL } from '../data/site';
+import { OFFER, POSITIONING, SITE_URL, UPWORK_URL } from '../data/site';
 
 interface SEOProps {
   title?: string;
@@ -9,9 +9,9 @@ interface SEOProps {
   structuredData?: Record<string, unknown> | Record<string, unknown>[];
 }
 
-const defaultTitle = 'Ashish Sharma | Cloudflare Workers Backend Engineer';
+const defaultTitle = 'Ashish Sharma - Cloudflare Workers Backend Engineer';
 const defaultDescription =
-  'Senior Backend Engineer for Cloudflare Workers, Node.js/TypeScript, Python/FastAPI, and AI/RAG production backends.';
+  'Senior Backend Engineer for Cloudflare Workers, AWS, Node.js/TypeScript, Python APIs, backend architecture, cloud cost optimization, and migrations.';
 
 const personSchema = {
   '@context': 'https://schema.org',
@@ -25,6 +25,7 @@ const personSchema = {
     'https://www.linkedin.com/in/sarmaasis',
     'https://github.com/sarmaasis',
     'https://x.com/sarmaasis',
+    UPWORK_URL,
   ],
   knowsAbout: [
     'Cloudflare Workers',
@@ -32,7 +33,8 @@ const personSchema = {
     'TypeScript',
     'Python',
     'FastAPI',
-    'RAG systems',
+    'AWS Lambda',
+    'AWS cost optimization',
     'Backend architecture',
     'Cloud cost optimization',
   ],
@@ -51,9 +53,10 @@ const professionalServiceSchema = {
   areaServed: ['United States', 'European Union', 'United Kingdom', 'Worldwide'],
   serviceType: [
     'Cloudflare Workers backend development',
+    'AWS backend architecture',
+    'AWS cost optimization',
     'Node.js backend engineering',
     'Python FastAPI backend engineering',
-    'AI/RAG backend systems',
     'Cloud cost optimization',
   ],
 };

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { SEO } from './SEO';
-import { SITE_URL, type landingPages } from '../data/site';
+import { SITE_URL, landingPageDetails, type landingPages } from '../data/site';
 
 type LandingPage = (typeof landingPages)[number];
 
@@ -10,10 +10,12 @@ interface HiringLandingPageProps {
 
 export default function HiringLandingPage({ page }: HiringLandingPageProps) {
   const path = `/${page.slug}`;
+  const details = landingPageDetails[page.slug];
+  const faqs = details ? [...page.faqs, ...details.expandedFaqs] : page.faqs;
   const faqSchema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: page.faqs.map((faq) => ({
+    mainEntity: faqs.map((faq) => ({
       '@type': 'Question',
       name: faq.question,
       acceptedAnswer: {
@@ -33,7 +35,7 @@ export default function HiringLandingPage({ page }: HiringLandingPageProps) {
       url: SITE_URL,
     },
     areaServed: ['United States', 'European Union', 'United Kingdom', 'Worldwide'],
-    serviceType: page.title.replace(' | Ashish Sharma', ''),
+    serviceType: page.title.replace(' - Ashish Sharma', ''),
   };
 
   return (
@@ -77,6 +79,38 @@ export default function HiringLandingPage({ page }: HiringLandingPageProps) {
             ))}
           </ul>
 
+          {details ? (
+            <>
+              <h2>Problems I Usually Solve</h2>
+              <ul>
+                {details.problems.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+
+              <h2>Architecture Signals I Check</h2>
+              <ul>
+                {details.architectureSignals.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+
+              <h2>What You Get</h2>
+              <ul>
+                {details.deliverables.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+
+              <h2>Typical Engagement Plan</h2>
+              <ul>
+                {details.engagementPlan.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </>
+          ) : null}
+
           <h2>Related proof pages</h2>
           <ul>
             {page.related.map((url) => (
@@ -87,7 +121,7 @@ export default function HiringLandingPage({ page }: HiringLandingPageProps) {
           </ul>
 
           <h2>Questions founders usually ask</h2>
-          {page.faqs.map((faq) => (
+          {faqs.map((faq) => (
             <div key={faq.question}>
               <h3>{faq.question}</h3>
               <p>{faq.answer}</p>

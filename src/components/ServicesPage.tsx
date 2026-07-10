@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { SEO } from './SEO';
-import { landingPages, services } from '../data/site';
+import { primaryLandingPages, services } from '../data/site';
 
 const engagementNotes = [
   'Architecture audit and migration planning',
@@ -12,16 +12,17 @@ export default function ServicesPage() {
   return (
     <>
       <SEO
-        title="Backend Engineering Services | Cloudflare Workers, Node.js, Python & AI/RAG"
-        description="Cloudflare Workers, Node.js/TypeScript, Python/FastAPI, AI/RAG backend systems, architecture audits, and cloud cost optimization."
+        title="Backend Engineering Services - Cloudflare Workers, AWS, Node.js and Python"
+        description="Cloudflare Workers, AWS backend architecture, Node.js/TypeScript APIs, Python backends, migration planning, and cloud cost optimization."
         path="/services"
       />
 
       <section className="page-hero">
         <p className="eyebrow">Services</p>
-        <h1>Backend systems, edge infrastructure, and AI integrations built for production.</h1>
+        <h1>Cloudflare and AWS backend systems built for production.</h1>
         <p>
-          Focused support for teams that need senior backend delivery without adding avoidable infrastructure weight.
+          Focused support for teams that need senior backend delivery, Cloudflare Workers expertise,
+          AWS cost review, and migration plans without avoidable infrastructure weight.
         </p>
       </section>
 
@@ -49,7 +50,7 @@ export default function ServicesPage() {
           <h2>Good Fit</h2>
           <p>
             Funded startups, product agencies, and SaaS teams with backend bottlenecks, Cloudflare plans,
-            AI/RAG production work, or cloud bills that need an engineering-led review.
+            AWS cost pressure, or API performance problems that need an engineering-led review.
           </p>
           <Link className="text-link" to="/pricing">View engagement models</Link>
         </aside>
@@ -61,10 +62,10 @@ export default function ServicesPage() {
           <Link to="/contact">Discuss fit</Link>
         </div>
         <div className="card-grid">
-          {landingPages.map((page) => (
+          {primaryLandingPages.map((page) => (
             <article className="card" key={page.slug}>
               <h3>
-                <Link to={`/${page.slug}`}>{page.title.replace(' | Ashish Sharma', '')}</Link>
+                <Link to={`/${page.slug}`}>{page.title.replace(' - Ashish Sharma', '')}</Link>
               </h3>
               <p>{page.capsule}</p>
             </article>

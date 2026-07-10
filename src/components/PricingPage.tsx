@@ -10,7 +10,7 @@ const models = [
   {
     title: 'Implementation Sprint',
     summary: 'A scoped build or migration with clear deliverables.',
-    details: ['Backend APIs and Workers', 'Search, RAG, or integration work', 'Milestone-based delivery'],
+    details: ['Backend APIs and Workers', 'Cloudflare, AWS, search, or integration work', 'Milestone-based delivery'],
   },
   {
     title: 'Fractional Backend Partner',
@@ -23,7 +23,7 @@ export default function PricingPage() {
   return (
     <>
       <SEO
-        title="Pricing & Engagement Models | Ashish Sharma"
+        title="Pricing & Engagement Models - Ashish Sharma"
         description="Engagement models for backend architecture audits, implementation sprints, and fractional backend engineering support."
         path="/pricing"
       />

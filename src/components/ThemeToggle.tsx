@@ -5,6 +5,7 @@ interface ThemeToggleProps {
 
 function ThemeToggle({ onToggle, theme }: ThemeToggleProps) {
   const nextTheme = theme === 'light' ? 'dark' : 'light';
+  const visibleLabel = theme === 'light' ? 'D' : 'L';
 
   return (
     <button
@@ -14,7 +15,7 @@ function ThemeToggle({ onToggle, theme }: ThemeToggleProps) {
       title={`Switch to ${nextTheme} mode`}
       onClick={onToggle}
     >
-      <span aria-hidden="true">{theme === 'light' ? 'Dark' : 'Light'}</span>
+      <span aria-hidden="true">{visibleLabel}</span>
     </button>
   );
 }

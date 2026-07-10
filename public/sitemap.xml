@@ -2,127 +2,121 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://sarmaasis.com</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://sarmaasis.com/about</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://sarmaasis.com/services</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://sarmaasis.com/pricing</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://sarmaasis.com/work</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://sarmaasis.com/blog</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://sarmaasis.com/contact</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://sarmaasis.com/reviews</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://sarmaasis.com/hire-cloudflare-workers-developer</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://sarmaasis.com/cloudflare-workers-backend-freelancer</loc>
-    <lastmod>2026-07-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://sarmaasis.com/rag-backend-engineer</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://sarmaasis.com/python-fastapi-backend-freelancer</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://sarmaasis.com/nodejs-typescript-backend-engineer</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://sarmaasis.com/work/aa-health-hipaa-backend</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://sarmaasis.com/work/hudpro-real-estate-data</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://sarmaasis.com/work/whydonate-api-scale</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://sarmaasis.com/work/wakamiapp-backend-platform</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://sarmaasis.com/blog/cloudflare-workers-vs-aws-lambda-cost</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://sarmaasis.com/blog/typesense-cloudflare-workers-search-migration</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sarmaasis.com/blog/rag-production-backend-checklist</loc>
-    <lastmod>2026-07-02</lastmod>
+    <loc>https://sarmaasis.com/blog/cloudflare-workers-queues-r2-planetscale-typesense-backend</loc>
+    <lastmod>2026-07-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://sarmaasis.com/blog/wakamiapp-backend-architecture-case-study</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

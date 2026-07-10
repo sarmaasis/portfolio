@@ -17,7 +17,7 @@ export default function DynamicServicePage() {
   return (
     <>
       <SEO
-        title={`${serviceName} | Ashish Sharma Backend Engineering`}
+        title={`${serviceName} - Ashish Sharma Backend Engineering`}
         description={`Hire Ashish Sharma for ${serviceName.toLowerCase()} projects involving Cloudflare Workers, Node.js, Python/FastAPI, and production backend architecture.`}
         path={path}
       />
@@ -27,7 +27,7 @@ export default function DynamicServicePage() {
         <h1>{serviceName}</h1>
         <p>
           Senior backend consulting and implementation for teams that need production APIs, edge infrastructure,
-          AI/RAG systems, or cloud cost reduction.
+          Cloudflare Workers, AWS review, or cloud cost reduction.
         </p>
       </section>
 
@@ -43,7 +43,7 @@ export default function DynamicServicePage() {
         <aside className="panel">
           <h2>Next Step</h2>
           <p>Send a short description of the project and the current constraints.</p>
-          <Link className="btn-primary" to="/contact">Contact Ashish</Link>
+          <Link className="btn-primary" to="/contact">Start a project</Link>
         </aside>
       </section>
     </>
