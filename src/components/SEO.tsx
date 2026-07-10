@@ -1,120 +1,57 @@
-import { Helmet } from 'react-helmet-async';
-import { OFFER, POSITIONING, SITE_URL, UPWORK_URL } from '../data/site';
+import { useEffect } from 'react';
+import { buildSEOState, setCurrentSEOState, type SEOProps } from '../utils/seo-state';
 
-interface SEOProps {
-  title?: string;
-  description?: string;
-  path?: string;
-  type?: 'website' | 'article' | 'profile';
-  structuredData?: Record<string, unknown> | Record<string, unknown>[];
+function setMetaByName(name: string, content: string) {
+  let element = document.head.querySelector<HTMLMetaElement>(`meta[name="${name}"]`);
+  if (!element) {
+    element = document.createElement('meta');
+    element.name = name;
+    document.head.append(element);
+  }
+  element.content = content;
 }
 
-const defaultTitle = 'Ashish Sharma - Cloudflare Workers Backend Engineer';
-const defaultDescription =
-  'Senior Backend Engineer for Cloudflare Workers, AWS, Node.js/TypeScript, Python APIs, backend architecture, cloud cost optimization, and migrations.';
+function setMetaByProperty(property: string, content: string) {
+  let element = document.head.querySelector<HTMLMetaElement>(`meta[property="${property}"]`);
+  if (!element) {
+    element = document.createElement('meta');
+    element.setAttribute('property', property);
+    document.head.append(element);
+  }
+  element.content = content;
+}
 
-const personSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'Person',
-  name: 'Ashish Sharma',
-  url: SITE_URL,
-  email: 'mailto:sarmaasis@gmail.com',
-  jobTitle: 'Senior Backend Engineer',
-  description: `${POSITIONING} ${OFFER}`,
-  sameAs: [
-    'https://www.linkedin.com/in/sarmaasis',
-    'https://github.com/sarmaasis',
-    'https://x.com/sarmaasis',
-    UPWORK_URL,
-  ],
-  knowsAbout: [
-    'Cloudflare Workers',
-    'Node.js',
-    'TypeScript',
-    'Python',
-    'FastAPI',
-    'AWS Lambda',
-    'AWS cost optimization',
-    'Backend architecture',
-    'Cloud cost optimization',
-  ],
-};
+function setCanonical(href: string) {
+  let element = document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+  if (!element) {
+    element = document.createElement('link');
+    element.rel = 'canonical';
+    document.head.append(element);
+  }
+  element.href = href;
+}
 
-const organizationSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'Organization',
-  name: 'Ashish Sharma Backend Engineering',
-  url: SITE_URL,
-  email: 'mailto:sarmaasis@gmail.com',
-  founder: {
-    '@type': 'Person',
-    name: 'Ashish Sharma',
-    url: SITE_URL,
-  },
-  description:
-    'Backend engineering services for Cloudflare Workers, AWS backend architecture, Node.js/TypeScript APIs, Python APIs, API scaling, search migration, and cloud cost optimization.',
-  sameAs: [
-    'https://www.linkedin.com/in/sarmaasis',
-    'https://github.com/sarmaasis',
-    'https://x.com/sarmaasis',
-    UPWORK_URL,
-  ],
-};
+export function SEO(props: SEOProps) {
+  const state = buildSEOState(props);
 
-const professionalServiceSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'ProfessionalService',
-  name: 'Ashish Sharma Backend Engineering',
-  url: SITE_URL,
-  description: `${POSITIONING} ${OFFER}`,
-  provider: {
-    '@type': 'Person',
-    name: 'Ashish Sharma',
-  },
-  areaServed: ['United States', 'European Union', 'United Kingdom', 'Worldwide'],
-  serviceType: [
-    'Cloudflare Workers backend development',
-    'AWS backend architecture',
-    'AWS cost optimization',
-    'Node.js backend engineering',
-    'Python FastAPI backend engineering',
-    'Cloud cost optimization',
-  ],
-};
+  if (typeof window === 'undefined') {
+    setCurrentSEOState(state);
+  }
 
-export function SEO({
-  title = defaultTitle,
-  description = defaultDescription,
-  path = '/',
-  type = 'website',
-  structuredData = [],
-}: SEOProps) {
-  const canonicalPath = path === '/' ? '' : path;
-  const canonicalUrl = `${SITE_URL}${canonicalPath}`;
-  const schemas = Array.isArray(structuredData) ? structuredData : [structuredData];
+  useEffect(() => {
+    document.title = state.title;
+    setMetaByName('description', state.description);
+    setMetaByName('robots', 'index, follow');
+    setCanonical(state.canonicalUrl);
+    setMetaByProperty('og:title', state.title);
+    setMetaByProperty('og:description', state.description);
+    setMetaByProperty('og:url', state.canonicalUrl);
+    setMetaByProperty('og:type', state.type);
+    setMetaByProperty('og:site_name', 'Ashish Sharma');
+    setMetaByName('twitter:card', 'summary');
+    setMetaByName('twitter:title', state.title);
+    setMetaByName('twitter:description', state.description);
+  }, [state.canonicalUrl, state.description, state.title, state.type]);
 
-  return (
-    <Helmet>
-      <title>{title}</title>
-      <meta name="description" content={description} />
-      <meta name="robots" content="index, follow" />
-      <link rel="canonical" href={canonicalUrl} />
-
-      <meta property="og:title" content={title} />
-      <meta property="og:description" content={description} />
-      <meta property="og:url" content={canonicalUrl} />
-      <meta property="og:type" content={type} />
-      <meta property="og:site_name" content="Ashish Sharma" />
-
-      <meta name="twitter:card" content="summary" />
-      <meta name="twitter:title" content={title} />
-      <meta name="twitter:description" content={description} />
-
-      {[personSchema, organizationSchema, professionalServiceSchema, ...schemas].map((schema, index) => (
-        <script key={index} type="application/ld+json">
-          {JSON.stringify(schema)}
-        </script>
-      ))}
-    </Helmet>
-  );
+  return null;
 }
