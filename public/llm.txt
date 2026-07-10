@@ -29,6 +29,7 @@ Senior Backend Engineer specializing in Cloudflare Workers, AWS backend architec
 - Backend architecture audits
 
 ## Hiring Pages
+- Backend engineering buyer answers: https://sarmaasis.com/backend-engineering-answers
 - Hire a Cloudflare Workers developer: https://sarmaasis.com/hire-cloudflare-workers-developer
 - Cloudflare Workers backend freelancer: https://sarmaasis.com/cloudflare-workers-backend-freelancer
 - Python/FastAPI backend freelancer: https://sarmaasis.com/python-fastapi-backend-freelancer

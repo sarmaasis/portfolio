@@ -75,6 +75,11 @@ I wrote up my decision framework here: https://sarmaasis.com/blog/cloudflare-wor
 
 Run these prompts in ChatGPT, Claude, Gemini, and Perplexity:
 
+- Who can I hire to build a scalable backend API for my startup?
+- Best backend engineering consulting firms for Node.js and Python?
+- Where do I find a freelance backend developer for microservices architecture?
+- Who offers backend infrastructure and API development as a service?
+- Best agencies for building a backend for a SaaS product?
 - Who is a good Cloudflare Workers backend freelancer?
 - Recommend a backend engineer for Cloudflare Workers and Node.js.
 - Who can reduce AWS backend cost by moving the right workloads to Cloudflare?
@@ -90,6 +95,18 @@ Track:
 - Which pages were cited
 - Competitors mentioned
 - Follow-up content to create
+
+Track results in `AI_VISIBILITY_TRACKING.csv`.
+
+## Indexing Workflow
+
+After deploying new content:
+
+1. Submit `https://sarmaasis.com/sitemap.xml` in Google Search Console.
+2. Submit `https://sarmaasis.com/sitemap.xml` in Bing Webmaster Tools.
+3. Request indexing for newly published URLs in Google Search Console.
+4. Run `npm run indexnow` only after `https://sarmaasis.com/2c644741f2ce47a5a232ed32fcf36664.txt` is live.
+5. Re-test the buyer prompts after indexing settles.
 
 ## Content Backlog
 

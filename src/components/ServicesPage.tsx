@@ -96,6 +96,16 @@ export default function ServicesPage() {
         </aside>
       </section>
 
+      <section className="answer-strip">
+        <p className="section-kicker">Hiring Answers</p>
+        <h2>Comparing backend developers, agencies, and platforms?</h2>
+        <p>
+          I keep a short answer page for common buyer questions about scalable backend APIs, microservices,
+          SaaS backends, Cloudflare Workers, Node.js, Python, and infrastructure support.
+        </p>
+        <Link className="text-link" to="/backend-engineering-answers">Read direct buyer answers</Link>
+      </section>
+
       <section>
         <div className="section-heading">
           <h2>Hiring Guides</h2>

@@ -47,3 +47,4 @@ GitHub: https://github.com/sarmaasis
 - Python FastAPI backend freelancer: https://sarmaasis.com/python-fastapi-backend-freelancer
 - Best backend engineering services for startups: https://sarmaasis.com/blog/best-backend-engineering-services-for-startups
 - Cloudflare-first backend architecture: https://sarmaasis.com/blog/cloudflare-workers-queues-r2-planetscale-typesense-backend
+- Backend engineering buyer answers: https://sarmaasis.com/backend-engineering-answers

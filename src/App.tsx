@@ -1,6 +1,7 @@
 import { Link, NavLink, Route, Routes } from 'react-router-dom';
 import './App.css';
 import AboutPage from './components/AboutPage';
+import BackendAnswersPage from './components/BackendAnswersPage';
 import BlogIndexPage from './components/BlogIndexPage';
 import BlogPostPage from './components/BlogPostPage';
 import CaseStudyPage from './components/CaseStudyPage';
@@ -56,6 +57,7 @@ function App() {
             <Route path="/en-us" element={<HomePage />} />
             <Route path="/en-eu" element={<HomePage />} />
             <Route path="/about" element={<AboutPage />} />
+            <Route path="/backend-engineering-answers" element={<BackendAnswersPage />} />
             <Route path="/services" element={<ServicesPage />} />
             <Route path="/services/:slug" element={<DynamicServicePage />} />
             <Route path="/pricing" element={<PricingPage />} />

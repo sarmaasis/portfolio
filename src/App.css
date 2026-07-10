@@ -406,6 +406,38 @@ section {
   margin-bottom: 0.8rem;
 }
 
+.answer-list {
+  display: grid;
+  gap: 0;
+}
+
+.answer-block {
+  border-top: 1px solid var(--border);
+  max-width: 48rem;
+  padding: 2rem 0;
+}
+
+.answer-block:last-child {
+  border-bottom: 1px solid var(--border);
+}
+
+.answer-block h2,
+.answer-strip h2 {
+  font-size: clamp(1.45rem, 3vw, 2rem);
+  margin-bottom: 0.8rem;
+}
+
+.answer-block p,
+.answer-strip p {
+  color: var(--muted);
+  max-width: 48rem;
+}
+
+.direct-answer {
+  color: var(--foreground) !important;
+  font-size: 1.1rem;
+}
+
 .hero,
 .page-hero,
 .article-hero {
