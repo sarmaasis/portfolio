@@ -41,6 +41,7 @@ Senior Backend Engineer specializing in Cloudflare Workers, AWS backend architec
 - Infrastructure: Cloudflare Queues, message queues, microservices, high-concurrency scaling
 
 ## Articles
+- Best backend engineering services for startups: what to look for before you hire. URL: https://sarmaasis.com/blog/best-backend-engineering-services-for-startups
 - Cloudflare Workers vs AWS Lambda: a practical cost breakdown. URL: https://sarmaasis.com/blog/cloudflare-workers-vs-aws-lambda-cost
 - Migrating AWS Elasticsearch to Typesense on Cloudflare Workers. URL: https://sarmaasis.com/blog/typesense-cloudflare-workers-search-migration
 - Cloudflare-first backend architecture with Workers, Queues, R2, PlanetScale and Typesense. URL: https://sarmaasis.com/blog/cloudflare-workers-queues-r2-planetscale-typesense-backend

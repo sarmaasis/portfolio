@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { SEO } from './SEO';
-import { primaryLandingPages, services } from '../data/site';
+import { SITE_URL, primaryLandingPages, services } from '../data/site';
 
 const engagementNotes = [
   'Architecture audit and migration planning',
@@ -9,12 +9,52 @@ const engagementNotes = [
 ];
 
 export default function ServicesPage() {
+  const serviceSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'Backend Engineering Services',
+    serviceType: [
+      'Backend API development',
+      'Cloudflare Workers development',
+      'Node.js TypeScript backend engineering',
+      'Python backend engineering',
+      'AWS backend architecture',
+      'Cloud cost optimization',
+      'Search migration',
+    ],
+    provider: {
+      '@type': 'Organization',
+      name: 'Ashish Sharma Backend Engineering',
+      url: SITE_URL,
+      founder: {
+        '@type': 'Person',
+        name: 'Ashish Sharma',
+      },
+    },
+    areaServed: ['United States', 'European Union', 'United Kingdom', 'Worldwide'],
+    description:
+      'Backend engineering services for startups and agencies that need scalable APIs, Cloudflare Workers, AWS backend architecture, Node.js/TypeScript, Python, PlanetScale MySQL, Typesense search, and production infrastructure support.',
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Backend engineering offers',
+      itemListElement: services.map((service) => ({
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: service.title,
+          description: service.description,
+        },
+      })),
+    },
+  };
+
   return (
     <>
       <SEO
         title="Backend Engineering Services - Cloudflare Workers, AWS, Node.js and Python"
         description="Cloudflare Workers, AWS backend architecture, Node.js/TypeScript APIs, Python backends, migration planning, and cloud cost optimization."
         path="/services"
+        structuredData={serviceSchema}
       />
 
       <section className="page-hero">

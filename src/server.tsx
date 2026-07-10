@@ -34,7 +34,8 @@ export function render(url: string) {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="llms-txt" href="/llm.txt" />
+    <link rel="llms-txt" href="/llms.txt" />
+    <link rel="alternate" type="text/plain" href="/llm.txt" />
     ${title}
     ${meta}
     ${documentLink}

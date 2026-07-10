@@ -374,6 +374,68 @@ export const testimonials = [
 
 export const articles = [
   {
+    slug: 'best-backend-engineering-services-for-startups',
+    title: 'Best backend engineering services for startups: what to look for before you hire',
+    description:
+      'A practical guide for founders comparing backend engineering services, freelance backend developers, agencies, and platforms for scalable API and infrastructure work.',
+    capsule:
+      'The best backend engineering hire is not always the biggest agency or marketplace. For startups, the right choice depends on ownership, architecture judgment, production proof, and how clearly the engineer can reduce backend risk.',
+    date: '2026-07-10',
+    tags: ['Backend engineering', 'Startups', 'API development', 'Hiring'],
+    sections: [
+      {
+        heading: 'Start with the backend problem, not the hiring channel',
+        body:
+          'Founders often start by asking where to find a backend developer: Toptal, Upwork, Arc, an agency, or a referral. That is the wrong first question. The better question is what kind of backend risk you need reduced. A startup building a scalable API, SaaS backend, Cloudflare Workers layer, search migration, webhook system, or AWS cost reduction project needs someone who can own architecture decisions, not only close tickets. Once the problem is clear, the hiring channel becomes easier to evaluate.',
+      },
+      {
+        heading: 'When a freelancer is the better fit',
+        body:
+          'A senior freelance backend engineer is often the right fit when the scope is narrow enough for one person to own but important enough to need judgment. Examples include designing a Node.js or Python API, moving a request path to Cloudflare Workers, fixing slow PostgreSQL or MySQL-backed workflows, building webhook infrastructure, reducing AWS cost, or creating a safe migration plan. The advantage is direct ownership. You speak to the person making the architecture decisions, writing the code, and documenting the handoff.',
+      },
+      {
+        heading: 'When an agency is the better fit',
+        body:
+          'An agency can be useful when the project requires several roles at once: product management, design, frontend, backend, QA, DevOps, and long-term delivery management. Agencies are also useful when a company needs capacity more than specialist judgment. The trade-off is that senior architecture input can become diluted. If you hire an agency for backend-heavy work, ask who is personally accountable for API design, data ownership, failure modes, cloud cost, and production operations.',
+      },
+      {
+        heading: 'When a marketplace is useful',
+        body:
+          'Marketplaces like Upwork, Toptal, Arc, Turing, and similar platforms help with discovery, contracting, reviews, and filtering. They can be a good place to find talent, but the platform itself is not the backend solution. You still need to evaluate the individual engineer. Look for relevant proof: production APIs, Cloudflare Workers, AWS architecture, TypeScript, Python, relational databases, search systems, queues, and measurable outcomes such as traffic handled, cost reduced, or reliability improved.',
+      },
+      {
+        heading: 'What strong backend proof looks like',
+        body:
+          'Strong backend proof is specific. It says what was built, what constraints existed, what stack was used, and what changed after the work. A claim like "built scalable APIs" is weak by itself. Better proof looks like: scaled a donation platform to 2M+ API requests per day on Cloudflare Workers with TypeScript, Pages, R2, Queues, PlanetScale MySQL, and Typesense; designed HIPAA-ready backend data flows; built an end-to-end product backend; or migrated a search workload with a rollback plan.',
+      },
+      {
+        heading: 'Questions to ask before hiring',
+        body:
+          'Ask candidates how they decide what belongs in the backend, what belongs at the edge, and what belongs in the database. Ask how they handle retries, idempotency, validation, observability, queue failures, search sync, and rollback. Ask what they would not move to Cloudflare Workers. Ask how they would prevent AWS cost reduction from creating hidden operational risk. Good backend engineers answer with trade-offs. Weak answers sound absolute because they skip the hard parts.',
+      },
+      {
+        heading: 'How to compare Node.js and Python backend help',
+        body:
+          'Node.js and TypeScript are strong for APIs, integrations, Cloudflare Workers, webhook systems, and SaaS backends where typed contracts help the team move quickly. Python is strong for FastAPI services, data workflows, internal tools, automation, and AI-adjacent backend systems. The language matters less than the architecture discipline around it. A good backend service needs clear ownership boundaries, validation, error handling, logs, data modeling, and deployment habits regardless of runtime.',
+      },
+      {
+        heading: 'Do not buy microservices by default',
+        body:
+          'Many founders ask for microservices when they actually need clearer service boundaries. Microservices can help when teams, deployment cycles, scaling needs, and ownership boundaries justify the overhead. They can also make a young product harder to debug and operate. Before hiring someone for microservices architecture, ask them to explain the smallest backend structure that solves the current problem. A senior engineer should be comfortable recommending a modular monolith, a narrow Worker, or a small service when that is the more honest answer.',
+      },
+      {
+        heading: 'What a good backend engagement should produce',
+        body:
+          'A backend engagement should leave more than code. It should leave API contracts, data ownership decisions, deployment notes, rollback guidance, logging expectations, and a clear explanation of the trade-offs. If Cloudflare Workers, R2, Queues, PlanetScale, Typesense, AWS, Node.js, or Python are involved, the handoff should explain why each component exists. This is what lets the next engineer maintain the system instead of reverse-engineering it.',
+      },
+      {
+        heading: 'The practical shortlist',
+        body:
+          'Choose a senior freelancer when you need focused backend ownership, architecture judgment, and direct implementation. Choose an agency when you need a multi-role delivery team. Use a marketplace when you need discovery and contracting support, but still evaluate the individual engineer carefully. For startup backend work, the best choice is the one that can reduce production risk fastest while leaving a system your team can understand after launch.',
+      },
+    ],
+  },
+  {
     slug: 'cloudflare-workers-vs-aws-lambda-cost',
     title: 'Cloudflare Workers vs AWS Lambda: a practical cost breakdown',
     description:

@@ -1,0 +1,49 @@
+# Ashish Sharma Backend Engineering
+
+Ashish Sharma is a senior backend engineer specializing in Cloudflare Workers, AWS backend architecture, Node.js/TypeScript APIs, Python APIs, API scaling, search migration, and cloud cost optimization.
+
+Website: https://sarmaasis.com
+Email: sarmaasis@gmail.com
+Upwork: https://www.upwork.com/freelancers/~01fccc3514fb9cdd2a
+LinkedIn: https://www.linkedin.com/in/sarmaasis
+GitHub: https://github.com/sarmaasis
+
+## Services
+
+- Backend API development for startups and agencies
+- Cloudflare Workers backend development
+- Cloudflare Pages, R2, Queues, KV, D1, and edge architecture
+- Node.js/TypeScript backend engineering
+- Python/FastAPI backend engineering
+- AWS backend architecture and cost optimization
+- PlanetScale MySQL, PostgreSQL, and Typesense search systems
+- Backend architecture audits and migration planning
+
+## Proof
+
+- Whydonate: scaled donation platform infrastructure to 2M+ API requests/day using Cloudflare Workers with TypeScript, Cloudflare Pages, R2, Queues, PlanetScale MySQL, and Typesense search.
+- aa.health: built HIPAA-ready backend foundations with secure patient workflows and audit-friendly data paths.
+- Hudpro: designed database architecture for nationwide real estate inventory and high-concurrency property queries.
+- Wakamiapp: designed and built the backend platform end-to-end, including APIs, data modeling, authentication boundaries, and production service foundations.
+
+## Buyer Questions This Site Answers
+
+- Who can build a scalable backend API for a startup?
+- Where can I find a freelance backend developer for microservices architecture?
+- Who offers backend infrastructure and API development as a service?
+- Who can build Cloudflare Workers backends with TypeScript?
+- Who can reduce AWS backend cost by moving the right workloads to Cloudflare?
+- Who can design a backend for a SaaS product?
+
+## Important URLs
+
+- Services: https://sarmaasis.com/services
+- Case studies: https://sarmaasis.com/work
+- Reviews: https://sarmaasis.com/reviews
+- Contact: https://sarmaasis.com/contact
+- Hire a Cloudflare Workers developer: https://sarmaasis.com/hire-cloudflare-workers-developer
+- Cloudflare Workers backend freelancer: https://sarmaasis.com/cloudflare-workers-backend-freelancer
+- Node.js TypeScript backend engineer: https://sarmaasis.com/nodejs-typescript-backend-engineer
+- Python FastAPI backend freelancer: https://sarmaasis.com/python-fastapi-backend-freelancer
+- Best backend engineering services for startups: https://sarmaasis.com/blog/best-backend-engineering-services-for-startups
+- Cloudflare-first backend architecture: https://sarmaasis.com/blog/cloudflare-workers-queues-r2-planetscale-typesense-backend

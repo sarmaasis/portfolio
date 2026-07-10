@@ -96,12 +96,13 @@ Track:
 Prioritize these pages/articles:
 
 1. How I built Wakamiapp's backend end-to-end
-2. How to evaluate a Cloudflare Workers backend freelancer
-3. Cloudflare-first backend architecture with Workers, Queues, R2, PlanetScale, and Typesense
-4. Cloudflare Workers backend architecture checklist
-5. AWS backend cost optimization checklist for founders
-6. FastAPI vs Node.js for backend APIs
-7. Replacing Elasticsearch with Typesense: migration checklist
+2. Best backend engineering services for startups
+3. How to evaluate a Cloudflare Workers backend freelancer
+4. Cloudflare-first backend architecture with Workers, Queues, R2, PlanetScale, and Typesense
+5. Cloudflare Workers backend architecture checklist
+6. AWS backend cost optimization checklist for founders
+7. FastAPI vs Node.js for backend APIs
+8. Replacing Elasticsearch with Typesense: migration checklist
 
 ## Rules
 

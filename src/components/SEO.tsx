@@ -40,6 +40,27 @@ const personSchema = {
   ],
 };
 
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Ashish Sharma Backend Engineering',
+  url: SITE_URL,
+  email: 'mailto:sarmaasis@gmail.com',
+  founder: {
+    '@type': 'Person',
+    name: 'Ashish Sharma',
+    url: SITE_URL,
+  },
+  description:
+    'Backend engineering services for Cloudflare Workers, AWS backend architecture, Node.js/TypeScript APIs, Python APIs, API scaling, search migration, and cloud cost optimization.',
+  sameAs: [
+    'https://www.linkedin.com/in/sarmaasis',
+    'https://github.com/sarmaasis',
+    'https://x.com/sarmaasis',
+    UPWORK_URL,
+  ],
+};
+
 const professionalServiceSchema = {
   '@context': 'https://schema.org',
   '@type': 'ProfessionalService',
@@ -89,7 +110,7 @@ export function SEO({
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
 
-      {[personSchema, professionalServiceSchema, ...schemas].map((schema, index) => (
+      {[personSchema, organizationSchema, professionalServiceSchema, ...schemas].map((schema, index) => (
         <script key={index} type="application/ld+json">
           {JSON.stringify(schema)}
         </script>
