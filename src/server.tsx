@@ -5,6 +5,22 @@ import manifest from '../dist/client/.vite/manifest.json';
 import './index.css';
 import App from './App';
 
+function extractHeadTags(html: string) {
+  const titleMatch = html.match(/<title[^>]*>[\s\S]*?<\/title>/);
+  const metaMatches = html.match(/<meta[^>]*>/g) || [];
+  const linkMatches = html.match(/<link[^>]+rel="canonical"[^>]*>/g) || [];
+  const scriptMatches = html.match(/<script[^>]+type="application\/ld\+json"[^>]*>[\s\S]*?<\/script>/g) || [];
+  const headTags = [titleMatch?.[0], ...metaMatches, ...linkMatches, ...scriptMatches].filter(Boolean);
+
+  return {
+    title: titleMatch?.[0] || '',
+    meta: metaMatches.join('\n'),
+    links: linkMatches.join('\n'),
+    scripts: scriptMatches.join('\n'),
+    bodyHtml: headTags.reduce((body, tag) => body.replace(tag, ''), html),
+  };
+}
+
 export function render(url: string) {
   const clientEntry = manifest['src/client.tsx'].file;
   const cssFiles = manifest['src/client.tsx'].css || [];
@@ -14,19 +30,28 @@ export function render(url: string) {
 
   const helmetContext: { helmet?: HelmetServerState } = {};
 
-  const appHtml = renderToString(
+  const renderedAppHtml = renderToString(
     <HelmetProvider context={helmetContext}>
       <StaticRouter location={url}>
         <App />
       </StaticRouter>
     </HelmetProvider>
   );
+  const extractedHead = extractHeadTags(renderedAppHtml);
+  const appHtml = extractedHead.bodyHtml;
 
   const helmet = helmetContext.helmet;
-  const title = helmet?.title?.toString() || '<title>Ashish Sharma - Cloudflare Workers and AWS Backend Engineer</title>';
-  const meta = helmet?.meta?.toString() || '';
-  const documentLink = helmet?.link?.toString() || '';
-  const script = helmet?.script?.toString() || '';
+  const title =
+    helmet?.title?.toString() ||
+    extractedHead.title ||
+    '<title>Ashish Sharma - Cloudflare Workers and AWS Backend Engineer</title>';
+  const helmetMeta = helmet?.meta?.toString() || extractedHead.meta;
+  const meta = helmetMeta.includes('name="description"')
+    ? helmetMeta
+    : `${helmetMeta}
+    <meta name="description" content="Ashish Sharma is a senior backend engineer for Cloudflare Workers, AWS, Node.js/TypeScript, Python APIs, backend architecture, search migration, and cloud cost optimization." />`;
+  const documentLink = helmet?.link?.toString() || extractedHead.links;
+  const script = helmet?.script?.toString() || extractedHead.scripts;
 
   return `<!DOCTYPE html>
 <html lang="en">
