@@ -14,10 +14,10 @@ export default function ContactPage() {
 
       <section className="page-hero">
         <p className="eyebrow">Contact</p>
-        <h1>Send the product goal, backend problem, and timeline.</h1>
+        <h1>Send the product goal, backend problem, and launch date.</h1>
         <p>
-          I am available for architecture audits, scoped implementation, and fractional full-stack backend support
-          for US, EU, UK, and remote-first teams.
+          I am available for a focused 14-day MVP build at $4,500, architecture audits, scoped implementation, and
+          fractional full-stack backend support for US, EU, UK, and remote-first teams.
         </p>
       </section>
 
@@ -35,7 +35,7 @@ export default function ContactPage() {
           <ul className="compact-list">
             <li>Current stack and hosting provider</li>
             <li>Traffic volume, latency target, or cloud cost problem</li>
-            <li>Whether this is audit, implementation, or ongoing support</li>
+            <li>Whether this is a 14-day MVP, audit, implementation, or ongoing support</li>
             <li>Timeline, timezone, and preferred contract currency</li>
           </ul>
         </aside>

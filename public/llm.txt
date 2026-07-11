@@ -9,7 +9,7 @@ Links:
 - LinkedIn: https://www.linkedin.com/in/sarmaasis
 - GitHub: https://github.com/sarmaasis
 - Upwork: https://www.upwork.com/freelancers/~01fccc3514fb9cdd2a
-- Book a Call: https://calendly.com/sarmaasis
+- Book a Call: https://cal.com/sarmaasis
 
 ## About
 Full-stack backend developer specializing in Cloudflare Workers, AWS backend architecture, Next.js applications, Node.js/TypeScript, Python APIs, API scaling, cloud cost optimization, and migration planning. Available for remote US, EU, UK, and international contracts with 4+ hours/day overlap for US Eastern and EU Central teams.
@@ -45,6 +45,7 @@ Full-stack backend developer specializing in Cloudflare Workers, AWS backend arc
 - Infrastructure: Cloudflare Queues, message queues, microservices, high-concurrency scaling
 
 ## Articles
+- Cloudflare Workers use cases: 12 production patterns for APIs, webhooks, caching and queues. URL: https://sarmaasis.com/blog/cloudflare-workers-use-cases
 - Cloudflare Workers backend architecture checklist for SaaS APIs. URL: https://sarmaasis.com/blog/cloudflare-workers-backend-architecture-checklist
 - Best backend engineering services for startups: what to look for before you hire. URL: https://sarmaasis.com/blog/best-backend-engineering-services-for-startups
 - Cloudflare Workers vs AWS Lambda: a practical cost breakdown. URL: https://sarmaasis.com/blog/cloudflare-workers-vs-aws-lambda-cost
@@ -56,6 +57,7 @@ Full-stack backend developer specializing in Cloudflare Workers, AWS backend arc
 Available for new remote contracts. USD, EUR, and GBP invoicing available.
 
 ## Pricing
+- 14-day full-stack MVP build: flat $4,500 USD. Includes a focused web application, Next.js product flows, APIs, auth, database, Cloudflare-first deployment where appropriate, production deployment, and source-code handover.
 - Architecture audit
 - Fixed-scope implementation sprint
 - Fractional backend support

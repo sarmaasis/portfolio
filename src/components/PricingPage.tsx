@@ -3,6 +3,11 @@ import { SEO } from './SEO';
 
 const models = [
   {
+    title: '14-Day MVP Build',
+    summary: 'A focused full-stack product release for a flat $4,500 USD.',
+    details: ['Locked scope before Day 01', 'Next.js, API, database, auth, and deployment', 'Cloudflare-first delivery with code and account handover'],
+  },
+  {
     title: 'Architecture Audit',
     summary: 'A focused review before a migration, rebuild, or scaling push.',
     details: ['API and data-model review', 'Cloudflare/AWS cost and architecture notes', 'Prioritized action plan'],
@@ -23,17 +28,17 @@ export default function PricingPage() {
   return (
     <>
       <SEO
-        title="Pricing & Engagement Models - Ashish Sharma"
-        description="Engagement models for full-stack backend architecture audits, implementation sprints, Cloudflare/AWS work, and fractional application support."
+        title="14-Day MVP Pricing & Engagement Models - Ashish Sharma"
+        description="A focused 14-day full-stack MVP build for a flat $4,500, plus Cloudflare/AWS architecture audits, implementation sprints, and fractional application support."
         path="/pricing"
       />
 
       <section className="page-hero">
         <p className="eyebrow">Pricing</p>
-        <h1>Transparent engagement models before money changes hands.</h1>
+        <h1>Clear engagement models, including a 14-day MVP for $4,500.</h1>
         <p>
-          Pricing depends on scope, urgency, and risk. I keep the model explicit: audit, scoped implementation,
-          or ongoing fractional application/backend support.
+          The MVP offer has a fixed scope and fixed price. For larger or higher-risk work, I keep the model explicit:
+          audit, scoped implementation, or ongoing fractional application/backend support.
         </p>
       </section>
 

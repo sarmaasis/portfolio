@@ -6,7 +6,7 @@ function setMetaByName(name: string, content: string) {
   if (!element) {
     element = document.createElement('meta');
     element.name = name;
-    document.head.append(element);
+    document.head.appendChild(element);
   }
   element.content = content;
 }
@@ -16,7 +16,7 @@ function setMetaByProperty(property: string, content: string) {
   if (!element) {
     element = document.createElement('meta');
     element.setAttribute('property', property);
-    document.head.append(element);
+    document.head.appendChild(element);
   }
   element.content = content;
 }
@@ -26,7 +26,7 @@ function setCanonical(href: string) {
   if (!element) {
     element = document.createElement('link');
     element.rel = 'canonical';
-    document.head.append(element);
+    document.head.appendChild(element);
   }
   element.href = href;
 }

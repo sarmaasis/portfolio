@@ -1,6 +1,6 @@
 export const SITE_URL = 'https://sarmaasis.com';
 export const EMAIL = 'sarmaasis@gmail.com';
-export const CALENDLY_URL = 'https://calendly.com/sarmaasis';
+export const CAL_URL = 'https://cal.com/sarmaasis';
 export const UPWORK_URL = 'https://www.upwork.com/freelancers/~01fccc3514fb9cdd2a';
 export const COPYRIGHT_YEAR = 2026;
 
@@ -374,6 +374,93 @@ export const testimonials = [
 ];
 
 export const articles = [
+  {
+    slug: 'cloudflare-workers-use-cases',
+    title: 'Cloudflare Workers use cases: 12 production patterns for APIs, webhooks, caching and queues',
+    description:
+      'Cloudflare Workers use cases for SaaS APIs, webhook receivers, caching, API gateways, queues, R2 uploads, search, authentication, and AWS integrations, with guidance on what should stay out of the edge runtime.',
+    capsule:
+      'The best Cloudflare Workers use cases are narrow, high-leverage request paths: protect an API, receive a webhook, serve a cacheable read, issue a signed upload, or move slow work to a queue. The mistake is treating Workers as a place to put every backend decision.',
+    date: '2026-07-11',
+    tags: ['Cloudflare Workers use cases', 'Cloudflare Workers', 'Edge computing', 'Serverless APIs'],
+    sections: [
+      {
+        heading: 'What are Cloudflare Workers best used for?',
+        body:
+          'Cloudflare Workers are best used for backend work that benefits from being close to the incoming request and can remain small, explicit, and observable. Common Cloudflare Workers use cases include API gateways, request validation, authentication checks, webhooks, caching, routing, redirect logic, signed uploads, search facades, and integration glue. A Worker can make a request path faster and safer without becoming the only place where business state lives. The useful question is not "can this run in a Worker?" It is "does putting this at the edge reduce latency, origin load, cost, or operational complexity?"',
+      },
+      {
+        heading: 'Use case 1: API gateways and backend-for-frontend APIs',
+        body:
+          'A Cloudflare Worker is a strong API gateway when a frontend needs one stable endpoint in front of several services. The Worker can validate the request, add request IDs, normalize headers, apply tenant context, call the appropriate upstream service, and return a response shape designed for the product UI. This is useful for SaaS dashboards, mobile backends, public APIs, and gradual migrations where the original services cannot change all at once. Keep the Worker focused on request orchestration. The deeper transactional rules should remain in the service or database layer that owns the state.',
+      },
+      {
+        heading: 'Use case 2: webhook receivers with fast acknowledgement',
+        body:
+          'Webhook handling is one of the highest-value Cloudflare Workers use cases. Payment providers, forms, CRMs, email tools, and third-party platforms expect a quick response and may retry when they do not get one. A Worker can verify the signature, validate the payload, reject irrelevant events, record a stable event ID, and queue the follow-up work before acknowledging the sender. This keeps a slow downstream API, email task, search update, or database workflow from making the webhook unreliable. Design for duplicate delivery: retries and repeated events are normal, not exceptional.',
+      },
+      {
+        heading: 'Use case 3: cacheable API reads and origin protection',
+        body:
+          'Workers are especially effective for reads that are public or safely scoped by a predictable cache key. Examples include product catalogs, campaign pages, directory results, exchange-rate snapshots, documentation indexes, and public search suggestions. The Worker can decide whether a request may be cached, shape the cache key around locale, currency, tenant, or query filters, and only reach the origin on a miss. Do not cache first and decide permissions later. If a response is user-specific, contains sensitive data, or has unclear freshness rules, it should bypass the shared cache until the data boundary is explicit.',
+      },
+      {
+        heading: 'Use case 4: API proxies for third-party services',
+        body:
+          'A narrow Worker proxy can protect a third-party API from accidental abuse and keep secrets out of the browser. It can add the provider credential, validate request parameters, cap result sizes, enforce rate limits, remove unstable fields, cache safe responses, and map provider errors into a product-friendly contract. This pattern works well for maps, payments, search, shipping, CRM, AI, and analytics integrations. The Worker should not hide every upstream behavior. Good proxies make timeout, retry, and failure rules clear so the rest of the application can respond predictably when the provider is unavailable.',
+      },
+      {
+        heading: 'Use case 5: authentication, rate limits, and request validation',
+        body:
+          'The edge is a useful place to stop obviously invalid or abusive traffic before it reaches more expensive systems. A Cloudflare Worker can check an API key or token, validate methods and content types, reject malformed payloads, enforce body-size expectations, apply a simple tenant rule, and add rate-limit behavior. This is not a substitute for authorization near the data model. Authentication establishes who is calling; authorization decides what that caller can do with a particular record or workflow. Use Workers for cheap request-level protection and keep sensitive business permissions in the layer that owns the data.',
+      },
+      {
+        heading: 'Use case 6: queues for slow or retryable work',
+        body:
+          'When a request triggers work that does not need to finish before the user sees a response, move it behind Cloudflare Queues. Good examples include sending email, updating a search index, processing a webhook follow-up, generating an export, calling a slow partner API, enriching a record, or recording analytics. The queue separates the user path from the failure-prone work. A production design still needs idempotency keys, retry limits, dead-letter handling, logs, and a way to inspect or replay failed jobs. A queue is a reliability boundary, not merely a background-task feature.',
+      },
+      {
+        heading: 'Use case 7: R2 uploads, downloads, and generated files',
+        body:
+          'Cloudflare Workers pair naturally with R2 when an application needs controlled access to files. A Worker can authenticate a user, verify ownership, generate a signed upload or download flow, create a narrow object key, and return only the metadata the client needs. This is useful for attachments, invoices, reports, media, exports, receipts, and generated documents. Keep object storage separate from product state: R2 should hold the object while a database owns who uploaded it, whether it is ready, which workflow it belongs to, and who may access it. That distinction prevents storage from becoming an accidental database.',
+      },
+      {
+        heading: 'Use case 8: search facades for Typesense, OpenSearch, or Elasticsearch',
+        body:
+          'Search services should rarely be exposed directly to a browser. A Worker can provide a stable search API in front of Typesense, OpenSearch, or Elasticsearch. It can enforce tenant filters, validate allowed facets and sort fields, cap pagination, hide provider credentials, apply cache rules, and shape results for the frontend. This is useful when search is business-critical but the product needs to change providers or index design later. The Worker does not replace the search engine. Its job is to protect the search workload and make the safe query path the default path.',
+      },
+      {
+        heading: 'Use case 9: geographic routing and lightweight personalization',
+        body:
+          'Workers can make routing decisions using request characteristics such as country, language, host, path, device hints, or an experiment cookie. A practical use case is sending a user to the closest regional origin, selecting a localized product configuration, routing a legacy path to a new service, or applying an experiment assignment before the page loads. Keep the decision deterministic and easy to audit. Geographic routing should not silently create different authorization rules or conflicting sources of truth. Treat it as request shaping, then log enough context to understand why a particular route was selected.',
+      },
+      {
+        heading: 'Use case 10: full-stack application routes and server-side rendering',
+        body:
+          'Cloudflare Workers can serve full-stack web applications when the request paths, rendering work, and data dependencies fit the runtime. For an MVP, this can be an efficient way to deploy a Next.js-style product surface, API routes, auth checks, and assets without operating a separate server fleet. The architecture still needs a source of truth for stateful data and a plan for slow jobs. A full-stack Worker application works best when the product has one clear request path, a deliberate database boundary, and no hidden assumption that the edge runtime should perform large CPU-heavy work.',
+      },
+      {
+        heading: 'Use case 11: gradual migrations from AWS or an existing backend',
+        body:
+          'You do not need to move an entire application to Cloudflare in one project. Workers are useful as a migration layer in front of AWS Lambda, API Gateway, containers, PostgreSQL, DynamoDB, or an existing monolith. Start with a route that has a simple contract: a webhook receiver, cacheable read, search endpoint, request validator, or public API facade. Measure latency, error rate, origin requests, and operating cost before moving another path. This is usually safer than a rewrite because the existing backend remains available as a rollback path while the new edge behavior earns its place.',
+      },
+      {
+        heading: 'Use case 12: production API scale with Cloudflare-first boundaries',
+        body:
+          'The best proof for a Cloudflare-first architecture is a product that stays understandable under real traffic. Whydonate is one example: its platform runs 4M+ API requests per day using TypeScript Workers, Pages, R2, Queues, PlanetScale MySQL, and Typesense search. The useful lesson is not that every product should copy that stack. It is that each component has a narrow job: Workers own request paths, Queues move retryable work out of the user response, R2 stores objects, the database owns transactional truth, and Typesense serves search-shaped reads. Clear boundaries are what make scale manageable.',
+      },
+      {
+        heading: 'When not to use Cloudflare Workers',
+        body:
+          'Cloudflare Workers are not the right answer for every backend task. Keep heavy CPU processing, large in-memory transformations, native dependency requirements, private network-only services, deeply stateful workflows, and long regional jobs in an environment designed for them. AWS Lambda, containers, managed databases, Durable Objects, or a regional service can be the better fit depending on the workload. Cloudflare publishes limits for CPU time, memory, subrequests, and plan-specific behavior, so confirm those limits before committing a critical path to Workers. A hybrid architecture is often the production-quality answer, not a compromise.',
+      },
+      {
+        heading: 'How to choose the first Cloudflare Workers use case',
+        body:
+          'Choose the route with the clearest contract and the clearest success metric. Good first candidates are a webhook receiver that needs reliable acknowledgement, a public read endpoint with safe cache behavior, a search proxy that needs tenant controls, a signed file flow, or an API gateway that can reduce browser-to-service coupling. Define the baseline before building: current latency, error rate, origin load, request volume, cost, and failure behavior. Then include observability and rollback in the scope. The first Worker should create evidence, not create another backend mystery.',
+      },
+    ],
+  },
   {
     slug: 'cloudflare-workers-backend-architecture-checklist',
     title: 'Cloudflare Workers backend architecture checklist for SaaS APIs',

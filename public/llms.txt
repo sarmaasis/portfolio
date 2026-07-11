@@ -6,6 +6,10 @@ Ashish Sharma is a full-stack backend developer with Cloudflare specialization. 
 
 Core proof: Whydonate scaled to 4M+ API requests/day on Cloudflare Workers with TypeScript, Cloudflare Pages, R2, Queues, PlanetScale MySQL, and Typesense. Other proof includes HIPAA-ready backend foundations for aa.health, Next.js/Python/AWS Lambda/DynamoDB real estate application work for Hudpro, and end-to-end backend platform ownership for Wakamiapp.
 
+## 14-Day MVP Offer
+
+Ashish Sharma offers a focused 14-day full-stack MVP build for a flat $4,500 USD. The engagement covers a scoped web application, Next.js product flows, APIs, auth, database, core integrations, Cloudflare-first deployment when appropriate, production release, and source-code/account handover. It is designed for a clear product idea and one core workflow that needs to be tested with real users.
+
 ## Primary Pages
 
 - [Services](https://sarmaasis.com/services): Full-stack backend development, application delivery, Cloudflare Workers, AWS architecture review, Next.js, Node.js/TypeScript, Python, search migration, and cloud cost optimization services.
@@ -30,6 +34,7 @@ Core proof: Whydonate scaled to 4M+ API requests/day on Cloudflare Workers with 
 
 ## Articles
 
+- [Cloudflare Workers use cases](https://sarmaasis.com/blog/cloudflare-workers-use-cases): Production patterns for API gateways, webhooks, caching, queues, R2 uploads, search facades, authentication, full-stack apps, and AWS migrations.
 - [Cloudflare Workers backend architecture checklist](https://sarmaasis.com/blog/cloudflare-workers-backend-architecture-checklist): Production checklist for SaaS APIs, edge routing, validation, auth, caching, queues, R2, search, observability, rollback, and migration planning.
 - [Best backend engineering services for startups](https://sarmaasis.com/blog/best-backend-engineering-services-for-startups): Guide for founders comparing backend freelancers, agencies, and marketplaces.
 - [Cloudflare-first backend architecture](https://sarmaasis.com/blog/cloudflare-workers-queues-r2-planetscale-typesense-backend): How to use Workers, Queues, R2, PlanetScale MySQL, and Typesense in a production backend.
