@@ -1,11 +1,12 @@
-import { useEffect, useState } from 'react';
-import { Link, Route, Routes } from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react';
+import { Link, Route, Routes, useLocation } from 'react-router-dom';
 import './App.css';
 import AboutPage from './components/AboutPage';
 import BackendAnswersPage from './components/BackendAnswersPage';
 import BlogIndexPage from './components/BlogIndexPage';
 import BlogPostPage from './components/BlogPostPage';
 import CaseStudyPage from './components/CaseStudyPage';
+import ConsentBanner from './components/ConsentBanner';
 import ContactPage from './components/ContactPage';
 import DynamicServicePage from './components/DynamicServicePage';
 import HiringLandingPage from './components/HiringLandingPage';
@@ -16,6 +17,15 @@ import ServicesPage from './components/ServicesPage';
 import ThemeToggle from './components/ThemeToggle';
 import WorkPage from './components/WorkPage';
 import { COPYRIGHT_YEAR, OFFER, POSITIONING, UPWORK_URL, primaryLandingPages } from './data/site';
+import {
+  ANALYTICS_CONSENT_KEY,
+  clearAnalyticsCookies,
+  getSavedAnalyticsConsent,
+  trackEvent,
+  trackPageView,
+  type AnalyticsConsent,
+  updateAnalyticsConsent,
+} from './utils/analytics';
 
 const navItems = [
   { href: '/#services', label: 'Services' },
@@ -25,7 +35,10 @@ const navItems = [
 ];
 
 function App() {
+  const location = useLocation();
   const [theme, setTheme] = useState<'light' | 'dark'>('dark');
+  const [analyticsConsent, setAnalyticsConsent] = useState<AnalyticsConsent | null>(null);
+  const lastTrackedRoute = useRef<string | null>(null);
 
   useEffect(() => {
     const savedTheme = window.localStorage.getItem('theme');
@@ -38,6 +51,82 @@ function App() {
     document.documentElement.dataset.theme = theme;
     window.localStorage.setItem('theme', theme);
   }, [theme]);
+
+  useEffect(() => {
+    const savedConsent = getSavedAnalyticsConsent();
+    setAnalyticsConsent(savedConsent);
+
+    if (savedConsent !== null) {
+      updateAnalyticsConsent(savedConsent);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (analyticsConsent !== 'granted') {
+      return;
+    }
+
+    const route = `${location.pathname}${location.search}`;
+    if (lastTrackedRoute.current === route) {
+      return;
+    }
+
+    trackPageView(location.pathname, location.search);
+    lastTrackedRoute.current = route;
+  }, [analyticsConsent, location.pathname, location.search]);
+
+  useEffect(() => {
+    const handleDocumentClick = (event: MouseEvent) => {
+      if (!(event.target instanceof Element)) {
+        return;
+      }
+
+      const element = event.target.closest<HTMLElement>('[data-analytics-event], a');
+      if (element === null) {
+        return;
+      }
+
+      const eventName = element.dataset.analyticsEvent;
+      if (eventName) {
+        trackEvent(eventName, { placement: element.dataset.analyticsPlacement ?? 'unspecified' });
+        return;
+      }
+
+      if (!(element instanceof HTMLAnchorElement)) {
+        return;
+      }
+
+      const destination = new URL(element.href, window.location.origin);
+      if (destination.origin === window.location.origin && destination.pathname === '/contact') {
+        trackEvent('contact_page_open');
+      }
+
+      if (destination.protocol === 'mailto:') {
+        trackEvent('contact_email_click');
+      }
+    };
+
+    document.addEventListener('click', handleDocumentClick);
+    return () => document.removeEventListener('click', handleDocumentClick);
+  }, []);
+
+  const handleConsentChange = (consent: AnalyticsConsent) => {
+    window.localStorage.setItem(ANALYTICS_CONSENT_KEY, consent);
+    updateAnalyticsConsent(consent);
+
+    if (consent === 'denied') {
+      clearAnalyticsCookies();
+    }
+
+    setAnalyticsConsent(consent);
+  };
+
+  const reopenConsentChoice = () => {
+    window.localStorage.removeItem(ANALYTICS_CONSENT_KEY);
+    updateAnalyticsConsent('denied');
+    clearAnalyticsCookies();
+    setAnalyticsConsent(null);
+  };
 
   return (
     <>
@@ -95,6 +184,9 @@ function App() {
               <h2>Ashish Sharma</h2>
               <p>{OFFER}</p>
               <p className="small-text">Available for remote US, EU, and UK contracts.</p>
+              <button type="button" className="privacy-settings" onClick={reopenConsentChoice}>
+                Cookie settings
+              </button>
             </div>
             <div>
               <h2>Contact</h2>
@@ -135,6 +227,7 @@ function App() {
           </div>
         </footer>
       </div>
+      <ConsentBanner consent={analyticsConsent} onConsentChange={handleConsentChange} />
     </>
   );
 }

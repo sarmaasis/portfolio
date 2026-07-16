@@ -629,6 +629,86 @@ section {
   padding-top: 1rem;
 }
 
+.privacy-settings {
+  background: transparent;
+  border: 0;
+  color: var(--muted);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.86rem;
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.privacy-settings:hover,
+.privacy-settings:focus-visible {
+  color: var(--foreground);
+}
+
+.consent-banner {
+  align-items: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  bottom: 1rem;
+  box-shadow: 0 0.5rem 1.5rem rgb(0 0 0 / 0.14);
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: minmax(0, 1fr) auto;
+  left: 1rem;
+  max-width: 42rem;
+  padding: 0.9rem 1rem;
+  position: fixed;
+  right: 1rem;
+  z-index: 20;
+}
+
+.consent-banner h2 {
+  font-size: 0.92rem;
+  margin: 0 0 0.2rem;
+}
+
+.consent-banner p {
+  color: var(--muted);
+  font-size: 0.84rem;
+  margin: 0;
+  max-width: 28rem;
+}
+
+.consent-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.consent-actions button {
+  border: 1px solid var(--foreground);
+  border-radius: 0;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 750;
+  min-height: 2.15rem;
+  padding: 0.35rem 0.65rem;
+  white-space: nowrap;
+}
+
+.consent-decline {
+  background: transparent;
+  color: var(--foreground);
+}
+
+.consent-accept {
+  background: var(--foreground);
+  color: var(--background);
+}
+
+.consent-accept:hover,
+.consent-accept:focus-visible {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-contrast);
+}
+
 .mvp-hero {
   padding: 4.5rem 0 2.8rem;
 }
@@ -915,6 +995,20 @@ section {
   .btn-primary,
   .btn-secondary {
     width: 100%;
+  }
+
+  .consent-banner {
+    align-items: start;
+    grid-template-columns: 1fr;
+    max-width: none;
+  }
+
+  .consent-actions {
+    width: 100%;
+  }
+
+  .consent-actions button {
+    flex: 1 1 0;
   }
 
   .mvp-hero {

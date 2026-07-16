@@ -31,6 +31,20 @@ export function render(url: string) {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="llms-txt" href="/llms.txt" />
     <link rel="alternate" type="text/plain" href="/llm.txt" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-E2R2ZM1SDT"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        analytics_storage: 'denied',
+        wait_for_update: 500
+      });
+      gtag('js', new Date());
+      gtag('config', 'G-E2R2ZM1SDT', { send_page_view: false });
+    </script>
     ${seoHeadTags}
     ${cssLinks}
   </head>

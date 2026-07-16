@@ -98,7 +98,14 @@ export default function HomePage() {
               engineer across the product flow, frontend, backend, cloud, and launch.
             </p>
             <div className="hero-actions">
-              <a className="primary-link" href={CAL_URL} target="_blank" rel="noopener noreferrer">
+              <a
+                className="primary-link"
+                href={CAL_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-analytics-event="mvp_call_click"
+                data-analytics-placement="hero"
+              >
                 Book an MVP call
               </a>
               <a className="mvp-text-link" href="#work">See the proof</a>
@@ -216,7 +223,16 @@ export default function HomePage() {
         <p className="item-label">Day 01 starts with a clear brief</p>
         <h2>Bring the idea. Leave with something people can use.</h2>
         <p>Book a short call with the product goal, key user, and launch date. I will tell you whether it fits a 14-day build before we start.</p>
-        <a className="primary-link" href={CAL_URL} target="_blank" rel="noopener noreferrer">Book an MVP call</a>
+        <a
+          className="primary-link"
+          href={CAL_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-analytics-event="mvp_call_click"
+          data-analytics-placement="closing"
+        >
+          Book an MVP call
+        </a>
       </section>
     </>
   );
