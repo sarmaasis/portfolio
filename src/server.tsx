@@ -43,7 +43,7 @@ export function render(url: string) {
         wait_for_update: 500
       });
       gtag('js', new Date());
-      gtag('config', 'G-E2R2ZM1SDT', { send_page_view: false });
+      gtag('config', 'G-E2R2ZM1SDT');
     </script>
     ${seoHeadTags}
     ${cssLinks}

@@ -38,7 +38,7 @@ function App() {
   const location = useLocation();
   const [theme, setTheme] = useState<'light' | 'dark'>('dark');
   const [analyticsConsent, setAnalyticsConsent] = useState<AnalyticsConsent | null>(null);
-  const lastTrackedRoute = useRef<string | null>(null);
+  const lastTrackedRoute = useRef(`${location.pathname}${location.search}`);
 
   useEffect(() => {
     const savedTheme = window.localStorage.getItem('theme');
@@ -62,11 +62,12 @@ function App() {
   }, []);
 
   useEffect(() => {
+    const route = `${location.pathname}${location.search}`;
     if (analyticsConsent !== 'granted') {
+      lastTrackedRoute.current = route;
       return;
     }
 
-    const route = `${location.pathname}${location.search}`;
     if (lastTrackedRoute.current === route) {
       return;
     }
