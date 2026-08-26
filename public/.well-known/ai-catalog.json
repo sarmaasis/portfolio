@@ -1,0 +1,25 @@
+{
+  "entries": [
+    {
+      "identifier": "urn:air:sarmaasis.com:server:discovery",
+      "displayName": "Sarmaasis Discovery MCP Server",
+      "type": "application/mcp-server-card+json",
+      "url": "https://sarmaasis.com/.well-known/mcp/server-card.json",
+      "representativeQueries": ["Get Ashish Sharma's public backend engineering profile"]
+    },
+    {
+      "identifier": "urn:air:sarmaasis.com:api:discovery",
+      "displayName": "Sarmaasis Discovery API",
+      "type": "application/vnd.oai.openapi+json",
+      "url": "https://sarmaasis.com/openapi.json",
+      "representativeQueries": ["Find Sarmaasis public API endpoints"]
+    },
+    {
+      "identifier": "urn:air:sarmaasis.com:skill:backend-engineering",
+      "displayName": "Sarmaasis Backend Engineering Skill",
+      "type": "application/ai-skill+md",
+      "url": "https://sarmaasis.com/.well-known/agent-skills/sarmaasis/SKILL.md",
+      "representativeQueries": ["When should I use Sarmaasis?"]
+    }
+  ]
+}

@@ -18,6 +18,8 @@
     "/BingSiteAuth.xml",
     "/.well-known/mcp/manifest.json",
     "/.well-known/mcp/server-card.json",
+    "/.well-known/ard.json",
+    "/.well-known/ai-catalog.json",
     "/.well-known/agent-skills/*"
   ]
 }

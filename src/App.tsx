@@ -180,6 +180,17 @@ function App() {
             {primaryLandingPages.map((page) => (
               <Route key={page.slug} path={`/${page.slug}`} element={<HiringLandingPage page={page} />} />
             ))}
+            <Route
+              path="*"
+              element={(
+                <section className="page-hero">
+                  <p className="eyebrow">404</p>
+                  <h1>Page not found.</h1>
+                  <p>The page you requested does not exist or may have moved.</p>
+                  <Link className="btn-primary" to="/">Return home</Link>
+                </section>
+              )}
+            />
           </Routes>
         </main>
 

@@ -47,6 +47,7 @@ export function render(url: string) {
     <link rel="alternate" type="text/markdown" href="/index.md" />
     <link rel="service-desc" type="application/vnd.oai.openapi+json;version=3.1" href="/openapi.json" />
     <link rel="agent-skills" type="application/json" href="/.well-known/agent-skills/index.json" />
+    <link rel="ard" type="application/json" href="/.well-known/ard.json" />
     ${seoHeadTags}
     ${cssLinks}
   </head>

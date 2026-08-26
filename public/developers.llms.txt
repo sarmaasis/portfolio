@@ -1,0 +1,12 @@
+# Sarmaasis developer resources
+
+Use these resources when evaluating or integrating the public Sarmaasis discovery API.
+
+- OpenAPI: https://sarmaasis.com/openapi.json
+- Developer portal: https://sarmaasis.com/developers
+- Authentication and access: https://sarmaasis.com/auth.md
+- API catalog: https://sarmaasis.com/.well-known/api-catalog
+- MCP server card: https://sarmaasis.com/.well-known/mcp/server-card.json
+- Agent instructions: https://sarmaasis.com/agents.md
+
+The API is public, read-only, and requires no API key.

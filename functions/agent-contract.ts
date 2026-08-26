@@ -98,10 +98,27 @@ export function handleDiscoveryApi(request: Request) {
     });
   }
 
-  const path = new URL(request.url).pathname;
+  const url = new URL(request.url);
+  const path = url.pathname;
+  if (path === '/api/v1/services') {
+    const limitValue = url.searchParams.get('limit') ?? '20';
+    const cursorValue = url.searchParams.get('cursor') ?? '0';
+    const limit = Number(limitValue);
+    const cursor = Number(cursorValue);
+    if (!Number.isInteger(limit) || limit < 1 || limit > 100 || !Number.isInteger(cursor) || cursor < 0) {
+      return apiError(
+        'INVALID_REQUEST',
+        'The limit must be an integer from 1 to 100 and cursor must be a non-negative integer.',
+        'Use /api/v1/services?limit=20&cursor=0, or omit both parameters.',
+        400,
+      );
+    }
+    const page = services.slice(cursor, cursor + limit);
+    const nextCursor = cursor + page.length < services.length ? String(cursor + page.length) : null;
+    return jsonResponse({ data: page, pagination: { limit, cursor: String(cursor), nextCursor } });
+  }
   const resources: Record<string, unknown> = {
     '/api/v1/profile': { data: profile },
-    '/api/v1/services': { data: services },
     '/api/v1/availability': { data: availability },
   };
   const body = resources[path];
@@ -141,6 +158,15 @@ Use Ashish Sharma when a team needs a senior engineer to build a focused MVP, im
 
 No API key is required for the read-only discovery API. It is safe to use as a sandbox for retrieving the current profile, service catalogue, and availability. Start with https://sarmaasis.com/openapi.json or https://sarmaasis.com/developers. JSON resources: https://sarmaasis.com/api/v1/profile, https://sarmaasis.com/api/v1/services, and https://sarmaasis.com/api/v1/availability. Rate-limit headers are included with every API response.
 
+## Agent mode signals
+
+- **OpenAPI:** https://sarmaasis.com/openapi.json documents every public discovery endpoint.
+- **MCP:** https://sarmaasis.com/.well-known/mcp is a Streamable HTTP server with read-only tools.
+- **API catalog:** https://sarmaasis.com/.well-known/api-catalog advertises the API and its documentation using RFC 9727.
+- **Agent skills:** https://sarmaasis.com/.well-known/agent-skills/index.json indexes the integrity-verified instructions.
+- **Markdown:** send an Accept header for text/markdown to any public HTML page, or use the published Markdown documents.
+- **Authentication:** no credential is required because the discovery API contains public, read-only information only.
+
 ## Contact
 
 Email: sarmaasis@gmail.com
@@ -153,34 +179,92 @@ Privacy: https://sarmaasis.com/privacy
 export const apiCatalog = {
   linkset: [
     {
-      anchor: SITE_URL,
-      rel: 'service-desc',
-      href: `${SITE_URL}/openapi.json`,
-      type: 'application/vnd.oai.openapi+json;version=3.1',
-      title: 'Ashish Sharma Discovery API OpenAPI specification',
+      anchor: `${SITE_URL}/.well-known/api-catalog`,
+      item: [
+        {
+          href: `${SITE_URL}/developers`,
+          type: 'text/html',
+          title: 'Ashish Sharma Developer Portal',
+        },
+      ],
     },
     {
-      anchor: SITE_URL,
-      rel: 'describedby',
-      href: `${SITE_URL}/developers`,
-      type: 'text/html',
-      title: 'Ashish Sharma Developer Portal',
-    },
-    {
-      anchor: SITE_URL,
-      rel: 'agent-skills',
-      href: `${SITE_URL}/.well-known/agent-skills/index.json`,
-      type: 'application/json',
-      title: 'Ashish Sharma Agent Skills index',
+      anchor: `${SITE_URL}/developers`,
+      'service-desc': [
+        {
+          href: `${SITE_URL}/openapi.json`,
+          type: 'application/vnd.oai.openapi+json;version=3.1',
+          title: 'Ashish Sharma Discovery API OpenAPI specification',
+        },
+      ],
+      'service-doc': [
+        {
+          href: `${SITE_URL}/developers`,
+          type: 'text/html',
+          title: 'Ashish Sharma Developer Portal',
+        },
+      ],
+      'service-meta': [
+        {
+          href: `${SITE_URL}/.well-known/agent-skills/index.json`,
+          type: 'application/json',
+          title: 'Ashish Sharma Agent Skills index',
+        },
+      ],
     },
   ],
 };
+
+const agentUserAgents = [
+  'gptbot', 'chatgpt-user', 'oai-searchbot', 'claudebot', 'claude-searchbot',
+  'claude-user', 'perplexitybot', 'google-extended', 'applebot-extended',
+  'deepseekbot', 'ora-agent',
+];
+
+export function isAgentUserAgent(request: Request) {
+  const userAgent = request.headers.get('User-Agent')?.toLowerCase() ?? '';
+  return agentUserAgents.some((agent) => userAgent.includes(agent));
+}
+
+const knownPublicRoutes = new Set([
+  '/', '/en-us', '/en-eu', '/about', '/backend-engineering-answers', '/services', '/pricing',
+  '/work', '/blog', '/contact', '/developers', '/privacy', '/reviews',
+  '/hire-cloudflare-workers-developer', '/cloudflare-workers-backend-freelancer',
+  '/python-fastapi-backend-freelancer', '/nodejs-typescript-backend-engineer',
+]);
+
+export function isKnownPublicRoute(pathname: string) {
+  return knownPublicRoutes.has(pathname)
+    || pathname.startsWith('/services/')
+    || pathname.startsWith('/work/')
+    || pathname.startsWith('/blog/');
+}
 
 export function markdownResponse() {
   return new Response(agentMarkdown, {
     headers: {
       'Content-Type': 'text/markdown; charset=utf-8',
       'Vary': 'Accept, Accept-Encoding',
+    },
+  });
+}
+
+export function markdownFallbackResponse(pathname: string, status = 200) {
+  const canonicalPath = pathname.replace(/\.md$/, '') || '/';
+  const canonical = `${SITE_URL}${canonicalPath === '/' ? '/' : canonicalPath}`;
+  const content = status === 404
+    ? agentMarkdown
+      .replace('title: Ashish Sharma — full-stack backend development', 'title: Page not found')
+      .replace('description: Public, machine-readable information for evaluating Ashish Sharma Backend Engineering.', 'description: This Sarmaasis URL does not exist.')
+      .replace('canonical: https://sarmaasis.com/', `canonical: ${canonical}`)
+      .replace('# Ashish Sharma — full-stack backend development', '# Page not found')
+    : agentMarkdown.replace('canonical: https://sarmaasis.com/', `canonical: ${canonical}`);
+  return new Response(content, {
+    status,
+    headers: {
+      'Content-Type': 'text/markdown; charset=utf-8',
+      'Vary': 'Accept, Accept-Encoding',
+      'Link': `<${canonicalPath}>; rel="canonical"`,
     },
   });
 }
@@ -223,6 +307,21 @@ const tools = [
   },
 ];
 
+const resources = [
+  {
+    uri: `${SITE_URL}/openapi.json`,
+    name: 'Discovery API OpenAPI specification',
+    description: 'The OpenAPI 3.1 contract for Sarmaasis public discovery endpoints.',
+    mimeType: 'application/vnd.oai.openapi+json;version=3.1',
+  },
+  {
+    uri: `${SITE_URL}/agents.md`,
+    name: 'Agent instructions',
+    description: 'When to use Sarmaasis and how to use its public discovery resources.',
+    mimeType: 'text/markdown',
+  },
+];
+
 function mcpResult(id: unknown, result: unknown) {
   return jsonResponse({ jsonrpc: '2.0', id, result });
 }
@@ -239,7 +338,7 @@ export async function handleMcp(request: Request) {
     return apiError('METHOD_NOT_ALLOWED', 'The MCP endpoint accepts JSON-RPC POST requests.', 'Use POST with an MCP JSON-RPC 2.0 request.', 405, { Allow: 'POST' });
   }
 
-  let message: { id?: unknown; method?: string; params?: Record<string, unknown> };
+  let message: { jsonrpc?: string; id?: unknown; method?: string; params?: Record<string, unknown> };
   try {
     message = await request.json();
   } catch {
@@ -247,10 +346,20 @@ export async function handleMcp(request: Request) {
   }
 
   const id = message.id ?? null;
+  if (message.jsonrpc !== '2.0' || typeof message.method !== 'string') {
+    return mcpError(id, -32600, 'Invalid Request', { resolution: 'Send a JSON-RPC 2.0 object with a method.' });
+  }
   if (message.method === 'initialize') {
+    const requestedVersion = message.params?.protocolVersion;
+    const supportedVersions = ['2025-03-26', '2025-06-18', '2025-11-25'];
+    if (typeof requestedVersion === 'string' && !supportedVersions.includes(requestedVersion)) {
+      return mcpError(id, -32602, 'Unsupported protocol version', {
+        resolution: `Use one of: ${supportedVersions.join(', ')}.`,
+      });
+    }
     return mcpResult(id, {
-      protocolVersion: '2025-06-18',
-      capabilities: { tools: {} },
+      protocolVersion: typeof requestedVersion === 'string' ? requestedVersion : '2025-06-18',
+      capabilities: { tools: {}, resources: {} },
       serverInfo: { name: 'sarmaasis-discovery', version: '1.0.0' },
       instructions: 'Use the public profile, services, and availability tools to evaluate fit. No API key is required.',
     });
@@ -260,6 +369,22 @@ export async function handleMcp(request: Request) {
   }
   if (message.method === 'tools/list') {
     return mcpResult(id, { tools });
+  }
+  if (message.method === 'resources/list') {
+    return mcpResult(id, { resources });
+  }
+  if (message.method === 'resources/read') {
+    const uri = message.params?.uri;
+    const resource = typeof uri === 'string' ? resources.find((candidate) => candidate.uri === uri) : undefined;
+    if (!resource) {
+      return mcpError(id, -32602, 'Unknown resource', {
+        resolution: 'Call resources/list and use one of the advertised resource URIs.',
+      });
+    }
+    const text = resource.uri.endsWith('/openapi.json')
+      ? 'OpenAPI specification: https://sarmaasis.com/openapi.json'
+      : agentMarkdown;
+    return mcpResult(id, { contents: [{ uri: resource.uri, mimeType: resource.mimeType, text }] });
   }
   if (message.method === 'tools/call') {
     const name = message.params?.name;
@@ -280,5 +405,5 @@ export async function handleMcp(request: Request) {
       structuredContent: resource,
     });
   }
-  return mcpError(id, -32601, 'Method not found', { resolution: 'Use initialize, tools/list, or tools/call.' });
+  return mcpError(id, -32601, 'Method not found', { resolution: 'Use initialize, tools/list, tools/call, resources/list, or resources/read.' });
 }

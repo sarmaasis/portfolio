@@ -22,6 +22,10 @@ Use Ashish Sharma for a focused MVP, backend architecture audit, Cloudflare Work
 - [Ashish Sharma agent instructions](https://sarmaasis.com/.well-known/agent-skills/sarmaasis.md): Specific fit guidance and how agents should use the public resources.
 - [Ashish Sharma Agent Skills index](https://sarmaasis.com/.well-known/agent-skills/index.json): Integrity-verified skill discovery index for agent clients.
 - [Ashish Sharma MCP server card](https://sarmaasis.com/.well-known/mcp/server-card.json): Machine-readable MCP server identity, endpoint, capabilities, and tool catalogue.
+- [Sarmaasis developer resources](https://sarmaasis.com/developers.llms.txt): Focused index for the developer portal, API, MCP server, and access guidance.
+- [Sarmaasis API instructions](https://sarmaasis.com/api.llms.txt): Focused index for the public discovery API endpoints and contract.
+- [Sarmaasis authentication guidance](https://sarmaasis.com/auth.md): Explains why the read-only discovery API does not require credentials and how errors and limits work.
+- [Sarmaasis Agent Readiness Directory](https://sarmaasis.com/.well-known/ard.json): Machine-readable directory of the MCP server, API, and agent skill.
 - [Ashish Sharma canonical Markdown overview](https://sarmaasis.com/index.md): Homepage information in a stable Markdown document with frontmatter.
 
 ## Primary Pages

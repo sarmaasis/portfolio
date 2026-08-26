@@ -1,0 +1,11 @@
+# Sarmaasis Discovery API
+
+The Sarmaasis Discovery API provides public, read-only information about Ashish Sharma Backend Engineering.
+
+- Contract: https://sarmaasis.com/openapi.json
+- Profile: https://sarmaasis.com/api/v1/profile
+- Services: https://sarmaasis.com/api/v1/services
+- Availability: https://sarmaasis.com/api/v1/availability
+- Rate limits and access: https://sarmaasis.com/auth.md
+
+Use only `GET`. No authentication, API key, or user account is required.

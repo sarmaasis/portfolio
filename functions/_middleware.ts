@@ -1,5 +1,15 @@
 import { render } from '../dist/server/server.js'; // SSR render function
-import { acceptsMarkdown, agentModeResponse, apiCatalogResponse, handleDiscoveryApi, handleMcp, markdownResponse } from './agent-contract';
+import {
+  acceptsMarkdown,
+  agentModeResponse,
+  apiCatalogResponse,
+  handleDiscoveryApi,
+  handleMcp,
+  isAgentUserAgent,
+  isKnownPublicRoute,
+  markdownFallbackResponse,
+  markdownResponse,
+} from './agent-contract';
 
 interface CloudflareContext {
   request: Request;
@@ -25,8 +35,16 @@ export const onRequest = async (context: CloudflareContext) => {
     return agentModeResponse();
   }
 
-  if (context.request.method === 'GET' && acceptsMarkdown(context.request)) {
+  const isHtmlPageRequest = !url.pathname.includes('.') && !url.pathname.startsWith('/api/');
+  if (context.request.method === 'GET' && isHtmlPageRequest && !isKnownPublicRoute(url.pathname)) {
+    return markdownFallbackResponse(url.pathname, 404);
+  }
+  if (context.request.method === 'GET' && isHtmlPageRequest && (acceptsMarkdown(context.request) || isAgentUserAgent(context.request))) {
     return markdownResponse();
+  }
+
+  if (context.request.method === 'GET' && url.pathname.endsWith('.md') && !['/index.md', '/agents.md', '/pricing.md'].includes(url.pathname)) {
+    return markdownFallbackResponse(url.pathname);
   }
 
   // Serve machine-readable files directly with their static content types.
@@ -52,6 +70,7 @@ export const onRequest = async (context: CloudflareContext) => {
 
   const html = await render(url.pathname);
   return new Response(html, {
+    status: isKnownPublicRoute(url.pathname) ? 200 : 404,
     headers: {
       'Content-Type': 'text/html; charset=utf-8',
       'Vary': 'Accept, Accept-Encoding',

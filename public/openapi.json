@@ -3,7 +3,7 @@
   "info": {
     "title": "Ashish Sharma Discovery API",
     "version": "1.0.0",
-    "description": "A free, read-only API for discovering public profile, service, and availability information. No authentication is required."
+    "description": "A free, read-only API for discovering public profile, service, and availability information. No authentication is required. The versioned /api/v1 path is additive within a major version; breaking changes will be introduced in a new versioned path."
   },
   "servers": [{ "url": "https://sarmaasis.com" }],
   "paths": {
@@ -14,6 +14,7 @@
         "description": "Returns Ashish Sharma's public role, specialties, website, and contact options.",
         "responses": {
           "200": { "description": "Public profile", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ProfileResponse" } } } },
+          "404": { "$ref": "#/components/responses/NotFound" },
           "405": { "$ref": "#/components/responses/MethodNotAllowed" }
         }
       }
@@ -22,9 +23,15 @@
       "get": {
         "operationId": "listPublicServices",
         "summary": "List public backend engineering services",
-        "description": "Returns the current catalogue of public services and concise descriptions.",
+        "description": "Returns a cursor-paginated catalogue of public services and concise descriptions. Use nextCursor as the cursor on the next request when it is not null.",
+        "parameters": [
+          { "name": "limit", "in": "query", "description": "Maximum number of services to return, from 1 through 100. Defaults to 20.", "required": false, "schema": { "type": "integer", "minimum": 1, "maximum": 100, "default": 20 } },
+          { "name": "cursor", "in": "query", "description": "Zero-based cursor returned by the preceding page. Defaults to 0.", "required": false, "schema": { "type": "integer", "minimum": 0, "default": 0 } }
+        ],
         "responses": {
           "200": { "description": "Service catalogue", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ServicesResponse" } } } },
+          "400": { "$ref": "#/components/responses/InvalidRequest" },
+          "404": { "$ref": "#/components/responses/NotFound" },
           "405": { "$ref": "#/components/responses/MethodNotAllowed" }
         }
       }
@@ -36,6 +43,7 @@
         "description": "Returns current engagement types, regions, currencies, and the public next contact step.",
         "responses": {
           "200": { "description": "Availability information", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/AvailabilityResponse" } } } },
+          "404": { "$ref": "#/components/responses/NotFound" },
           "405": { "$ref": "#/components/responses/MethodNotAllowed" }
         }
       }
@@ -43,11 +51,13 @@
   },
   "components": {
     "responses": {
-      "MethodNotAllowed": { "description": "Only GET is supported.", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ErrorResponse" } } } }
+      "MethodNotAllowed": { "description": "Only GET is supported.", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ErrorResponse" } } } },
+      "InvalidRequest": { "description": "A query parameter was invalid.", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ErrorResponse" } } } },
+      "NotFound": { "description": "The requested discovery resource does not exist.", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ErrorResponse" } } } }
     },
     "schemas": {
       "ProfileResponse": { "type": "object", "required": ["data"], "properties": { "data": { "type": "object", "required": ["name", "website", "role", "specialties", "contact"], "properties": { "name": { "type": "string" }, "website": { "type": "string", "format": "uri" }, "role": { "type": "string" }, "specialties": { "type": "array", "items": { "type": "string" } }, "contact": { "type": "object" } } } } },
-      "ServicesResponse": { "type": "object", "required": ["data"], "properties": { "data": { "type": "array", "items": { "type": "object", "required": ["id", "name", "description"], "properties": { "id": { "type": "string" }, "name": { "type": "string" }, "description": { "type": "string" } } } } } },
+      "ServicesResponse": { "type": "object", "required": ["data", "pagination"], "properties": { "data": { "type": "array", "items": { "type": "object", "required": ["id", "name", "description"], "properties": { "id": { "type": "string" }, "name": { "type": "string" }, "description": { "type": "string" } } } }, "pagination": { "type": "object", "required": ["limit", "cursor", "nextCursor"], "properties": { "limit": { "type": "integer", "minimum": 1, "maximum": 100 }, "cursor": { "type": "string" }, "nextCursor": { "type": ["string", "null"] } } } } },
       "AvailabilityResponse": { "type": "object", "required": ["data"], "properties": { "data": { "type": "object", "required": ["acceptingNewProjects", "engagementTypes", "regions", "currencies", "nextStep"], "properties": { "acceptingNewProjects": { "type": "boolean" }, "engagementTypes": { "type": "array", "items": { "type": "string" } }, "regions": { "type": "array", "items": { "type": "string" } }, "currencies": { "type": "array", "items": { "type": "string" } }, "nextStep": { "type": "object" } } } } },
       "ErrorResponse": { "type": "object", "required": ["error"], "properties": { "error": { "type": "object", "required": ["code", "message", "resolution"], "properties": { "code": { "type": "string" }, "message": { "type": "string" }, "resolution": { "type": "string" } } } } }
     }
