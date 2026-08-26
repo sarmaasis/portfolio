@@ -44,7 +44,9 @@ export function render(url: string) {
     <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="llms-txt" href="/llms.txt" />
-    <link rel="alternate" type="text/plain" href="/llm.txt" />
+    <link rel="alternate" type="text/markdown" href="/index.md" />
+    <link rel="service-desc" type="application/vnd.oai.openapi+json;version=3.1" href="/openapi.json" />
+    <link rel="agent-skills" type="application/json" href="/.well-known/agent-skills/index.json" />
     ${seoHeadTags}
     ${cssLinks}
   </head>

@@ -1,7 +1,8 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
-import { acceptsMarkdown, agentMarkdown, handleDiscoveryApi, handleMcp, markdownResponse } from '../functions/agent-contract';
+import crypto from 'node:crypto';
+import { acceptsMarkdown, agentMarkdown, apiCatalogResponse, agentModeResponse, handleDiscoveryApi, handleMcp, markdownResponse } from '../functions/agent-contract';
 
 const root = process.cwd();
 const readPublicFile = (relativePath: string) => fs.readFileSync(path.join(root, 'public', relativePath), 'utf8');
@@ -65,6 +66,19 @@ async function main() {
   assert.equal(mcpManifest.transport.type, 'streamable-http');
   assert.equal(mcpManifest.transport.url, 'https://sarmaasis.com/.well-known/mcp');
 
+  const serverCard = JSON.parse(readPublicFile('.well-known/mcp/server-card.json')) as { url: string; transport: string; tools: unknown[] };
+  assert.equal(serverCard.url, 'https://sarmaasis.com/.well-known/mcp');
+  assert.equal(serverCard.transport, 'streamable-http');
+  assert.equal(serverCard.tools.length, 3);
+
+  const skillIndex = JSON.parse(readPublicFile('.well-known/agent-skills/index.json')) as { $schema: string; skills: Array<{ url: string; digest: string }> };
+  assert.equal(skillIndex.$schema, 'https://schemas.agentskills.io/discovery/0.2.0/schema.json');
+  const skill = skillIndex.skills[0];
+  assert.ok(skill);
+  const skillPath = path.join(root, 'public', skill.url);
+  const skillDigest = `sha256:${crypto.createHash('sha256').update(fs.readFileSync(skillPath)).digest('hex')}`;
+  assert.equal(skill.digest, skillDigest);
+
   const robots = readPublicFile('robots.txt');
   for (const agent of ['GPTBot', 'ChatGPT-User', 'ClaudeBot', 'Google-Extended', 'DeepSeekBot', 'Applebot-Extended']) {
     assert.match(robots, new RegExp(`User-agent: ${agent}\\nAllow: /`));
@@ -77,6 +91,20 @@ async function main() {
   const markdown = markdownResponse();
   assert.equal(markdown.headers.get('content-type'), 'text/markdown; charset=utf-8');
   assert.equal(markdown.headers.get('vary'), 'Accept, Accept-Encoding');
+  assert.match(await markdown.text(), /^---\n[\s\S]*\n# Ashish Sharma/m);
+
+  const agentMode = agentModeResponse();
+  assert.equal(agentMode.headers.get('content-type'), 'text/markdown; charset=utf-8');
+  assert.match(agentMode.headers.get('link') ?? '', /rel="service-desc"/);
+
+  const catalog = apiCatalogResponse();
+  assert.equal(catalog.headers.get('content-type'), 'application/linkset+json;profile="https://www.rfc-editor.org/info/rfc9727"');
+  const catalogBody = await readJson(catalog);
+  assert.equal((catalogBody.linkset as unknown[]).length, 3);
+
+  for (const document of ['index.md', 'agents.md', 'pricing.md']) {
+    assert.match(readPublicFile(document), /^---\n[\s\S]*\n# /m);
+  }
 
   await verifyDiscoveryApi();
   await verifyMcp();

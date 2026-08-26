@@ -1,0 +1,31 @@
+{
+  "name": "sarmaasis-discovery",
+  "version": "1.0.0",
+  "kind": "product",
+  "description": "Public, read-only discovery tools for evaluating Ashish Sharma Backend Engineering: profile, backend services, and engagement availability.",
+  "icon": "https://sarmaasis.com/favicon-192.png",
+  "url": "https://sarmaasis.com/.well-known/mcp",
+  "transport": "streamable-http",
+  "instructions": "Use get_profile, list_services, and get_availability to evaluate fit for a full-stack backend engagement. The server is read-only, requires no API key, and exposes only public professional information.",
+  "capabilities": {
+    "tools": true,
+    "resources": false
+  },
+  "tools": [
+    {
+      "name": "get_profile",
+      "description": "Retrieve Ashish Sharma's public professional profile, specialties, and contact options.",
+      "annotations": { "readOnlyHint": true, "idempotentHint": true, "openWorldHint": false }
+    },
+    {
+      "name": "list_services",
+      "description": "List the available public backend engineering services and their concise descriptions.",
+      "annotations": { "readOnlyHint": true, "idempotentHint": true, "openWorldHint": false }
+    },
+    {
+      "name": "get_availability",
+      "description": "Retrieve current engagement types, supported regions, currencies, and the next public contact step.",
+      "annotations": { "readOnlyHint": true, "idempotentHint": true, "openWorldHint": false }
+    }
+  ]
+}

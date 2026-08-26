@@ -122,7 +122,14 @@ export function acceptsMarkdown(request: Request) {
   return request.headers.get('Accept')?.toLowerCase().split(',').some((value) => value.trim().startsWith('text/markdown')) ?? false;
 }
 
-export const agentMarkdown = `# Ashish Sharma — full-stack backend development
+export const agentMarkdown = `---
+title: Ashish Sharma — full-stack backend development
+description: Public, machine-readable information for evaluating Ashish Sharma Backend Engineering.
+canonical: https://sarmaasis.com/
+last-updated: 2026-08-27
+---
+
+# Ashish Sharma — full-stack backend development
 
 Ashish Sharma is a full-stack backend developer for startups and agencies that need reliable product delivery, focused backend ownership, and production-ready application architecture. The work covers Cloudflare Workers, AWS, Next.js, Node.js and TypeScript, Python APIs, databases, queues, search, authentication, and deployment. This is a portfolio and professional-services site, not a self-service SaaS product. The best next step for a suitable project is a concise project brief by email or a booking through Cal.com.
 
@@ -143,11 +150,57 @@ Work: https://sarmaasis.com/work
 Privacy: https://sarmaasis.com/privacy
 `;
 
+export const apiCatalog = {
+  linkset: [
+    {
+      anchor: SITE_URL,
+      rel: 'service-desc',
+      href: `${SITE_URL}/openapi.json`,
+      type: 'application/vnd.oai.openapi+json;version=3.1',
+      title: 'Ashish Sharma Discovery API OpenAPI specification',
+    },
+    {
+      anchor: SITE_URL,
+      rel: 'describedby',
+      href: `${SITE_URL}/developers`,
+      type: 'text/html',
+      title: 'Ashish Sharma Developer Portal',
+    },
+    {
+      anchor: SITE_URL,
+      rel: 'agent-skills',
+      href: `${SITE_URL}/.well-known/agent-skills/index.json`,
+      type: 'application/json',
+      title: 'Ashish Sharma Agent Skills index',
+    },
+  ],
+};
+
 export function markdownResponse() {
   return new Response(agentMarkdown, {
     headers: {
       'Content-Type': 'text/markdown; charset=utf-8',
       'Vary': 'Accept, Accept-Encoding',
+    },
+  });
+}
+
+export function agentModeResponse() {
+  return new Response(agentMarkdown, {
+    headers: {
+      'Content-Type': 'text/markdown; charset=utf-8',
+      'Vary': 'Accept, Accept-Encoding',
+      'Link': '</sitemap.xml>; rel="sitemap", </index.md>; rel="alternate"; type="text/markdown", </openapi.json>; rel="service-desc"; type="application/vnd.oai.openapi+json;version=3.1", </.well-known/api-catalog>; rel="service-desc"; type="application/linkset+json"; profile="https://www.rfc-editor.org/info/rfc9727"',
+    },
+  });
+}
+
+export function apiCatalogResponse() {
+  return new Response(JSON.stringify(apiCatalog), {
+    headers: {
+      'Content-Type': 'application/linkset+json;profile="https://www.rfc-editor.org/info/rfc9727"',
+      'Cache-Control': 'public, max-age=300',
+      'Access-Control-Allow-Origin': '*',
     },
   });
 }

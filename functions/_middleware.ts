@@ -1,5 +1,5 @@
 import { render } from '../dist/server/server.js'; // SSR render function
-import { acceptsMarkdown, handleDiscoveryApi, handleMcp, markdownResponse } from './agent-contract';
+import { acceptsMarkdown, agentModeResponse, apiCatalogResponse, handleDiscoveryApi, handleMcp, markdownResponse } from './agent-contract';
 
 interface CloudflareContext {
   request: Request;
@@ -15,6 +15,14 @@ export const onRequest = async (context: CloudflareContext) => {
 
   if (url.pathname === '/.well-known/mcp') {
     return handleMcp(context.request);
+  }
+
+  if (url.pathname === '/.well-known/api-catalog') {
+    return apiCatalogResponse();
+  }
+
+  if (url.pathname === '/' && url.searchParams.get('mode') === 'agent') {
+    return agentModeResponse();
   }
 
   if (context.request.method === 'GET' && acceptsMarkdown(context.request)) {
@@ -47,6 +55,7 @@ export const onRequest = async (context: CloudflareContext) => {
     headers: {
       'Content-Type': 'text/html; charset=utf-8',
       'Vary': 'Accept, Accept-Encoding',
+      'Link': '</sitemap.xml>; rel="sitemap", </index.md>; rel="alternate"; type="text/markdown", </openapi.json>; rel="service-desc"; type="application/vnd.oai.openapi+json;version=3.1", </.well-known/api-catalog>; rel="service-desc"; type="application/linkset+json"; profile="https://www.rfc-editor.org/info/rfc9727", </.well-known/agent-skills/index.json>; rel="agent-skills"; type="application/json"',
     },
   });
 };

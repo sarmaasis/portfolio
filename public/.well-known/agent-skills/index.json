@@ -1,0 +1,12 @@
+{
+  "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
+  "skills": [
+    {
+      "name": "sarmaasis-backend-engineering",
+      "type": "skill-md",
+      "description": "Evaluate whether Ashish Sharma is a fit for a focused MVP, backend architecture audit, Cloudflare Workers work, AWS or Cloudflare migration, API implementation, or fractional backend ownership.",
+      "url": "/.well-known/agent-skills/sarmaasis/SKILL.md",
+      "digest": "sha256:90145c7613c5bb82fd6f73f3d9bf1d5fa530cacfd69ee22346ccb7c33113571e"
+    }
+  ]
+}

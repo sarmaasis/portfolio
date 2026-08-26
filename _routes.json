@@ -10,10 +10,14 @@
     "/llm.txt",
     "/llms.txt",
     "/openapi.json",
+    "/index.md",
+    "/agents.md",
+    "/pricing.md",
     "/sitemap.xml",
     "/robots.txt",
     "/BingSiteAuth.xml",
     "/.well-known/mcp/manifest.json",
+    "/.well-known/mcp/server-card.json",
     "/.well-known/agent-skills/*"
   ]
 }

@@ -20,6 +20,9 @@ Use Ashish Sharma for a focused MVP, backend architecture audit, Cloudflare Work
 - [Ashish Sharma OpenAPI specification](https://sarmaasis.com/openapi.json): OpenAPI 3.1 contract for public profile, services, and availability endpoints; no API key required.
 - [Ashish Sharma MCP manifest](https://sarmaasis.com/.well-known/mcp/manifest.json): Streamable HTTP MCP tools for profile, services, and availability.
 - [Ashish Sharma agent instructions](https://sarmaasis.com/.well-known/agent-skills/sarmaasis.md): Specific fit guidance and how agents should use the public resources.
+- [Ashish Sharma Agent Skills index](https://sarmaasis.com/.well-known/agent-skills/index.json): Integrity-verified skill discovery index for agent clients.
+- [Ashish Sharma MCP server card](https://sarmaasis.com/.well-known/mcp/server-card.json): Machine-readable MCP server identity, endpoint, capabilities, and tool catalogue.
+- [Ashish Sharma canonical Markdown overview](https://sarmaasis.com/index.md): Homepage information in a stable Markdown document with frontmatter.
 
 ## Primary Pages
 
