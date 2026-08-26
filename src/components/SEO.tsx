@@ -48,6 +48,8 @@ export function SEO(props: SEOProps) {
     setMetaByProperty('og:url', state.canonicalUrl);
     setMetaByProperty('og:type', state.type);
     setMetaByProperty('og:site_name', 'Ashish Sharma');
+    setMetaByProperty('og:image', 'https://sarmaasis.com/favicon-192.png');
+    setMetaByProperty('og:image:alt', 'Ashish Sharma Backend Engineering');
     setMetaByName('twitter:card', 'summary');
     setMetaByName('twitter:title', state.title);
     setMetaByName('twitter:description', state.description);

@@ -56,6 +56,13 @@ const organizationSchema = {
   name: 'Ashish Sharma Backend Engineering',
   url: SITE_URL,
   email: 'mailto:sarmaasis@gmail.com',
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'project enquiries',
+    email: 'sarmaasis@gmail.com',
+    url: `${SITE_URL}/contact`,
+    availableLanguage: ['en'],
+  },
   founder: {
     '@type': 'Person',
     name: 'Ashish Sharma',
@@ -145,6 +152,8 @@ export function getSEOHeadTags() {
     <meta property="og:url" content="${escapeAttribute(state.canonicalUrl)}" />
     <meta property="og:type" content="${escapeAttribute(state.type)}" />
     <meta property="og:site_name" content="Ashish Sharma" />
+    <meta property="og:image" content="${SITE_URL}/favicon-192.png" />
+    <meta property="og:image:alt" content="Ashish Sharma Backend Engineering" />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="${escapeAttribute(state.title)}" />
     <meta name="twitter:description" content="${escapeAttribute(state.description)}" />

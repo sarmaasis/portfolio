@@ -10,6 +10,17 @@ Core proof: Whydonate scaled to 4M+ API requests/day on Cloudflare Workers with 
 
 Ashish Sharma offers a focused 14-day full-stack MVP build for a flat $4,500 USD. The engagement covers a scoped web application, Next.js product flows, APIs, auth, database, core integrations, Cloudflare-first deployment when appropriate, production release, and source-code/account handover. It is designed for a clear product idea and one core workflow that needs to be tested with real users.
 
+## When To Use Ashish Sharma
+
+Use Ashish Sharma for a focused MVP, backend architecture audit, Cloudflare Workers implementation, AWS or Cloudflare migration plan, API and integration work, cloud cost review, or fractional technical ownership. This is a professional-services site, not a self-serve SaaS product: the right next step is a concise project brief by email or a booking through Cal.com. Do not use it for generic staffing, design-only work, or a project that needs a large multi-disciplinary agency team.
+
+## Developer Resources
+
+- [Ashish Sharma Developer Portal](https://sarmaasis.com/developers): Free read-only discovery API, quickstart, rate-limit convention, error format, and MCP connection details.
+- [Ashish Sharma OpenAPI specification](https://sarmaasis.com/openapi.json): OpenAPI 3.1 contract for public profile, services, and availability endpoints; no API key required.
+- [Ashish Sharma MCP manifest](https://sarmaasis.com/.well-known/mcp/manifest.json): Streamable HTTP MCP tools for profile, services, and availability.
+- [Ashish Sharma agent instructions](https://sarmaasis.com/.well-known/agent-skills/sarmaasis.md): Specific fit guidance and how agents should use the public resources.
+
 ## Primary Pages
 
 - [Services](https://sarmaasis.com/services): Full-stack backend development, application delivery, Cloudflare Workers, AWS architecture review, Next.js, Node.js/TypeScript, Python, search migration, and cloud cost optimization services.

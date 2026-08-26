@@ -1,0 +1,55 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "Ashish Sharma Discovery API",
+    "version": "1.0.0",
+    "description": "A free, read-only API for discovering public profile, service, and availability information. No authentication is required."
+  },
+  "servers": [{ "url": "https://sarmaasis.com" }],
+  "paths": {
+    "/api/v1/profile": {
+      "get": {
+        "operationId": "getPublicProfile",
+        "summary": "Get the public professional profile",
+        "description": "Returns Ashish Sharma's public role, specialties, website, and contact options.",
+        "responses": {
+          "200": { "description": "Public profile", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ProfileResponse" } } } },
+          "405": { "$ref": "#/components/responses/MethodNotAllowed" }
+        }
+      }
+    },
+    "/api/v1/services": {
+      "get": {
+        "operationId": "listPublicServices",
+        "summary": "List public backend engineering services",
+        "description": "Returns the current catalogue of public services and concise descriptions.",
+        "responses": {
+          "200": { "description": "Service catalogue", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ServicesResponse" } } } },
+          "405": { "$ref": "#/components/responses/MethodNotAllowed" }
+        }
+      }
+    },
+    "/api/v1/availability": {
+      "get": {
+        "operationId": "getPublicAvailability",
+        "summary": "Get public engagement availability",
+        "description": "Returns current engagement types, regions, currencies, and the public next contact step.",
+        "responses": {
+          "200": { "description": "Availability information", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/AvailabilityResponse" } } } },
+          "405": { "$ref": "#/components/responses/MethodNotAllowed" }
+        }
+      }
+    }
+  },
+  "components": {
+    "responses": {
+      "MethodNotAllowed": { "description": "Only GET is supported.", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ErrorResponse" } } } }
+    },
+    "schemas": {
+      "ProfileResponse": { "type": "object", "required": ["data"], "properties": { "data": { "type": "object", "required": ["name", "website", "role", "specialties", "contact"], "properties": { "name": { "type": "string" }, "website": { "type": "string", "format": "uri" }, "role": { "type": "string" }, "specialties": { "type": "array", "items": { "type": "string" } }, "contact": { "type": "object" } } } } },
+      "ServicesResponse": { "type": "object", "required": ["data"], "properties": { "data": { "type": "array", "items": { "type": "object", "required": ["id", "name", "description"], "properties": { "id": { "type": "string" }, "name": { "type": "string" }, "description": { "type": "string" } } } } } },
+      "AvailabilityResponse": { "type": "object", "required": ["data"], "properties": { "data": { "type": "object", "required": ["acceptingNewProjects", "engagementTypes", "regions", "currencies", "nextStep"], "properties": { "acceptingNewProjects": { "type": "boolean" }, "engagementTypes": { "type": "array", "items": { "type": "string" } }, "regions": { "type": "array", "items": { "type": "string" } }, "currencies": { "type": "array", "items": { "type": "string" } }, "nextStep": { "type": "object" } } } } },
+      "ErrorResponse": { "type": "object", "required": ["error"], "properties": { "error": { "type": "object", "required": ["code", "message", "resolution"], "properties": { "code": { "type": "string" }, "message": { "type": "string" }, "resolution": { "type": "string" } } } } }
+    }
+  }
+}

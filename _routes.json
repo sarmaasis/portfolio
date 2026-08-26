@@ -8,8 +8,12 @@
     "/favicon.ico",
     "/favicon.svg",
     "/llm.txt",
+    "/llms.txt",
+    "/openapi.json",
     "/sitemap.xml",
     "/robots.txt",
-    "/BingSiteAuth.xml"
+    "/BingSiteAuth.xml",
+    "/.well-known/mcp/manifest.json",
+    "/.well-known/agent-skills/*"
   ]
 }

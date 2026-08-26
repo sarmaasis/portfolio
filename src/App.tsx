@@ -8,10 +8,12 @@ import BlogPostPage from './components/BlogPostPage';
 import CaseStudyPage from './components/CaseStudyPage';
 import ConsentBanner from './components/ConsentBanner';
 import ContactPage from './components/ContactPage';
+import DevelopersPage from './components/DevelopersPage';
 import DynamicServicePage from './components/DynamicServicePage';
 import HiringLandingPage from './components/HiringLandingPage';
 import HomePage from './components/HomePage';
 import PricingPage from './components/PricingPage';
+import PrivacyPage from './components/PrivacyPage';
 import ReviewsPage from './components/ReviewsPage';
 import ServicesPage from './components/ServicesPage';
 import ThemeToggle from './components/ThemeToggle';
@@ -172,6 +174,8 @@ function App() {
             <Route path="/blog" element={<BlogIndexPage />} />
             <Route path="/blog/:slug" element={<BlogPostPage />} />
             <Route path="/contact" element={<ContactPage />} />
+            <Route path="/developers" element={<DevelopersPage />} />
+            <Route path="/privacy" element={<PrivacyPage />} />
             <Route path="/reviews" element={<ReviewsPage />} />
             {primaryLandingPages.map((page) => (
               <Route key={page.slug} path={`/${page.slug}`} element={<HiringLandingPage page={page} />} />
@@ -194,6 +198,12 @@ function App() {
               <ul className="link-list">
                 <li>
                   <Link to="/contact">Start a project</Link>
+                </li>
+                <li>
+                  <Link to="/developers">Developer portal</Link>
+                </li>
+                <li>
+                  <Link to="/privacy">Privacy</Link>
                 </li>
               </ul>
             </div>

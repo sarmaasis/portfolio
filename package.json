@@ -8,6 +8,8 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "lint:llms": "npx tsx scripts/validate-llms.ts",
+    "test:agent-readiness": "npx tsx scripts/verify-agent-readiness.ts",
+    "test": "npm run lint && npm run lint:llms && npm run test:agent-readiness",
     "preview": "vite preview",
     "sitemap": "npx tsx scripts/generate-sitemap.ts",
     "indexnow": "npx tsx scripts/submit-indexnow.ts",

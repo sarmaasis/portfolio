@@ -1,0 +1,10 @@
+{
+  "name": "sarmaasis-discovery",
+  "version": "1.0.0",
+  "description": "Public profile, service, and availability discovery tools for Ashish Sharma Backend Engineering.",
+  "transport": {
+    "type": "streamable-http",
+    "url": "https://sarmaasis.com/.well-known/mcp"
+  },
+  "documentation_url": "https://sarmaasis.com/developers"
+}

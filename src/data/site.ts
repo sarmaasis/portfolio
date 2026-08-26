@@ -1483,6 +1483,8 @@ export const sitemapPaths = [
   '/work',
   '/blog',
   '/contact',
+  '/developers',
+  '/privacy',
   '/reviews',
   ...primaryLandingPages.map((page) => `/${page.slug}`),
   ...caseStudies.map((caseStudy) => `/work/${caseStudy.slug}`),
