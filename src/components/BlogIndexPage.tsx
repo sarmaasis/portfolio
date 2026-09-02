@@ -23,7 +23,7 @@ export default function BlogIndexPage() {
 
       <section>
         <div className="blog-list">
-          {articles.filter((article) => !article.slug.includes('rag')).map((article) => (
+          {articles.map((article) => (
             <article className="blog-card" key={article.slug}>
               <div>
                 <p className="blog-meta">{formatArticleDate(article.date)} · {article.tags.join(' / ')}</p>

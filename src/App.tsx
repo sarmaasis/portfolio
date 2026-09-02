@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, Route, Routes, useLocation } from 'react-router-dom';
 import './App.css';
 import AboutPage from './components/AboutPage';
+import ArchitectureAuditPage from './components/ArchitectureAuditPage';
 import BackendAnswersPage from './components/BackendAnswersPage';
 import BlogIndexPage from './components/BlogIndexPage';
 import BlogPostPage from './components/BlogPostPage';
@@ -18,7 +19,7 @@ import ReviewsPage from './components/ReviewsPage';
 import ServicesPage from './components/ServicesPage';
 import ThemeToggle from './components/ThemeToggle';
 import WorkPage from './components/WorkPage';
-import { COPYRIGHT_YEAR, OFFER, POSITIONING, UPWORK_URL, primaryLandingPages } from './data/site';
+import { COPYRIGHT_YEAR, OFFER, POSITIONING, UPWORK_URL, landingPages } from './data/site';
 import {
   ANALYTICS_CONSENT_KEY,
   clearAnalyticsCookies,
@@ -30,10 +31,10 @@ import {
 } from './utils/analytics';
 
 const navItems = [
-  { href: '/#services', label: 'Services' },
-  { href: '/#work', label: 'Work' },
-  { href: '/#writing', label: 'Writing' },
-  { href: '/#contact', label: 'Hire Me' },
+  { href: '/services', label: 'Services' },
+  { href: '/work', label: 'Work' },
+  { href: '/blog', label: 'Writing' },
+  { href: '/hire-cloudflare-workers-developer', label: 'Hire Me' },
 ];
 
 function App() {
@@ -147,9 +148,9 @@ function App() {
             </div>
             <nav className="header-nav" aria-label="Primary navigation">
               {navItems.map((item) => (
-                <a key={item.href} href={item.href} className="nav-link">
+                <Link key={item.href} to={item.href} className="nav-link">
                   {item.label}
-                </a>
+                </Link>
               ))}
             </nav>
             <ThemeToggle
@@ -167,6 +168,7 @@ function App() {
             <Route path="/about" element={<AboutPage />} />
             <Route path="/backend-engineering-answers" element={<BackendAnswersPage />} />
             <Route path="/services" element={<ServicesPage />} />
+            <Route path="/services/architecture-audit" element={<ArchitectureAuditPage />} />
             <Route path="/services/:slug" element={<DynamicServicePage />} />
             <Route path="/pricing" element={<PricingPage />} />
             <Route path="/work" element={<WorkPage />} />
@@ -177,7 +179,7 @@ function App() {
             <Route path="/developers" element={<DevelopersPage />} />
             <Route path="/privacy" element={<PrivacyPage />} />
             <Route path="/reviews" element={<ReviewsPage />} />
-            {primaryLandingPages.map((page) => (
+            {landingPages.map((page) => (
               <Route key={page.slug} path={`/${page.slug}`} element={<HiringLandingPage page={page} />} />
             ))}
             <Route
@@ -209,6 +211,15 @@ function App() {
               <ul className="link-list">
                 <li>
                   <Link to="/contact">Start a project</Link>
+                </li>
+                <li>
+                  <Link to="/services/architecture-audit">Architecture audit</Link>
+                </li>
+                <li>
+                  <Link to="/hire-cloudflare-workers-developer">Hire Cloudflare Workers</Link>
+                </li>
+                <li>
+                  <Link to="/pricing">Pricing</Link>
                 </li>
                 <li>
                   <Link to="/developers">Developer portal</Link>

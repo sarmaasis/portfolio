@@ -66,6 +66,14 @@ export default function ServicesPage() {
           Focused support for teams that need application delivery, backend ownership, Cloudflare Workers
           expertise, AWS cost review, and migration plans without avoidable infrastructure weight.
         </p>
+        <p>
+          Packaged entry points:{' '}
+          <Link to="/services/architecture-audit">$5,000 architecture audit</Link>
+          {' · '}
+          <Link to="/hire-cloudflare-workers-developer">hire a Cloudflare Workers developer</Link>
+          {' · '}
+          <Link to="/pricing">14-day MVP for $4,500</Link>.
+        </p>
       </section>
 
       <section>

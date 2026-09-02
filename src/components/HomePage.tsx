@@ -76,7 +76,7 @@ const mvpOfferSchema = {
 };
 
 export default function HomePage() {
-  const featuredArticles = articles.filter((article) => !article.slug.includes('rag')).slice(0, 3);
+  const featuredArticles = articles.slice(0, 3);
   const featuredWork = caseStudies.filter((caseStudy) => caseStudy.company !== 'aa.health').slice(0, 3);
 
   return (
@@ -92,7 +92,7 @@ export default function HomePage() {
         <p className="availability">[ Full-stack MVP delivery / Cloudflare specialized ]</p>
         <div className="mvp-hero-grid">
           <div>
-            <h1>A real product, ready to test in 14 days.</h1>
+            <h1>A real product in 14 days, flat $4,500.</h1>
             <p className="hero-statement">
               I build focused web MVPs for founders who need a working product, not another prototype. One senior
               engineer across the product flow, frontend, backend, cloud, and launch.
@@ -108,8 +108,14 @@ export default function HomePage() {
               >
                 Book an MVP call
               </a>
-              <a className="mvp-text-link" href="#work">See the proof</a>
+              <Link className="mvp-text-link" to="/work">See the proof</Link>
             </div>
+            <p className="mvp-hero-note">
+              Already have a product? A $5,000 architecture review produces a ranked fix list in five days.{' '}
+              <Link to="/services/architecture-audit">Architecture review</Link>
+              {' · '}
+              <Link to="/hire-cloudflare-workers-developer">Hire a Cloudflare Workers developer</Link>
+            </p>
           </div>
           <aside className="mvp-offer" aria-label="14-day MVP offer">
             <p>Focused MVP build</p>
@@ -166,6 +172,16 @@ export default function HomePage() {
           {included.map((item) => (
             <li key={item}>{item}</li>
           ))}
+        </ul>
+        <div className="mvp-includes-heading" style={{ marginTop: '2rem' }}>
+          <p className="item-label">Not this engagement if</p>
+          <h2>I will say no when the fit is wrong.</h2>
+        </div>
+        <ul className="mvp-includes-list">
+          <li>You want a staffing marketplace to send three candidates</li>
+          <li>The first useful version needs more than one core workflow</li>
+          <li>You need a large multi-disciplinary agency team</li>
+          <li>The budget is under $4,500</li>
         </ul>
       </section>
 

@@ -1,13 +1,13 @@
 ---
-title: Ashish Sharma — Full-Stack Backend Development
+title: Ashish Sharma - Full-Stack Backend Development
 description: Public, machine-readable overview of Ashish Sharma Backend Engineering.
 canonical: https://sarmaasis.com/
-last-updated: 2026-08-27
+last-updated: 2026-09-03
 ---
 
-# Ashish Sharma — full-stack backend development
+# Ashish Sharma - 14-day full-stack MVP for $4,500
 
-Ashish Sharma is a full-stack backend developer for startups and agencies that need reliable product delivery, focused backend ownership, and production-ready application architecture. The work covers Cloudflare Workers, AWS, Next.js, Node.js and TypeScript, Python APIs, databases, queues, search, authentication, and deployment. This is a portfolio and professional-services site, not a self-service SaaS product.
+Ashish Sharma is a full-stack backend developer for startups and agencies. The public offer is a focused 14-day full-stack MVP for a flat $4,500 USD, plus a $5,000 five-day architecture audit. The work covers Cloudflare Workers, AWS, Next.js, Node.js and TypeScript, Python APIs, databases, queues, search, authentication, and production deployment. Minimum project size is $4,500. This is a professional-services site, not a self-service SaaS product.
 
 ## When to use this site
 

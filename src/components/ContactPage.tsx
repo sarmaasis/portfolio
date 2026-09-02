@@ -1,5 +1,5 @@
 import { SEO } from './SEO';
-import { EMAIL, marketSignals } from '../data/site';
+import { CAL_URL, EMAIL, marketSignals } from '../data/site';
 
 export default function ContactPage() {
   const emailHref = `mailto:${EMAIL}?subject=Full-stack%20backend%20project`;
@@ -29,6 +29,14 @@ export default function ContactPage() {
             application requirements, or a short product brief.
           </p>
           <a className="btn-primary" href={emailHref}>Send project context</a>
+          <p>
+            <a href={CAL_URL} target="_blank" rel="noopener noreferrer">
+              Or book a call on Cal.com
+            </a>
+          </p>
+          <p>
+            Email: <a href={emailHref}>{EMAIL}</a>
+          </p>
         </article>
         <aside className="panel">
           <h2>What I need</h2>

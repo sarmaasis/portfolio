@@ -6,6 +6,12 @@ Ashish Sharma is a full-stack backend developer with Cloudflare specialization. 
 
 Core proof: Whydonate scaled to 4M+ API requests/day on Cloudflare Workers with TypeScript, Cloudflare Pages, R2, Queues, PlanetScale MySQL, and Typesense. Other proof includes HIPAA-ready backend foundations for aa.health, Next.js/Python/AWS Lambda/DynamoDB real estate application work for Hudpro, and end-to-end backend platform ownership for Wakamiapp.
 
+## Offers
+
+- 14-day full-stack MVP: $4,500 flat.
+- Technical architecture audit: $5,000, five business days.
+- Cloudflare Workers implementation: quoted after the audit. Minimum project $4,500.
+
 ## 14-Day MVP Offer
 
 Ashish Sharma offers a focused 14-day full-stack MVP build for a flat $4,500 USD. The engagement covers a scoped web application, Next.js product flows, APIs, auth, database, core integrations, Cloudflare-first deployment when appropriate, production release, and source-code/account handover. It is designed for a clear product idea and one core workflow that needs to be tested with real users.
@@ -30,6 +36,7 @@ Use Ashish Sharma for a focused MVP, backend architecture audit, Cloudflare Work
 
 ## Primary Pages
 
+- [Architecture audit](https://sarmaasis.com/services/architecture-audit): $5,000 in five days. Ranked fix list, Workers vs AWS decision, walkthrough. Minimum follow-on implementation $4,500.
 - [Services](https://sarmaasis.com/services): Full-stack backend development, application delivery, Cloudflare Workers, AWS architecture review, Next.js, Node.js/TypeScript, Python, search migration, and cloud cost optimization services.
 - [Backend engineering buyer answers](https://sarmaasis.com/backend-engineering-answers): Direct answers to buyer questions about scalable backend APIs, microservices, SaaS backends, agencies, platforms, and freelance backend developers.
 - [Work](https://sarmaasis.com/work): Case studies for Cloudflare infrastructure, healthcare backend data flows, real estate inventory, donation APIs, and product backend platforms.

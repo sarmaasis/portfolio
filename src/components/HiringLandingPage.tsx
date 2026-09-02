@@ -58,6 +58,30 @@ export default function HiringLandingPage({ page }: HiringLandingPageProps) {
           <h2>Who this is for</h2>
           <p>{page.intent}</p>
 
+          {details?.packages ? (
+            <>
+              <h2>Engagements</h2>
+              <ul>
+                {details.packages.map((item) => (
+                  <li key={item.name}>
+                    <strong>{item.name}.</strong> {item.detail}
+                  </li>
+                ))}
+              </ul>
+            </>
+          ) : null}
+
+          {details?.notFit ? (
+            <>
+              <h2>Not a fit</h2>
+              <ul>
+                {details.notFit.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </>
+          ) : null}
+
           <h2>Best fit projects</h2>
           <ul>
             {page.bestFor.map((item) => (

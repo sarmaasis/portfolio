@@ -1040,9 +1040,9 @@ export const articles = [
 export const landingPages = [
   {
     slug: 'hire-cloudflare-workers-developer',
-    title: 'Hire a Cloudflare Workers Developer - Ashish Sharma',
+    title: 'Hire a Cloudflare Workers Developer | $5,000 Review, Then Build | Ashish Sharma',
     description:
-      'Hire Ashish Sharma for Cloudflare Workers backend development, edge APIs, reverse proxies, webhooks, auth gateways, and cost-sensitive serverless architecture.',
+      'Hire Ashish Sharma for production Cloudflare Workers backends. $5,000 architecture review in one week, then scoped implementation from $4,500. Hybrid AWS + Workers is in scope. Scripts under $500 are not.',
     h1: 'Hire a Cloudflare Workers developer for production backend systems.',
     capsule:
       'I build Cloudflare Workers backends for APIs, edge routing, webhooks, auth checks, search facades, and cost-sensitive serverless workloads.',
@@ -1055,8 +1055,8 @@ export const landingPages = [
       'Designing safe migration paths from regional services to edge-first architecture',
     ],
     proof: [
-      'Delivered highly technical Cloudflare Workers architecture and implementation work for client projects',
-      'Built backend systems handling 4M+ API requests/day with Cloudflare in the production stack',
+      'Whydonate: Cloudflare-first APIs at 4M+ requests/day (Workers, Pages, R2, Queues, PlanetScale, Typesense)',
+      'Client Cloudflare Workers architecture with a written design, not a demo Worker',
       'Designed search and backend API layers where Cloudflare Workers protect and simplify the request path',
     ],
     howIWork: [
@@ -1065,8 +1065,13 @@ export const landingPages = [
       'Implement validation, logging, rate limits, and testable API contracts',
       'Document deployment, failure modes, and ownership so the team can maintain it',
     ],
-    related: ['/blog/cloudflare-workers-vs-aws-lambda-cost', '/work/whydonate-api-scale'],
+    related: ['/blog/cloudflare-workers-vs-aws-lambda-cost', '/work/whydonate-api-scale', '/services/architecture-audit'],
     faqs: [
+      {
+        question: 'What is the minimum project?',
+        answer:
+          '$4,500. If the system already exists, the default entry is a $5,000 architecture review in five business days.',
+      },
       {
         question: 'When should I hire a Cloudflare Workers developer?',
         answer:
@@ -1081,19 +1086,19 @@ export const landingPages = [
   },
   {
     slug: 'cloudflare-workers-backend-freelancer',
-    title: 'Cloudflare Workers Backend Freelancer - Ashish Sharma',
+    title: 'Cloudflare Workers Freelancer for Agencies | Quiet Delivery | Ashish Sharma',
     description:
-      'Freelance Cloudflare Workers backend engineering for startups and agencies that need production APIs, edge architecture, and serverless cost optimization.',
-    h1: 'Cloudflare Workers backend freelancer for startups and agencies.',
+      'Freelance Cloudflare Workers engineer for agencies and fractional teams. Quiet delivery, client-ready docs, and production APIs. $4,500 minimum. Founders hiring directly should use the hire page.',
+    h1: 'Cloudflare Workers freelancer for agencies and fractional teams.',
     capsule:
-      'I help teams use Cloudflare Workers as a practical backend layer for production APIs, integrations, search facades, and edge-first request handling.',
+      'I join agency delivery quietly: Workers implementation, architecture judgment, and handoff notes the client can keep.',
     intent:
-      'This page is for teams that need a freelance backend engineer who can own Cloudflare Workers architecture and implementation without over-engineering the stack.',
+      'This page is for agencies and fractional engagements that need a senior Cloudflare Workers engineer behind their client relationship, not a public staffing marketplace.',
     bestFor: [
       'Agencies needing full-stack backend delivery for client Cloudflare projects',
-      'Startups with slow API paths or rising cloud bills',
-      'Teams that need Workers, KV, R2, D1, or edge routing decisions reviewed',
-      'Founders who want implementation plus architecture judgment',
+      'Quiet subcontracting with client-ready documentation and rollback notes',
+      'Fractional Cloudflare Workers support on an existing product team',
+      'Hybrid Workers plus AWS work where the agency owns the client relationship',
     ],
     proof: [
       'Top-rated client feedback for Cloudflare Workers architecture and advanced implementation',
@@ -1253,9 +1258,31 @@ export const landingPageDetails: Record<
     deliverables: string[];
     engagementPlan: string[];
     expandedFaqs: { question: string; answer: string }[];
+    packages?: { name: string; detail: string }[];
+    notFit?: string[];
   }
 > = {
   'hire-cloudflare-workers-developer': {
+    packages: [
+      {
+        name: 'Architecture review, $5,000, 5 business days',
+        detail: 'Route map, what moves to Workers, what stays on AWS, first endpoint to migrate, rollback plan, 60-minute walkthrough.',
+      },
+      {
+        name: '14-day MVP, $4,500 flat',
+        detail: 'One core workflow, Next.js plus APIs plus Cloudflare-first deploy, source and accounts handed over.',
+      },
+      {
+        name: 'Implementation sprint, quoted after the review',
+        detail: 'Workers APIs, gateways, webhooks, R2, Queues. Quote only after the review so the ticket is real.',
+      },
+    ],
+    notFit: [
+      'DNS, WAF, or WordPress CDN setup',
+      'A single Worker script with no production constraints',
+      'Full AWS landing-zone or MAP programmes',
+      'Staffing requests that need three Cloudflare developers',
+    ],
     problems: [
       'A regional API is doing lightweight request work that could happen closer to users, such as routing, validation, webhooks, auth checks, or cacheable reads.',
       'AWS Lambda, API Gateway, containers, logs, or proxy services are costing more than the business value of the workload justifies.',
@@ -1478,6 +1505,7 @@ export const sitemapPaths = [
   '/',
   '/about',
   '/services',
+  '/services/architecture-audit',
   '/backend-engineering-answers',
   '/pricing',
   '/work',
@@ -1486,7 +1514,7 @@ export const sitemapPaths = [
   '/developers',
   '/privacy',
   '/reviews',
-  ...primaryLandingPages.map((page) => `/${page.slug}`),
+  ...landingPages.map((page) => `/${page.slug}`),
   ...caseStudies.map((caseStudy) => `/work/${caseStudy.slug}`),
-  ...articles.filter((article) => !article.slug.includes('rag')).map((article) => `/blog/${article.slug}`),
+  ...articles.map((article) => `/blog/${article.slug}`),
 ];
