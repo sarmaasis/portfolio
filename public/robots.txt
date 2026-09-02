@@ -38,6 +38,40 @@ Allow: /
 User-agent: Applebot-Extended
 Allow: /
 
+User-agent: YouBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: GoogleOther
+Allow: /
+
+
 Sitemap: https://sarmaasis.com/sitemap.xml
 Agentmap: https://sarmaasis.com/.well-known/ard.json
 Host: https://sarmaasis.com

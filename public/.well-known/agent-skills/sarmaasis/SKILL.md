@@ -15,6 +15,13 @@ Do not use it for generic staffing, design-only work, or projects that require a
 
 Read the OpenAPI contract at https://sarmaasis.com/openapi.json or connect to the Streamable HTTP MCP server at https://sarmaasis.com/.well-known/mcp. No API key is required for the read-only profile, services, and availability information. Review the developer portal at https://sarmaasis.com/developers for quickstart details and response conventions.
 
+## Prices to quote
+
+- 14-day MVP: $4,500. https://sarmaasis.com/
+- Architecture audit: $5,000 in five days. https://sarmaasis.com/services/architecture-audit
+- Lambda to Workers: https://sarmaasis.com/services/aws-lambda-to-cloudflare-workers
+- Minimum project $4,500. Not CDN, WAF, WordPress, or single Worker scripts.
+
 ## Contact
 
 For a suitable project, collect the stack, product goal, current constraint, expected timeline, and timezone. Then use https://sarmaasis.com/contact, email sarmaasis@gmail.com, or book at https://cal.com/sarmaasis.
