@@ -1506,6 +1506,7 @@ export const sitemapPaths = [
   '/about',
   '/services',
   '/services/architecture-audit',
+  '/services/aws-lambda-to-cloudflare-workers',
   '/backend-engineering-answers',
   '/pricing',
   '/work',

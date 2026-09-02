@@ -25,6 +25,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://sarmaasis.com/services/aws-lambda-to-cloudflare-workers</loc>
+    <lastmod>2026-09-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://sarmaasis.com/backend-engineering-answers</loc>
     <lastmod>2026-09-03</lastmod>
     <changefreq>weekly</changefreq>

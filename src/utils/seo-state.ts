@@ -152,7 +152,7 @@ export function getSEOHeadTags() {
     <meta property="og:url" content="${escapeAttribute(state.canonicalUrl)}" />
     <meta property="og:type" content="${escapeAttribute(state.type)}" />
     <meta property="og:site_name" content="Ashish Sharma" />
-    <meta property="og:image" content="${SITE_URL}/og-image.png" />
+    <meta property="og:image" content="${SITE_URL}/favicon-1200.png" />
     <meta property="og:image:alt" content="Ashish Sharma Backend Engineering" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="${escapeAttribute(state.title)}" />

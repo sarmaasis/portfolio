@@ -72,6 +72,8 @@ export default function ServicesPage() {
           {' · '}
           <Link to="/hire-cloudflare-workers-developer">hire a Cloudflare Workers developer</Link>
           {' · '}
+          <Link to="/services/aws-lambda-to-cloudflare-workers">Lambda to Workers migration</Link>
+          {' · '}
           <Link to="/pricing">14-day MVP for $4,500</Link>.
         </p>
       </section>

@@ -3,6 +3,7 @@ import { Link, Route, Routes, useLocation } from 'react-router-dom';
 import './App.css';
 import AboutPage from './components/AboutPage';
 import ArchitectureAuditPage from './components/ArchitectureAuditPage';
+import LambdaMigrationPage from './components/LambdaMigrationPage';
 import BackendAnswersPage from './components/BackendAnswersPage';
 import BlogIndexPage from './components/BlogIndexPage';
 import BlogPostPage from './components/BlogPostPage';
@@ -169,6 +170,7 @@ function App() {
             <Route path="/backend-engineering-answers" element={<BackendAnswersPage />} />
             <Route path="/services" element={<ServicesPage />} />
             <Route path="/services/architecture-audit" element={<ArchitectureAuditPage />} />
+            <Route path="/services/aws-lambda-to-cloudflare-workers" element={<LambdaMigrationPage />} />
             <Route path="/services/:slug" element={<DynamicServicePage />} />
             <Route path="/pricing" element={<PricingPage />} />
             <Route path="/work" element={<WorkPage />} />
