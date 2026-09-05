@@ -376,9 +376,9 @@ export const testimonials = [
 export const articles = [
   {
     slug: 'cloudflare-workers-use-cases',
-    title: 'Cloudflare Workers use cases: 12 production patterns for APIs, webhooks, caching and queues',
+    title: '12 Cloudflare Workers Use Cases That Ship in Production',
     description:
-      'Cloudflare Workers use cases for SaaS APIs, webhook receivers, caching, API gateways, queues, R2 uploads, search, authentication, and AWS integrations, with guidance on what should stay out of the edge runtime.',
+      'APIs, webhooks, caching, gateways, queues, R2, search, and auth. Plus what should stay off the edge runtime so you do not rebuild AWS badly.',
     capsule:
       'The best Cloudflare Workers use cases are narrow, high-leverage request paths: protect an API, receive a webhook, serve a cacheable read, issue a signed upload, or move slow work to a queue. The mistake is treating Workers as a place to put every backend decision.',
     date: '2026-07-11',
@@ -463,9 +463,9 @@ export const articles = [
   },
   {
     slug: 'cloudflare-workers-backend-architecture-checklist',
-    title: 'Cloudflare Workers backend architecture checklist for SaaS APIs',
+    title: 'Cloudflare Workers Architecture Checklist (SaaS APIs)',
     description:
-      'A production checklist for founders and CTOs hiring a Cloudflare Workers developer to build SaaS APIs, edge routing, queues, storage, caching, and migration paths.',
+      'Production checklist for Workers APIs: routing, queues, storage, caching, and when to stay on AWS. For founders hiring edge backend help.',
     capsule:
       'A Cloudflare Workers backend ranks in production when every edge responsibility is explicit: routing, validation, auth, caching, queues, storage, database access, observability, and rollback.',
     date: '2026-07-10',
@@ -560,9 +560,9 @@ export const articles = [
   },
   {
     slug: 'best-backend-engineering-services-for-startups',
-    title: 'Best backend engineering services for startups: what to look for before you hire',
+    title: 'Backend Engineering for Startups: How to Hire Well',
     description:
-      'A practical guide for founders comparing backend engineering services, freelance backend developers, agencies, and platforms for scalable API and infrastructure work.',
+      'Freelance vs agency vs platform. What solid API and infra delivery looks like before you sign. Written by a $4,500+ backend engineer.',
     capsule:
       'The best backend engineering hire is not always the biggest agency or marketplace. For startups, the right choice depends on ownership, architecture judgment, production proof, and how clearly the engineer can reduce backend risk.',
     date: '2026-07-10',
@@ -699,9 +699,9 @@ export const articles = [
   },
   {
     slug: 'typesense-cloudflare-workers-search-migration',
-    title: 'Migrating AWS Elasticsearch to Typesense on Cloudflare Workers',
+    title: 'Elasticsearch to Typesense on Cloudflare Workers',
     description:
-      'How to evaluate a search migration from AWS Elasticsearch to Typesense with Cloudflare Workers as the API edge.',
+      'When to leave AWS Elasticsearch, how Workers sits at the API edge, and a migration path that keeps search quality intact.',
     capsule:
       'A search migration works when index shape, query paths, sync jobs, and rollback plans are designed before any production cutover.',
     date: '2026-07-02',
@@ -786,9 +786,9 @@ export const articles = [
   },
   {
     slug: 'cloudflare-workers-queues-r2-planetscale-typesense-backend',
-    title: 'Cloudflare-first backend architecture: Workers, Queues, R2, PlanetScale and Typesense',
+    title: 'Workers, Queues, R2, PlanetScale, Typesense: One Backend',
     description:
-      'How to design a production backend around Cloudflare Workers, TypeScript, Pages, R2, Queues, PlanetScale MySQL, and Typesense without turning the edge into a messy second backend.',
+      'How Whydonate-scale stacks combine Workers with Queues, R2, PlanetScale, and Typesense without making the edge a second messy backend.',
     capsule:
       'A Cloudflare-first backend works when each piece has a narrow job: Workers handle request logic, Queues protect slow work, R2 stores objects, PlanetScale owns transactions, and Typesense serves search.',
     date: '2026-07-10',

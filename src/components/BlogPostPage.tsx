@@ -62,7 +62,7 @@ export default function BlogPostPage() {
   return (
     <>
       <SEO
-        title={`${article.title} - Ashish Sharma`}
+        title={article.title}
         description={article.description}
         path={path}
         type="article"
