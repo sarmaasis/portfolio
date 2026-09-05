@@ -458,7 +458,12 @@ export const articles = [
         heading: 'How to choose the first Cloudflare Workers use case',
         body:
           'Choose the route with the clearest contract and the clearest success metric. Good first candidates are a webhook receiver that needs reliable acknowledgement, a public read endpoint with safe cache behavior, a search proxy that needs tenant controls, a signed file flow, or an API gateway that can reduce browser-to-service coupling. Define the baseline before building: current latency, error rate, origin load, request volume, cost, and failure behavior. Then include observability and rollback in the scope. The first Worker should create evidence, not create another backend mystery.',
-      },
+      },,
+      {
+        heading: 'From use case to scoped build',
+        body:
+          'Pick one production path, not twelve. For a ranked cut of what to ship first, use the [$5,000 architecture audit](/services/architecture-audit). For a scoped Workers build, see [hire a Cloudflare Workers developer](/hire-cloudflare-workers-developer) and [/pricing](/pricing).',
+      }
     ],
   },
   {
@@ -555,7 +560,12 @@ export const articles = [
         heading: 'The practical checklist',
         body:
           'Before shipping a Cloudflare Workers backend, confirm the workload map, edge responsibility, route ownership, validation rules, auth model, cache keys, storage responsibilities, queue retry behavior, database boundaries, search limits, observability fields, deployment path, rollback plan, and cost model. Then document it in plain language. The best Cloudflare backend is not the one with the most products attached. It is the one where every component has a job, every failure has a place to be observed, and the next engineer can understand the system without guessing.',
-      },
+      },,
+      {
+        heading: 'When you want help applying the checklist',
+        body:
+          'Use this checklist as a hiring brief. If you want it applied to your system, book the [$5,000 architecture audit](/services/architecture-audit) or go straight to [hire a Cloudflare Workers developer](/hire-cloudflare-workers-developer) when the scope is already clear. Prices live on [/pricing](/pricing).',
+      }
     ],
   },
   {
@@ -617,7 +627,12 @@ export const articles = [
         heading: 'The practical shortlist',
         body:
           'Choose a senior freelancer when you need focused backend ownership, architecture judgment, and direct implementation. Choose an agency when you need a multi-role delivery team. Use a marketplace when you need discovery and contracting support, but still evaluate the individual engineer carefully. For startup backend work, the best choice is the one that can reduce production risk fastest while leaving a system your team can understand after launch.',
-      },
+      },,
+      {
+        heading: 'If you want a senior backend engineer, not a marketplace',
+        body:
+          'I take $4,500+ backend and Cloudflare Workers work as a single senior engineer. Start with [pricing](/pricing), the [$5,000 architecture audit](/services/architecture-audit), or [hire a Cloudflare Workers developer](/hire-cloudflare-workers-developer) when edge APIs are the bottleneck.',
+      }
     ],
   },
   {
@@ -694,7 +709,12 @@ export const articles = [
         heading: 'The decision framework',
         body:
           'Choose Cloudflare Workers when the work is close to the request, benefits from global placement, and can stay small. Choose AWS Lambda when the work needs regional depth, AWS-native integrations, larger execution windows, or private infrastructure access. Choose both when the product has a global request edge but regional business logic. The best backend architecture is rarely about loyalty to one provider. It is about reducing latency, cost, and operational complexity at the same time.',
-      },
+      },,
+      {
+        heading: 'If you want a decision on your stack',
+        body:
+          'If Lambda cost or latency is the reason you are reading this, a fixed [$5,000 architecture audit](/services/architecture-audit) maps which paths should move to Workers and which should stay on AWS. Implementation is quoted after that, from [$4,500](/pricing). See also [hire a Cloudflare Workers developer](/hire-cloudflare-workers-developer).',
+      }
     ],
   },
   {
@@ -781,7 +801,12 @@ export const articles = [
         heading: 'The maintenance win',
         body:
           'A successful migration should make future changes easier. Adding a searchable field, adjusting a filter, or debugging a missing result should be understandable to a backend engineer who did not perform the migration. That is why I care about small schemas, explicit sync jobs, narrow edge APIs, and written examples. Search touches the product experience directly, so maintainability is part of search quality.',
-      },
+      },,
+      {
+        heading: 'Need the migration planned on your data',
+        body:
+          'Search migrations fail on relevance and rollback, not on the demo. A [$5,000 architecture audit](/services/architecture-audit) can map Elasticsearch to Typesense with Workers at the edge. Builds start from [$4,500](/pricing).',
+      }
     ],
   },
   {
@@ -848,7 +873,12 @@ export const articles = [
         heading: 'The practical architecture rule',
         body:
           'The practical rule is simple: give every platform component a job it is naturally good at. Workers handle the request edge. Queues absorb work that can happen later. R2 stores objects. PlanetScale MySQL owns transactional truth. Typesense serves search. When those responsibilities stay clear, a Cloudflare-first backend can be fast, cost-sensitive, and maintainable. When the boundaries blur, the stack may still look modern, but the product becomes harder to operate.',
-      },
+      },,
+      {
+        heading: 'Want this stack on your product',
+        body:
+          'This is the shape used at Whydonate scale. For a fit check on your traffic and cost, use the [$5,000 architecture audit](/services/architecture-audit) or [hire a Cloudflare Workers developer](/hire-cloudflare-workers-developer).',
+      }
     ],
   },
   {

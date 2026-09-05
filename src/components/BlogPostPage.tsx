@@ -3,6 +3,48 @@ import { SEO } from './SEO';
 import { SITE_URL, articles } from '../data/site';
 import { formatArticleDate } from '../utils/date';
 
+function renderBodyWithLinks(body: string) {
+  const parts: Array<string | { label: string; href: string }> = [];
+  const pattern = /\[([^\]]+)\]\((\/[^)]+)\)/g;
+  let last = 0;
+  let match: RegExpExecArray | null;
+  while ((match = pattern.exec(body)) !== null) {
+    if (match.index > last) parts.push(body.slice(last, match.index));
+    parts.push({ label: match[1], href: match[2] });
+    last = match.index + match[0].length;
+  }
+  if (last < body.length) parts.push(body.slice(last));
+  return parts.map((part, index) =>
+    typeof part === 'string' ? (
+      <span key={index}>{part}</span>
+    ) : (
+      <Link key={index} to={part.href}>{part.label}</Link>
+    ),
+  );
+}
+
+function articleServiceLinks(slug: string) {
+  if (slug.includes('lambda') || slug.includes('cost')) {
+    return [
+      { to: '/services/aws-lambda-to-cloudflare-workers', label: 'Lambda to Workers migration' },
+      { to: '/services/architecture-audit', label: '$5,000 architecture audit' },
+      { to: '/pricing', label: 'Pricing' },
+    ];
+  }
+  if (slug.includes('backend-engineering-services') || slug.includes('checklist')) {
+    return [
+      { to: '/hire-cloudflare-workers-developer', label: 'Hire a Cloudflare Workers developer' },
+      { to: '/services/architecture-audit', label: '$5,000 architecture audit' },
+      { to: '/pricing', label: '$4,500 MVP and audit pricing' },
+    ];
+  }
+  return [
+    { to: '/hire-cloudflare-workers-developer', label: 'Hire a Cloudflare Workers developer' },
+    { to: '/services/architecture-audit', label: '$5,000 architecture audit' },
+    { to: '/services/aws-lambda-to-cloudflare-workers', label: 'Lambda to Workers migration' },
+  ];
+}
+
 function getReadingMinutes(article: (typeof articles)[number]) {
   const words = [
     article.title,
@@ -100,7 +142,7 @@ export default function BlogPostPage() {
               return (
                 <div className="blog-section" id={id} key={section.heading}>
                   <h2>{section.heading}</h2>
-                  <p>{section.body}</p>
+                  <p>{renderBodyWithLinks(section.body)}</p>
                 </div>
               );
             })}
@@ -109,9 +151,18 @@ export default function BlogPostPage() {
               <p className="aside-label">Next step</p>
               <h2>Need this decision made for your backend?</h2>
               <p>
-                Send the current architecture, traffic shape, and cost pressure. I can turn that into a short
-                migration or audit plan.
+                Send the current architecture, traffic shape, and cost pressure. A fixed{' '}
+                <Link to="/services/architecture-audit">$5,000 architecture audit</Link> turns that into a ranked
+                plan. Implementation starts from{' '}
+                <Link to="/pricing">$4,500</Link>.
               </p>
+              <div className="article-cta-links">
+                {articleServiceLinks(article.slug).map((item) => (
+                  <p key={item.to}>
+                    <Link to={item.to}>{item.label}</Link>
+                  </p>
+                ))}
+              </div>
               <Link className="plain-button" to="/contact">Request an architecture review</Link>
             </div>
 
