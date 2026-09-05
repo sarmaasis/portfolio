@@ -115,6 +115,8 @@ export default function HomePage() {
               <Link to="/services/architecture-audit">Architecture review</Link>
               {' · '}
               <Link to="/hire-cloudflare-workers-developer">Hire a Cloudflare Workers developer</Link>
+              {' · '}
+              <Link to="/services/aws-lambda-to-cloudflare-workers">Lambda to Workers</Link>
             </p>
           </div>
           <aside className="mvp-offer" aria-label="14-day MVP offer">
