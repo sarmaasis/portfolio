@@ -89,8 +89,8 @@ export default function ArchitectureAuditPage() {
   return (
     <>
       <SEO
-        title="Technical Architecture Audit | $5,000 in 5 Days | Ashish Sharma"
-        description="Fixed-scope architecture audit for startup APIs and cloud cost. Ranked fix list, diagrams, and a walkthrough. Cloudflare and AWS, no vendor lock-in to either. $5,000."
+        title="$5,000 Architecture Audit in 5 Days"
+        description="Ranked fix list, Workers vs AWS decision, walkthrough. No production edits. Opens a $4,500+ build if you want implementation next."
         path="/services/architecture-audit"
         structuredData={[offerSchema, faqSchema]}
       />

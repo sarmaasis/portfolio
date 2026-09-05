@@ -622,9 +622,9 @@ export const articles = [
   },
   {
     slug: 'cloudflare-workers-vs-aws-lambda-cost',
-    title: 'Cloudflare Workers vs AWS Lambda: a practical cost breakdown',
+    title: 'Workers vs Lambda Cost: When the Bill Flips',
     description:
-      'A hiring-focused guide to deciding when Cloudflare Workers can cut serverless API cost and latency compared with AWS Lambda.',
+      'CPU time vs wall-clock, real limits, and when to stay on AWS. Ends with a $5,000 review if your bill is the reason you searched.',
     capsule:
       'Cloudflare Workers often wins for latency-sensitive edge APIs; AWS Lambda still fits heavy regional compute and deep AWS integrations.',
     date: '2026-07-02',
@@ -1040,9 +1040,9 @@ export const articles = [
 export const landingPages = [
   {
     slug: 'hire-cloudflare-workers-developer',
-    title: 'Hire a Cloudflare Workers Developer | $5,000 Review, Then Build | Ashish Sharma',
+    title: 'Hire a Cloudflare Workers Developer ($4,500+)',
     description:
-      'Hire Ashish Sharma for production Cloudflare Workers backends. $5,000 architecture review in one week, then scoped implementation from $4,500. Hybrid AWS + Workers is in scope. Scripts under $500 are not.',
+      'Production Workers backends from $4,500. Or a $5,000 review in 5 days before you migrate. Hybrid AWS OK. Not CDN or $500 scripts.',
     h1: 'Hire a Cloudflare Workers developer for production backend systems.',
     capsule:
       'I build Cloudflare Workers backends for APIs, edge routing, webhooks, auth checks, search facades, and cost-sensitive serverless workloads.',
@@ -1086,9 +1086,9 @@ export const landingPages = [
   },
   {
     slug: 'cloudflare-workers-backend-freelancer',
-    title: 'Cloudflare Workers Freelancer for Agencies | Quiet Delivery | Ashish Sharma',
+    title: 'Agency Cloudflare Workers Freelancer ($4,500+)',
     description:
-      'Freelance Cloudflare Workers engineer for agencies and fractional teams. Quiet delivery, client-ready docs, and production APIs. $4,500 minimum. Founders hiring directly should use the hire page.',
+      'Quiet Workers delivery behind your client. Docs, rollback, hybrid AWS. $4,500 minimum. Founders: use the hire page.',
     h1: 'Cloudflare Workers freelancer for agencies and fractional teams.',
     capsule:
       'I join agency delivery quietly: Workers implementation, architecture judgment, and handoff notes the client can keep.',
@@ -1127,7 +1127,7 @@ export const landingPages = [
   },
   {
     slug: 'rag-backend-engineer',
-    title: 'RAG Backend Engineer for Production AI Systems - Ashish Sharma',
+    title: 'RAG Backend Engineer for Production AI ($4,500+)',
     description:
       'Hire a backend engineer for production RAG systems, AI pipelines, retrieval, vector search, permissions, ingestion jobs, and FastAPI/OpenAI integrations.',
     h1: 'RAG backend engineer for production AI systems.',
@@ -1168,7 +1168,7 @@ export const landingPages = [
   },
   {
     slug: 'python-fastapi-backend-freelancer',
-    title: 'Python FastAPI Backend Freelancer - Ashish Sharma',
+    title: 'Python FastAPI Backend Freelancer ($4,500+)',
     description:
       'Freelance Python/FastAPI backend engineering for APIs, AI/RAG systems, PostgreSQL workflows, integrations, and production backend architecture.',
     h1: 'Python/FastAPI backend freelancer for production APIs and AI systems.',
@@ -1209,7 +1209,7 @@ export const landingPages = [
   },
   {
     slug: 'nodejs-typescript-backend-engineer',
-    title: 'Node.js TypeScript Backend Engineer - Ashish Sharma',
+    title: 'Node.js TypeScript Backend Engineer ($4,500+)',
     description:
       'Senior Node.js/TypeScript backend engineering for APIs, integrations, Cloudflare Workers, SaaS workflows, and production backend systems.',
     h1: 'Node.js/TypeScript backend engineer for scalable APIs and integrations.',

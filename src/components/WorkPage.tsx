@@ -6,8 +6,8 @@ export default function WorkPage() {
   return (
     <>
       <SEO
-        title="Backend Case Studies - Cloudflare, Healthcare, Real Estate and Donation APIs"
-        description="Case studies for backend architecture, Cloudflare infrastructure, API scaling, healthcare data flows, real estate inventory, and donation platforms."
+        title="Cloudflare and Backend Case Studies"
+        description="Whydonate at 4M+ req/day, healthcare, real estate, product backends. Real constraints, decisions, and outcomes."
         path="/work"
       />
 

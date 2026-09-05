@@ -57,8 +57,8 @@ export default function LambdaMigrationPage() {
   return (
     <>
       <SEO
-        title="AWS Lambda to Cloudflare Workers Migration | Ashish Sharma"
-        description="Migrate I/O-heavy TypeScript APIs from AWS Lambda to Cloudflare Workers. $5,000 audit first, implementation from $4,500. Stay on AWS when Workers is the wrong fit."
+        title="Cut Lambda Cost: Move the Right Paths to Workers"
+        description="I/O-heavy TypeScript off Lambda. $5,000 audit first, then build from $4,500. Stay on AWS when Workers is wrong."
         path="/services/aws-lambda-to-cloudflare-workers"
         structuredData={[offerSchema, faqSchema]}
       />

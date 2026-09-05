@@ -7,8 +7,8 @@ export default function BlogIndexPage() {
   return (
     <>
       <SEO
-        title="Full-Stack Backend Blog - Cloudflare, AWS and API Scaling"
-        description="Technical articles on Cloudflare Workers, AWS backend architecture, full-stack backend delivery, API scaling, search migration, and cloud cost optimization."
+        title="Cloudflare Workers and Backend Notes"
+        description="Practical posts on Workers vs Lambda, architecture checklists, search migrations, and hiring a backend engineer."
         path="/blog"
       />
 

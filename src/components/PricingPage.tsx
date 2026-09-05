@@ -72,8 +72,8 @@ export default function PricingPage() {
   return (
     <>
       <SEO
-        title="Pricing: $4,500 MVP, $5,000 Architecture Audit | Ashish Sharma"
-        description="Clear prices for $4,500+ work: 14-day MVP $4,500, architecture audit $5,000 in 5 days, Lambda to Cloudflare Workers migrations quoted after the audit, implementation sprints from $4,500."
+        title="$4,500 MVP and $5,000 Audit Pricing"
+        description="Clear prices for Cloudflare Workers and backend work. MVP $4,500. Audit $5,000. Sprints from $4,500. No CDN packages."
         path="/pricing"
         structuredData={offerSchema}
       />

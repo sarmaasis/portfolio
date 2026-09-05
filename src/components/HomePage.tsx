@@ -82,8 +82,8 @@ export default function HomePage() {
   return (
     <>
       <SEO
-        title="14-Day Full-Stack MVP Build for $4,500 | Ashish Sharma"
-        description="Launch a focused full-stack MVP in 14 days for a flat $4,500. Cloudflare-specialized application development with Next.js, APIs, auth, databases, queues, and production deployment."
+        title="Ship a Full-Stack MVP in 14 Days for $4,500"
+        description="Flat $4,500. One senior engineer. Next.js, APIs, auth, database, Cloudflare-first deploy. Book a call if you have one core workflow and a real launch date."
         path="/"
         structuredData={mvpOfferSchema}
       />
