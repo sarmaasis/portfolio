@@ -1,149 +1,126 @@
 import { Link, useParams } from 'react-router-dom';
 import { SEO } from './SEO';
+import { Breadcrumbs, ClosingCta, FaqList, Row } from './layout';
+import NotFoundPage from './NotFoundPage';
 import { SITE_URL, caseStudies, caseStudyDetails } from '../data/site';
+import { slugify } from '../utils/markdown';
+
+const sectionTitles = ['The problem', 'Approach', 'Architecture decisions', 'Before and after', 'Risks avoided', 'Cloudflare and AWS'];
 
 export default function CaseStudyPage() {
   const { slug } = useParams<{ slug: string }>();
-  const caseStudy = caseStudies.find((item) => item.slug === slug);
+  const index = caseStudies.findIndex((item) => item.slug === slug);
+  const caseStudy = caseStudies[index];
 
   if (!caseStudy) {
-    return (
-      <section className="page-hero">
-        <p className="eyebrow">Not found</p>
-        <h1>Case study not found.</h1>
-        <Link className="text-link" to="/work">Return to work</Link>
-      </section>
-    );
+    return <NotFoundPage title="Case study not found." />;
   }
 
   const path = `/work/${caseStudy.slug}`;
   const details = caseStudyDetails[caseStudy.slug];
+  const next = caseStudies[(index + 1) % caseStudies.length];
+  const crumbs = [{ name: 'Home', path: '/' }, { name: 'Work', path: '/work' }, { name: caseStudy.company, path }];
+  const toc = details ? sectionTitles : sectionTitles.slice(0, 2);
+
   const schema = {
-    '@context': 'https://schema.org',
-    '@type': 'CreativeWork',
+    '@type': 'Article',
+    '@id': `${SITE_URL}${path}#article`,
     headline: caseStudy.title,
     description: caseStudy.summary,
     url: `${SITE_URL}${path}`,
-    about: caseStudy.stack,
-    creator: {
-      '@type': 'Person',
-      name: 'Ashish Sharma',
-    },
+    image: `${SITE_URL}/og-image.png`,
+    keywords: caseStudy.stack.join(', '),
+    author: { '@id': `${SITE_URL}/#person` },
+    publisher: { '@id': `${SITE_URL}/#person` },
+    mainEntityOfPage: { '@id': `${SITE_URL}${path}#webpage` },
+    about: { '@type': 'Organization', name: caseStudy.company, url: caseStudy.url },
   };
 
   return (
     <>
       <SEO
-        title={`${caseStudy.title} - Backend Case Study`}
+        title={`${caseStudy.title} — Case Study`}
         description={caseStudy.summary}
         path={path}
-        structuredData={schema}
+        type="article"
+        breadcrumbs={crumbs}
+        structuredData={details ? [schema, {
+          '@type': 'FAQPage',
+          '@id': `${SITE_URL}${path}#faq`,
+          mainEntity: details.clientFaqs.map((faq) => ({ '@type': 'Question', name: faq.question, acceptedAnswer: { '@type': 'Answer', text: faq.answer } })),
+        }] : schema}
       />
 
-      <article>
-        <section className="page-hero">
-          <p className="eyebrow">{caseStudy.company}</p>
-          <h1>{caseStudy.title}</h1>
-          <p>{caseStudy.summary}</p>
-          <a className="text-link" href={caseStudy.url} target="_blank" rel="noopener noreferrer">
-            Visit {caseStudy.company}
-          </a>
-        </section>
+      <section className="intro" style={{ paddingTop: 72 }}>
+        <Breadcrumbs items={crumbs} />
+        <h1 className="h-page">{caseStudy.title}</h1>
+        <p className="lede">{caseStudy.summary}</p>
+        <dl className="facts">
+          <div><dt>Client</dt><dd><a className="ln" href={caseStudy.url} target="_blank" rel="noopener noreferrer">{caseStudy.url.replace(/^https?:\/\/(www\.)?/, '')}</a></dd></div>
+          <div><dt>Outcome</dt><dd>{caseStudy.metrics[0]}</dd></div>
+          <div style={{ gridColumn: 'span 2' }}><dt>Stack</dt><dd>{caseStudy.stack.join(', ')}</dd></div>
+        </dl>
+      </section>
 
-        <section className="content-grid">
-          <div className="panel">
-            <h2>Outcome</h2>
-            <p>{caseStudy.outcome}</p>
-          </div>
-          <div className="panel">
-            <h2>Stack</h2>
-            <ul className="compact-list">
-              {caseStudy.stack.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </div>
-        </section>
+      <div className="row">
+        <nav className="toc" aria-label="On this page">
+          <p>On this page</p>
+          {toc.map((title) => <a key={title} href={`#${slugify(title)}`}>{title}</a>)}
+        </nav>
 
-        <section className="prose">
-          <h2>Challenge</h2>
+        <article className="prose">
+          <h2 id={slugify('The problem')}>The problem</h2>
           <p>{caseStudy.challenge}</p>
-          <h2>Approach</h2>
+
+          <h2 id={slugify('Approach')}>Approach</h2>
           <p>{caseStudy.approach}</p>
-          <h2>Result</h2>
-          <p>{caseStudy.result}</p>
-          <h2>Proof Points</h2>
-          <ul>
-            {caseStudy.metrics.map((metric) => (
-              <li key={metric}>{metric}</li>
-            ))}
-          </ul>
-        </section>
+          {details?.implementationNotes.map((note) => <p key={note}>{note}</p>)}
+          <p><strong>Result:</strong> {caseStudy.result}</p>
 
-        {details ? (
-          <>
-            <section className="prose">
-              <h2>Architecture Decisions</h2>
-              <ul>
-                {details.architectureDecisions.map((decision) => (
-                  <li key={decision}>{decision}</li>
-                ))}
-              </ul>
-            </section>
+          {details ? (
+            <>
+              <h2 id={slugify('Architecture decisions')}>Architecture decisions</h2>
+              <ul>{details.architectureDecisions.map((item) => <li key={item}>{item}</li>)}</ul>
 
-            <section className="prose">
-              <h2>Implementation Notes</h2>
-              {details.implementationNotes.map((note) => (
-                <p key={note}>{note}</p>
-              ))}
-            </section>
-
-            <section>
-              <h2 className="section-title">Before and After</h2>
-              <div className="proof-grid">
+              <h2 id={slugify('Before and after')}>Before and after</h2>
+              <div className="versus">
                 {details.beforeAfter.map((item) => (
-                  <article className="panel" key={item.before}>
-                    <h3>Before</h3>
-                    <p>{item.before}</p>
-                    <h3>After</h3>
-                    <p>{item.after}</p>
-                  </article>
+                  <div key={item.before} style={{ display: 'contents' }}>
+                    <div><span className="k">Before</span>{item.before}</div>
+                    <div><span className="k">After</span>{item.after}</div>
+                  </div>
                 ))}
               </div>
-            </section>
 
-            <section className="prose">
-              <h2>Risks Avoided</h2>
-              <ul>
-                {details.risksAvoided.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
+              <h2 id={slugify('Risks avoided')}>Risks avoided</h2>
+              <ul>{details.risksAvoided.map((item) => <li key={item}>{item}</li>)}</ul>
 
-              <h2>Cloudflare and AWS Relevance</h2>
-              <ul>
-                {details.cloudflareAws.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
+              <h2 id={slugify('Cloudflare and AWS')}>Cloudflare and AWS</h2>
+              <ul>{details.cloudflareAws.map((item) => <li key={item}>{item}</li>)}</ul>
+            </>
+          ) : null}
+        </article>
+      </div>
 
-              <h2>Client Questions</h2>
-              {details.clientFaqs.map((faq) => (
-                <div key={faq.question}>
-                  <h3>{faq.question}</h3>
-                  <p>{faq.answer}</p>
-                </div>
-              ))}
-            </section>
-          </>
-        ) : null}
-      </article>
+      {details ? (
+        <Row id="questions" label="Questions">
+          <FaqList items={details.clientFaqs} />
+        </Row>
+      ) : null}
 
-      <section className="cta-band">
-        <h2>Have a similar backend problem?</h2>
-        <p>Share the bottleneck and the target outcome, and I will suggest the cleanest next step.</p>
-        <Link className="btn-primary" to="/contact">Start a conversation</Link>
-      </section>
+      <Row id="next" label="Next project">
+        <Link to={`/work/${next.slug}`} className="stack" style={{ ['--gap' as string]: '8px' }}>
+          <span className="meta">{next.company}</span>
+          <span className="h-chapter ln">{next.title}</span>
+        </Link>
+      </Row>
+
+      <ClosingCta
+        compact
+        title="Have a similar backend problem?"
+        lede="Tell me where it hurts and what the target is. I'll suggest the smallest change that gets you there."
+        placement="case-study-closing"
+      />
     </>
   );
 }

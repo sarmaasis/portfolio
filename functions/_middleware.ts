@@ -1,4 +1,4 @@
-import { render } from '../dist/server/server.js'; // SSR render function
+import { renderPage } from '../dist/server/server.js'; // SSR render function
 import {
   acceptsMarkdown,
   agentModeResponse,
@@ -68,9 +68,10 @@ export const onRequest = async (context: CloudflareContext) => {
     return context.next();
   }
 
-  const html = await render(url.pathname);
+  // The app reports 404 for unknown case studies, posts and services under known prefixes.
+  const { html, status } = renderPage(url.pathname);
   return new Response(html, {
-    status: isKnownPublicRoute(url.pathname) ? 200 : 404,
+    status: isKnownPublicRoute(url.pathname) ? status : 404,
     headers: {
       'Content-Type': 'text/html; charset=utf-8',
       'Vary': 'Accept, Accept-Encoding',

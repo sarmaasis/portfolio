@@ -1,8 +1,13 @@
+import type { Article } from './article-types';
+import { markdownPosts } from './posts.generated';
+
 export const SITE_URL = 'https://sarmaasis.com';
 export const EMAIL = 'sarmaasis@gmail.com';
 export const CAL_URL = 'https://cal.com/sarmaasis';
 export const UPWORK_URL = 'https://www.upwork.com/freelancers/~01fccc3514fb9cdd2a';
 export const COPYRIGHT_YEAR = 2026;
+/** Last meaningful change to the site's static pages; used as their sitemap lastmod. */
+export const SITE_UPDATED = '2026-10-10';
 
 export const POSITIONING =
   'Full-stack backend developer -- Cloudflare Workers, AWS, Node.js/TypeScript, Python, and production application architecture.';
@@ -373,12 +378,13 @@ export const testimonials = [
   },
 ];
 
-export const articles = [
+const legacyArticles: Article[] = [
   {
     slug: 'cloudflare-workers-use-cases',
+    seoTitle: 'Cloudflare Workers Use Cases: 12 Production Patterns',
     title: 'Cloudflare Workers use cases: 12 production patterns for APIs, webhooks, caching and queues',
     description:
-      'Cloudflare Workers use cases for SaaS APIs, webhook receivers, caching, API gateways, queues, R2 uploads, search, authentication, and AWS integrations, with guidance on what should stay out of the edge runtime.',
+      '12 Cloudflare Workers use cases from production: API gateways, webhooks, caching, queues, R2 uploads, search and auth, plus what should stay off the edge.',
     capsule:
       'The best Cloudflare Workers use cases are narrow, high-leverage request paths: protect an API, receive a webhook, serve a cacheable read, issue a signed upload, or move slow work to a queue. The mistake is treating Workers as a place to put every backend decision.',
     date: '2026-07-11',
@@ -463,9 +469,10 @@ export const articles = [
   },
   {
     slug: 'cloudflare-workers-backend-architecture-checklist',
+    seoTitle: 'Cloudflare Workers Backend Architecture Checklist for SaaS',
     title: 'Cloudflare Workers backend architecture checklist for SaaS APIs',
     description:
-      'A production checklist for founders and CTOs hiring a Cloudflare Workers developer to build SaaS APIs, edge routing, queues, storage, caching, and migration paths.',
+      'A production checklist for Cloudflare Workers SaaS backends: routing, validation, auth, caching, queues, storage, database access, observability and rollback.',
     capsule:
       'A Cloudflare Workers backend ranks in production when every edge responsibility is explicit: routing, validation, auth, caching, queues, storage, database access, observability, and rollback.',
     date: '2026-07-10',
@@ -560,9 +567,10 @@ export const articles = [
   },
   {
     slug: 'best-backend-engineering-services-for-startups',
+    seoTitle: 'Backend Engineering Services for Startups: How to Choose',
     title: 'Best backend engineering services for startups: what to look for before you hire',
     description:
-      'A practical guide for founders comparing backend engineering services, freelance backend developers, agencies, and platforms for scalable API and infrastructure work.',
+      'How startups should choose backend engineering help: ownership, architecture judgment, production proof, and how clearly the engineer reduces backend risk.',
     capsule:
       'The best backend engineering hire is not always the biggest agency or marketplace. For startups, the right choice depends on ownership, architecture judgment, production proof, and how clearly the engineer can reduce backend risk.',
     date: '2026-07-10',
@@ -786,9 +794,10 @@ export const articles = [
   },
   {
     slug: 'cloudflare-workers-queues-r2-planetscale-typesense-backend',
+    seoTitle: 'Cloudflare-First Backend: Workers, Queues, R2, PlanetScale',
     title: 'Cloudflare-first backend architecture: Workers, Queues, R2, PlanetScale and Typesense',
     description:
-      'How to design a production backend around Cloudflare Workers, TypeScript, Pages, R2, Queues, PlanetScale MySQL, and Typesense without turning the edge into a messy second backend.',
+      'How a Cloudflare-first backend fits together: Workers for requests, Queues for slow work, R2 for files, PlanetScale for transactions, Typesense for search.',
     capsule:
       'A Cloudflare-first backend works when each piece has a narrow job: Workers handle request logic, Queues protect slow work, R2 stores objects, PlanetScale owns transactions, and Typesense serves search.',
     date: '2026-07-10',
@@ -853,6 +862,7 @@ export const articles = [
   },
   {
     slug: 'rag-production-backend-checklist',
+    hidden: true,
     title: 'RAG pipeline production checklist: what breaks at scale',
     description:
       'A backend engineer checklist for making retrieval-augmented generation systems reliable beyond demo traffic.',
@@ -945,6 +955,7 @@ export const articles = [
   },
   {
     slug: 'wakamiapp-backend-architecture-case-study',
+    seoTitle: 'Wakamiapp Backend Architecture: Decisions That Mattered',
     title: 'Building Wakamiapp backend end-to-end: architecture decisions that mattered',
     description:
       'A technical case study on designing and building the Wakamiapp backend from the first API boundaries through data modeling, authentication, and production readiness.',
@@ -1036,6 +1047,9 @@ export const articles = [
     ],
   },
 ];
+
+export const articles: Article[] = [...markdownPosts, ...legacyArticles];
+export const visibleArticles = articles.filter((article) => !article.hidden);
 
 export const landingPages = [
   {
@@ -1488,5 +1502,11 @@ export const sitemapPaths = [
   '/reviews',
   ...primaryLandingPages.map((page) => `/${page.slug}`),
   ...caseStudies.map((caseStudy) => `/work/${caseStudy.slug}`),
-  ...articles.filter((article) => !article.slug.includes('rag')).map((article) => `/blog/${article.slug}`),
+  ...visibleArticles.map((article) => `/blog/${article.slug}`),
 ];
+
+/** Sitemap entries with a real last-modified date (posts use their own dates). */
+export const sitemapEntries = sitemapPaths.map((pagePath) => {
+  const article = visibleArticles.find((item) => `/blog/${item.slug}` === pagePath);
+  return { path: pagePath, lastmod: article ? article.updated ?? article.date : SITE_UPDATED };
+});

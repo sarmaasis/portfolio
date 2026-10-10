@@ -1,49 +1,89 @@
+import { useState, type CSSProperties } from 'react';
 import { Link } from 'react-router-dom';
 import { SEO } from './SEO';
-import { articles } from '../data/site';
-import { formatArticleDate } from '../utils/date';
+import { PageIntro } from './layout';
+import { SITE_URL, visibleArticles } from '../data/site';
+import { formatShortDate } from '../utils/date';
+
+type Topic = 'all' | 'mvp' | 'cloudflare' | 'architecture';
+
+const topics: { id: Topic; label: string; match: (tags: string[]) => boolean }[] = [
+  { id: 'all', label: 'All', match: () => true },
+  { id: 'mvp', label: 'Building an MVP', match: (tags) => tags.some((tag) => /mvp|startup|hiring|scoping/i.test(tag)) },
+  { id: 'cloudflare', label: 'Cloudflare', match: (tags) => tags.some((tag) => /cloudflare|workers|queues|d1|hyperdrive|r2/i.test(tag)) },
+  { id: 'architecture', label: 'Architecture', match: (tags) => tags.some((tag) => /architecture|search|typesense|aws|database|case study|next/i.test(tag)) },
+];
 
 export default function BlogIndexPage() {
+  const [topic, setTopic] = useState<Topic>('all');
+  const active = topics.find((item) => item.id === topic) ?? topics[0];
+  const shown = visibleArticles.filter((article) => active.match(article.tags));
+
+  const blogSchema = {
+    '@type': 'Blog',
+    '@id': `${SITE_URL}/blog#blog`,
+    name: 'Ashish Sharma — Writing',
+    url: `${SITE_URL}/blog`,
+    author: { '@id': `${SITE_URL}/#person` },
+    blogPost: visibleArticles.map((article) => ({
+      '@type': 'BlogPosting',
+      headline: article.title,
+      url: `${SITE_URL}/blog/${article.slug}`,
+      datePublished: article.date,
+      dateModified: article.updated ?? article.date,
+    })),
+  };
+
   return (
     <>
       <SEO
-        title="Full-Stack Backend Blog - Cloudflare, AWS and API Scaling"
-        description="Technical articles on Cloudflare Workers, AWS backend architecture, full-stack backend delivery, API scaling, search migration, and cloud cost optimization."
+        title="Writing on MVPs, Cloudflare Workers and Backends — Ashish Sharma"
+        description="Practical guides on building MVPs, Cloudflare Workers, Queues, D1, Stripe webhooks, Next.js on Cloudflare, and backend architecture that holds up in production."
         path="/blog"
+        breadcrumbs={[{ name: 'Home', path: '/' }, { name: 'Writing', path: '/blog' }]}
+        structuredData={blogSchema}
       />
 
-      <section className="page-hero blog-index-hero">
-        <p className="eyebrow">Blog</p>
-        <h1>Technical notes for founders and CTOs making application and backend decisions.</h1>
-        <p>
-          Specific answers on Cloudflare Workers, AWS cost, backend architecture, API scaling, search migrations,
-          and infrastructure trade-offs.
-        </p>
-      </section>
+      <PageIntro
+        title="Writing"
+        lede="Notes from production work: scoping and pricing MVPs, Cloudflare Workers, queues, databases, and the backend decisions that are expensive to undo."
+      />
 
-      <section>
-        <div className="blog-list">
-          {articles.filter((article) => !article.slug.includes('rag')).map((article) => (
-            <article className="blog-card" key={article.slug}>
-              <div>
-                <p className="blog-meta">{formatArticleDate(article.date)} · {article.tags.join(' / ')}</p>
-                <h2>
-                  <Link to={`/blog/${article.slug}`}>{article.title}</Link>
-                </h2>
-                <p>{article.capsule}</p>
-                <ul className="tag-list">
-                  {article.tags.map((tag) => (
-                    <li key={tag}>{tag}</li>
-                  ))}
-                </ul>
-              </div>
-              <Link className="text-link" to={`/blog/${article.slug}`}>
-                Read article
-              </Link>
-            </article>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 16, flexWrap: 'wrap', paddingBottom: 24 }}>
+        <div
+          className="rv-seg"
+          role="radiogroup"
+          aria-label="Filter by topic"
+          style={{ '--n': topics.length, '--i': topics.indexOf(active), width: 'min(100%, 560px)' } as CSSProperties}
+        >
+          <span className="rv-seg-plate" aria-hidden="true"><i /></span>
+          {topics.map((item) => (
+            <button
+              key={item.id}
+              type="button"
+              role="radio"
+              className="rv-seg-item"
+              aria-checked={topic === item.id}
+              onClick={() => setTopic(item.id)}
+            >
+              {item.label}
+            </button>
           ))}
         </div>
-      </section>
+        <p className="meta" aria-live="polite">{shown.length === 1 ? '1 post' : `${shown.length} posts`}</p>
+      </div>
+
+      <ul className="posts posts--rich" style={{ paddingBottom: 88 }}>
+        {shown.map((article) => (
+          <li key={article.slug}>
+            <Link to={`/blog/${article.slug}`}>
+              <time className="d num" dateTime={article.updated ?? article.date}>{formatShortDate(article.updated ?? article.date)}</time>
+              <span className="t">{article.title}</span>
+              <span className="x">{article.capsule}</span>
+            </Link>
+          </li>
+        ))}
+      </ul>
     </>
   );
 }

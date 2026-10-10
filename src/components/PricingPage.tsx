@@ -1,71 +1,125 @@
 import { Link } from 'react-router-dom';
 import { SEO } from './SEO';
+import { ClosingCta, FaqList, PageIntro, Row } from './layout';
+import { plainText } from '../utils/markdown';
+import { SITE_URL } from '../data/site';
+import { mvpIncludes, mvpPhases } from '../data/offer';
 
 const models = [
   {
-    title: '14-Day MVP Build',
-    summary: 'A focused full-stack product release for a flat $4,500 USD.',
-    details: ['Locked scope before Day 01', 'Next.js, API, database, auth, and deployment', 'Cloudflare-first delivery with code and account handover'],
+    title: 'Architecture audit',
+    price: 'Fixed fee, quoted after a call',
+    summary: 'A focused review before a migration, rebuild or scaling push.',
+    details: ['API and data-model review', 'Cloudflare and AWS cost and architecture notes', 'A prioritised action plan'],
   },
   {
-    title: 'Architecture Audit',
-    summary: 'A focused review before a migration, rebuild, or scaling push.',
-    details: ['API and data-model review', 'Cloudflare/AWS cost and architecture notes', 'Prioritized action plan'],
-  },
-  {
-    title: 'Implementation Sprint',
+    title: 'Implementation sprint',
+    price: 'Milestone-based',
     summary: 'A scoped build or migration with clear deliverables.',
-    details: ['Application, API, and Workers delivery', 'Cloudflare, AWS, search, or integration work', 'Milestone-based delivery'],
+    details: ['Application, API and Workers delivery', 'Cloudflare, AWS, search or integration work', 'Acceptance criteria agreed up front'],
   },
   {
-    title: 'Fractional Full-Stack Backend Partner',
+    title: 'Fractional backend partner',
+    price: 'Monthly',
     summary: 'Ongoing application and backend support for teams without a full-time hire.',
     details: ['Planning and implementation', 'Code review and architecture decisions', 'Weekly reporting and invoices'],
   },
 ];
 
+const faqs = [
+  {
+    question: 'Why a flat price instead of hourly?',
+    answer: "Because I control the estimate, I should carry the risk of it being wrong. A locked scope and a flat fee mean you know the cost before day one. More on how MVP pricing works in [what an MVP really costs](/blog/mvp-development-cost).",
+  },
+  {
+    question: "What isn't included in the $4,500 build?",
+    answer: 'Native mobile apps, multi-role marketplaces with complex permissions, heavy compliance work, and anything that is really two products. If your idea needs those, we scope a longer build instead.',
+  },
+  {
+    question: 'What happens after the 14 days?',
+    answer: "You have a live product, the code, the accounts and handover notes. If you want help afterwards, we can agree a follow-on sprint or ongoing support; there's no lock-in.",
+  },
+  {
+    question: 'How do I pay?',
+    answer: 'Remote B2B contracts can be invoiced in USD, EUR or GBP. For fixed-scope work, milestones and acceptance criteria are agreed before implementation starts.',
+  },
+];
+
 export default function PricingPage() {
+  const offers = {
+    '@type': 'OfferCatalog',
+    '@id': `${SITE_URL}/pricing#offers`,
+    name: 'Engagements',
+    itemListElement: [
+      {
+        '@type': 'Offer',
+        name: '14-day full-stack MVP build',
+        price: '4500',
+        priceCurrency: 'USD',
+        availability: 'https://schema.org/InStock',
+        url: `${SITE_URL}/pricing`,
+        description: mvpIncludes.join('. '),
+      },
+      ...models.map((model) => ({ '@type': 'Offer', name: model.title, description: model.summary, url: `${SITE_URL}/pricing` })),
+    ],
+  };
+
   return (
     <>
       <SEO
-        title="14-Day MVP Pricing & Engagement Models - Ashish Sharma"
-        description="A focused 14-day full-stack MVP build for a flat $4,500, plus Cloudflare/AWS architecture audits, implementation sprints, and fractional application support."
+        title="Pricing: 14-Day MVP for $4,500, Audits and Sprints — Ashish Sharma"
+        description="A focused 14-day full-stack MVP build for a flat $4,500, plus Cloudflare and AWS architecture audits, implementation sprints and fractional backend support."
         path="/pricing"
+        breadcrumbs={[{ name: 'Home', path: '/' }, { name: 'Pricing', path: '/pricing' }]}
+        structuredData={[offers, {
+          '@type': 'FAQPage',
+          '@id': `${SITE_URL}/pricing#faq`,
+          mainEntity: faqs.map((faq) => ({ '@type': 'Question', name: faq.question, acceptedAnswer: { '@type': 'Answer', text: plainText(faq.answer) } })),
+        }]}
       />
 
-      <section className="page-hero">
-        <p className="eyebrow">Pricing</p>
-        <h1>Clear engagement models, including a 14-day MVP for $4,500.</h1>
-        <p>
-          The MVP offer has a fixed scope and fixed price. For larger or higher-risk work, I keep the model explicit:
-          audit, scoped implementation, or ongoing fractional application/backend support.
-        </p>
-      </section>
+      <PageIntro
+        title="One fixed-price build, and three ways to work together after it."
+        lede="The MVP has a fixed scope and a fixed price. Larger or riskier work gets an explicit model: an audit, a scoped sprint, or ongoing support."
+      />
 
-      <section>
-        <div className="card-grid">
-          {models.map((model) => (
-            <article className="card" key={model.title}>
-              <h2>{model.title}</h2>
-              <p>{model.summary}</p>
-              <ul className="compact-list">
-                {model.details.map((detail) => (
-                  <li key={detail}>{detail}</li>
-                ))}
-              </ul>
-            </article>
-          ))}
+      <Row id="mvp" label="14-day MVP build" note="$4,500 USD, flat">
+        <div className="stack" style={{ ['--gap' as string]: '24px' }}>
+          <p className="lede" style={{ color: 'var(--ink)' }}>One core workflow, built end to end and deployed to production in 14 days, with the code and accounts handed over.</p>
+          <dl className="terms">
+            {mvpPhases.map((phase) => (
+              <div key={phase.title} style={{ display: 'contents' }}>
+                <dt>{phase.days}</dt>
+                <dd><strong style={{ fontWeight: 500 }}>{phase.title}.</strong> {phase.summary}</dd>
+              </div>
+            ))}
+            <dt>Included</dt>
+            <dd><ul>{mvpIncludes.map((item) => <li key={item}>{item}</li>)}</ul></dd>
+          </dl>
+          <p className="meta">Not sure it fits two weeks? Read <Link className="ln" to="/blog/how-to-scope-an-mvp">how I scope an MVP</Link>.</p>
         </div>
-      </section>
+      </Row>
 
-      <section className="panel">
-        <h2>Invoicing</h2>
-        <p>
-          Remote B2B contracts can be invoiced in USD, EUR, or GBP. For fixed-scope work, milestones and acceptance
-          criteria are agreed before implementation starts.
-        </p>
-        <Link className="btn-primary" to="/contact">Discuss scope</Link>
-      </section>
+      {models.map((model, index) => (
+        <Row key={model.title} id={`model-${index}`} label={model.title} note={model.price}>
+          <div className="stack" style={{ ['--gap' as string]: '12px' }}>
+            <p style={{ fontSize: 17, lineHeight: '28px' }}>{model.summary}</p>
+            <ul className="meta stack" style={{ ['--gap' as string]: '4px', fontSize: 15 }}>
+              {model.details.map((detail) => <li key={detail}>{detail}</li>)}
+            </ul>
+          </div>
+        </Row>
+      ))}
+
+      <Row id="faq" label="Questions">
+        <FaqList items={faqs} />
+      </Row>
+
+      <ClosingCta
+        title="Bring the idea. Leave with a scope and a price."
+        lede="A 20-minute call is enough to tell whether it fits the 14-day build, or what model fits better."
+        placement="pricing-closing"
+      />
     </>
   );
 }

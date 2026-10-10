@@ -1,0 +1,253 @@
+/* Site layout layer. Colour, type, radii and every control come from Rivet
+   (rivet.css: .t-light / .t-dark tokens, .rv-btn, .rv-badge, .rv-table,
+   .rv-tabs, .rv-seg, .rv-field). This file only lays them out. One typeface
+   (Geist); ember is reserved for links, focus, selection and launch day. */
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body { margin: 0; min-height: 100vh; background: var(--canvas); color: var(--ink); font-family: var(--f-text); font-size: 16px; line-height: 26px; letter-spacing: -.006em; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+h1, h2, h3, h4, p, ul, ol, dl, dd, figure, blockquote, pre { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+a { color: inherit; text-decoration: none; }
+a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--ember); outline-offset: 2px; border-radius: 4px; }
+::selection { background: var(--ember-subtle); color: var(--ink); }
+img, svg { display: block; max-width: 100%; }
+code { font-family: var(--f-mono); font-size: .88em; letter-spacing: 0; }
+
+.rv-btn { --h: 44px; --px: 18px; --r: 12px; font-size: 15px; }
+.rv-btn--sm { --h: 36px; --px: 14px; --r: 10px; font-size: 14px; }
+
+.skip-link { position: absolute; left: 16px; top: -100px; z-index: 50; padding: 10px 14px; border-radius: 10px; background: var(--primary); color: var(--primary-ink); font-weight: 500; }
+.skip-link:focus { top: 16px; }
+
+.wrap { width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 var(--gut, 40px); }
+
+/* Inline links: underlined, ember on hover */
+.ln { text-decoration: underline; text-decoration-color: var(--line-2); text-decoration-thickness: 1px; text-underline-offset: 4px; transition: text-decoration-color var(--d-fast) var(--e-out), color var(--d-fast) var(--e-out); }
+.ln:hover { color: var(--ember); text-decoration-color: currentColor; }
+
+/* Header */
+.top { display: flex; align-items: center; gap: 8px 24px; min-height: 76px; flex-wrap: wrap; }
+.top .name { font-weight: 600; font-size: 16px; margin-right: auto; padding: 10px 0; }
+.top nav ul { display: flex; gap: 4px; flex-wrap: wrap; }
+.top nav a { display: inline-flex; align-items: center; height: 44px; padding: 0 10px; color: var(--ink-2); font-size: 15px; border-radius: 8px; }
+.top nav a:hover { color: var(--ink); }
+.top nav a[aria-current="page"] { color: var(--ink); text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 1px; }
+.top-actions { display: flex; align-items: center; gap: 8px; }
+
+/* Dark theme: true black. Rivet's dark stage is warm graphite; the site
+   overrides only the surface and ink tokens and keeps ember as the accent. */
+.t-dark {
+  --canvas: #000000; --sunken: #0a0a0a; --raised: #161616; --raised-h: #1d1d1d; --raised-p: #121212; --field: #0a0a0a;
+  --float: rgba(16, 16, 16, .88); --float-h: rgba(255, 255, 255, .06);
+  --ink: #f2f2f2; --ink-2: #a6a6a6; --ink-3: #8c8c8c; --ink-dis: #555555;
+  --line: #1f1f1f; --line-2: #2d2d2d; --line-strong: #5e5e5e; --hover: #141414; --press: #1b1b1b;
+  --primary: #f2f2f2; --primary-h: #ffffff; --primary-p: #d6d6d6; --primary-ink: #000000;
+  --ember-subtle: #221309;
+  --ring-raised: 0 0 0 1px var(--line-2), inset 0 1px 0 rgba(255, 255, 255, .06);
+  --plate: 0 0 0 1px rgba(255, 255, 255, .09), 0 1px 2px rgba(0, 0, 0, .8), inset 0 1px 0 rgba(255, 255, 255, .07);
+}
+
+/* Theme switch: a Rivet switch with the sun or moon riding on the thumb.
+   Thumb position follows the theme class, so SSR and the client agree. */
+.theme-switch { all: unset; box-sizing: border-box; display: inline-grid; place-items: center; width: 52px; height: 44px; cursor: pointer; border-radius: 12px; }
+.theme-switch:focus-visible { outline: 2px solid var(--ember); outline-offset: 0; }
+.theme-switch .rv-switch { width: 44px; height: 26px; border-radius: 13px; margin: 0; background: var(--line-2); }
+.theme-switch .rv-switch i { width: 22px; height: 22px; border-radius: 11px; display: grid; place-items: center; color: var(--ink-2); }
+.theme-switch svg { position: absolute; width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; transition: opacity var(--d-normal) var(--e-out), transform 260ms var(--e-settle); }
+.theme-switch .moon { opacity: 0; transform: rotate(-40deg) scale(.6); }
+.t-dark .theme-switch .rv-switch { background: #2d2d2d; }
+.t-dark .theme-switch .rv-switch i { transform: translateX(18px); background: #000000; color: var(--ink); box-shadow: 0 1px 2px rgba(0, 0, 0, .6), 0 0 0 .5px rgba(255, 255, 255, .14); }
+.t-dark .theme-switch .sun { opacity: 0; transform: rotate(40deg) scale(.6); }
+.t-dark .theme-switch .moon { opacity: 1; transform: none; }
+.theme-switch:active .rv-switch i { width: 26px; }
+.t-dark .theme-switch:active .rv-switch i { transform: translateX(14px); }
+
+/* One theme change = Rivet's switch-thumb motion (260ms): the thumb travels on
+   the settle curve, every colour fades on ease-out over the same 260ms. */
+.theme-motion, .theme-motion *, .theme-motion *::before, .theme-motion *::after {
+  transition: background-color 260ms var(--e-out), color 260ms var(--e-out), border-color 260ms var(--e-out),
+    box-shadow 260ms var(--e-out), fill 260ms var(--e-out), stroke 260ms var(--e-out), text-decoration-color 260ms var(--e-out) !important;
+}
+.theme-motion .theme-switch .rv-switch i { transition: transform 260ms var(--e-settle), width 160ms var(--e-out), background-color 260ms var(--e-out), color 260ms var(--e-out) !important; }
+.theme-motion .theme-switch svg { transition: opacity var(--d-normal) var(--e-out), transform 260ms var(--e-settle) !important; }
+
+/* Rows: a narrow label column and the content, like a set document */
+.row { display: grid; grid-template-columns: var(--label, 200px) minmax(0, 1fr); gap: 16px 48px; padding: 64px 0; border-top: 1px solid var(--line); }
+.row > h2, .row-label { font-size: 15px; line-height: 26px; font-weight: 500; color: var(--ink-2); letter-spacing: -.004em; }
+.row > h2 small, .row-label small { display: block; font-size: 13px; line-height: 20px; font-weight: 400; color: var(--ink-3); margin-top: 2px; }
+
+/* Type scale (Rivet public-site styles) */
+.statement { font-size: clamp(30px, 3.5vw, 46px); line-height: 1.16; letter-spacing: -.026em; font-weight: 500; max-width: 25ch; text-wrap: balance; }
+.statement .dim { color: var(--ink-2); }
+.h-page { font-size: clamp(32px, 3.4vw, 48px); line-height: 1.1; letter-spacing: -.026em; font-weight: 500; max-width: 24ch; text-wrap: balance; }
+.h-chapter { font-size: clamp(24px, 2.4vw, 32px); line-height: 1.2; letter-spacing: -.02em; font-weight: 500; text-wrap: balance; }
+.h-item { font-size: 18px; line-height: 26px; font-weight: 500; letter-spacing: -.012em; }
+.lede { font-size: 18px; line-height: 29px; color: var(--ink-2); max-width: 60ch; }
+.meta { font-size: 14px; line-height: 22px; color: var(--ink-2); }
+.num { font-family: var(--f-mono); font-size: 13px; letter-spacing: 0; font-variant-numeric: tabular-nums; }
+.btns { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.intro { padding: 88px 0 56px; display: flex; flex-direction: column; gap: 20px; }
+.intro--home { padding: 104px 0 96px; gap: 36px; }
+.stack { display: flex; flex-direction: column; gap: var(--gap, 16px); }
+
+/* The fortnight: 14 day columns, phases spanning their real length */
+.fortnight { display: grid; grid-template-columns: repeat(14, minmax(0, 1fr)); column-gap: 4px; }
+.fortnight .day { padding: 0 0 10px; color: var(--ink-3); border-bottom: 1px solid var(--line-2); }
+.fortnight .day.launch { color: var(--ember); font-weight: 500; }
+.phase { padding: 16px 16px 0 0; border-top: 2px solid var(--ink); margin-top: -1px; display: flex; flex-direction: column; gap: 6px; }
+.phase .meta { font-size: 14px; line-height: 21px; }
+.phase .when { font-family: var(--f-mono); font-size: 12px; line-height: 18px; color: var(--ink-3); letter-spacing: 0; }
+.p1 { grid-column: 1 / span 2; } .p2 { grid-column: 3 / span 3; } .p3 { grid-column: 6 / span 6; } .p4 { grid-column: 12 / span 3; border-top-color: var(--ember); }
+
+/* Definition terms */
+.terms { display: grid; grid-template-columns: var(--term, 140px) minmax(0, 1fr); }
+.terms dt, .terms dd { padding: 14px 0; border-top: 1px solid var(--line); }
+.terms dt { color: var(--ink-2); font-size: 15px; padding-right: 16px; }
+.terms dd ul li + li { margin-top: 2px; }
+
+/* Tables (rv-table) wrap text; the work table stacks on phones */
+.table-scroll { overflow-x: auto; }
+.rv-table { font-size: 15px; line-height: 23px; }
+.rv-table th { background: transparent; font-size: 13px; font-weight: 500; padding: 0 16px 12px 0; white-space: nowrap; }
+.rv-table td { white-space: normal; vertical-align: top; padding: 16px 16px 16px 0; }
+.rv-table td:first-child { font-weight: 500; }
+.rv-table td.quiet { color: var(--ink-2); font-size: 14px; }
+
+/* Quotes */
+.quotes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px 56px; }
+.quotes blockquote { font-size: 19px; line-height: 30px; letter-spacing: -.012em; text-indent: -.42em; }
+.quotes figcaption { margin-top: 10px; font-size: 14px; line-height: 20px; color: var(--ink-2); }
+
+/* Post lists */
+.posts li > a { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 4px 24px; padding: 14px 0; border-top: 1px solid var(--line); align-items: baseline; }
+.posts li:last-child > a { border-bottom: 1px solid var(--line); }
+.posts li > a:hover .t { color: var(--ember); text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+.posts .d { color: var(--ink-3); }
+.posts .t { font-size: 16px; line-height: 25px; }
+.posts--rich .t { font-size: 18px; line-height: 28px; font-weight: 500; }
+.posts .x { grid-column: 2; font-size: 15px; line-height: 24px; color: var(--ink-2); }
+
+/* FAQ — native disclosure, so answers are in the HTML for crawlers and work without JS */
+.faq details { border-top: 1px solid var(--line); }
+.faq details:last-child { border-bottom: 1px solid var(--line); }
+.faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; min-height: 56px; padding: 14px 0; font-size: 17px; line-height: 26px; font-weight: 500; letter-spacing: -.01em; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary .ic { color: var(--ink-3); flex: none; transition: transform var(--d-normal) var(--e-out); }
+.faq details[open] summary .ic { transform: rotate(45deg); }
+.faq details > div { padding: 0 48px 20px 0; color: var(--ink-2); max-width: 66ch; }
+.faq details > div p + p { margin-top: 12px; }
+
+/* Closing CTA */
+.closing { padding: 96px 0 88px; border-top: 1px solid var(--line); }
+.closing--compact { padding: 72px 0; }
+
+/* Footer */
+.foot { display: flex; justify-content: space-between; align-items: center; gap: 12px 24px; flex-wrap: wrap; padding: 24px 0 40px; border-top: 1px solid var(--line); font-size: 14px; color: var(--ink-2); }
+.foot ul { display: flex; gap: 4px 18px; flex-wrap: wrap; }
+.foot a, .foot button { min-height: 32px; display: inline-flex; align-items: center; }
+.foot a:hover { color: var(--ink); }
+.linkbtn { all: unset; cursor: pointer; color: var(--ink-2); }
+.linkbtn:hover { color: var(--ink); }
+.linkbtn:focus-visible { outline: 2px solid var(--ember); outline-offset: 2px; }
+
+/* Breadcrumbs */
+.crumb ol { display: flex; flex-wrap: wrap; gap: 4px 8px; font-size: 14px; color: var(--ink-2); }
+.crumb li + li::before { content: "/"; margin-right: 8px; color: var(--ink-3); }
+
+/* Case study & article */
+.facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0 32px; margin-top: 20px; }
+.facts div { padding-top: 12px; border-top: 1px solid var(--line-2); display: flex; flex-direction: column; gap: 4px; }
+.facts dt { font-size: 13px; color: var(--ink-3); }
+.facts dd { font-size: 15px; line-height: 23px; }
+.toc { align-self: start; position: sticky; top: 24px; }
+.toc p { font-size: 13px; color: var(--ink-3); margin-bottom: 6px; }
+.toc a { display: block; padding: 6px 0; font-size: 14px; line-height: 20px; color: var(--ink-2); }
+.toc a:hover { color: var(--ink); }
+
+.prose { font-size: 18px; line-height: 30px; max-width: 68ch; min-width: 0; }
+.prose > * + * { margin-top: 20px; }
+.prose h2 { font-size: 26px; line-height: 34px; font-weight: 500; letter-spacing: -.02em; margin-top: 56px; scroll-margin-top: 24px; }
+.prose h2:first-child { margin-top: 0; }
+.prose h3 { font-size: 20px; line-height: 28px; font-weight: 500; letter-spacing: -.014em; margin-top: 36px; }
+.prose h2 + *, .prose h3 + * { margin-top: 12px; }
+.prose ul li, .prose ol li { position: relative; padding-left: 26px; }
+.prose ul li + li, .prose ol li + li { margin-top: 8px; }
+.prose ul li::before { content: ""; position: absolute; left: 6px; top: 14px; width: 7px; height: 1.5px; background: var(--ink-2); }
+.prose ol { counter-reset: item; }
+.prose ol li { counter-increment: item; }
+.prose ol li::before { content: counter(item) "."; position: absolute; left: 0; font-family: var(--f-mono); font-size: 14px; color: var(--ink-3); }
+.prose :not(pre) > code { padding: 2px 5px; border-radius: 5px; background: var(--sunken); box-shadow: inset 0 0 0 1px var(--line); }
+.prose strong { font-weight: 600; }
+.prose a { text-decoration: underline; text-decoration-color: var(--line-strong); text-underline-offset: 4px; text-decoration-thickness: 1px; }
+.prose a:hover { color: var(--ember); text-decoration-color: currentColor; }
+.prose .rv-table { font-size: 15px; }
+.prose figure figcaption { margin-top: 8px; font-size: 14px; line-height: 20px; color: var(--ink-3); }
+.code { position: relative; border-radius: 14px; background: var(--sunken); box-shadow: inset 0 0 0 1px var(--line); overflow: hidden; }
+.code-h { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 8px 8px 8px 16px; box-shadow: inset 0 -1px 0 var(--line); font: 400 12px/18px var(--f-mono); color: var(--ink-3); }
+.code pre { padding: 16px; overflow-x: auto; font: 400 13.5px/22px var(--f-mono); letter-spacing: 0; color: var(--ink); tab-size: 2; }
+.note { padding: 16px 18px; border-radius: 12px; background: var(--sunken); box-shadow: inset 0 0 0 1px var(--line); font-size: 16px; line-height: 26px; }
+.note strong { display: block; margin-bottom: 4px; font-size: 14px; }
+.takeaways { padding: 20px 22px; border-radius: 14px; box-shadow: inset 0 0 0 1px var(--line-2); }
+.takeaways h2 { font-size: 15px; line-height: 22px; margin: 0 0 8px; color: var(--ink-2); letter-spacing: -.004em; }
+.takeaways ul li { font-size: 16px; line-height: 26px; }
+.versus { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 32px; }
+.versus div { padding: 14px 0; border-top: 1px solid var(--line); font-size: 16px; line-height: 25px; }
+.versus .k { font-size: 13px; color: var(--ink-3); display: block; margin-bottom: 4px; }
+
+/* Work index */
+.rv-tabs { overflow-x: auto; scrollbar-width: none; }
+.rv-tab { height: 44px; font-size: 15px; }
+.rv-tab[aria-selected="true"] { box-shadow: inset 0 -2px 0 var(--ember); }
+.project { display: grid; grid-template-columns: var(--label, 200px) minmax(0, 1fr); gap: 12px 48px; padding: 40px 0; border-top: 1px solid var(--line); }
+.project:first-child { border-top: 0; }
+.project .who { display: flex; flex-direction: column; gap: 4px; }
+.project .who b { font-weight: 500; font-size: 16px; }
+.project .body { display: flex; flex-direction: column; gap: 12px; max-width: 70ch; }
+
+/* Segmented filter + forms */
+.rv-seg-item { height: 38px; font-size: 14px; }
+.form { display: flex; flex-direction: column; gap: 20px; max-width: 640px; }
+.form-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.rv-input { height: 44px; }
+.rv-input--area { height: auto; min-height: 128px; }
+
+/* Consent banner (a Rivet floating surface) */
+.consent { position: fixed; right: 16px; bottom: 16px; z-index: 40; width: min(420px, calc(100% - 32px)); padding: 18px; border-radius: 16px; background: var(--float); -webkit-backdrop-filter: blur(20px) saturate(1.4); backdrop-filter: blur(20px) saturate(1.4); box-shadow: var(--sh-float); display: flex; flex-direction: column; gap: 12px; }
+.consent h2 { font-size: 15px; line-height: 22px; font-weight: 600; }
+.consent p { font-size: 14px; line-height: 21px; color: var(--ink-2); }
+
+@media (max-width: 880px) {
+  :root { --gut: 20px; }
+  .row { grid-template-columns: minmax(0, 1fr); padding: 48px 0; gap: 20px; }
+  .project { grid-template-columns: minmax(0, 1fr); padding: 28px 0; }
+  .quotes { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 24px; }
+  .versus, .form-2 { grid-template-columns: minmax(0, 1fr); }
+  .closing { padding: 64px 0; }
+  .intro { padding: 56px 0 40px; }
+  .top { padding-top: 6px; }
+  .top-actions { order: 2; }
+  .top nav { order: 3; width: calc(100% + 20px); margin: 0 -10px; overflow-x: auto; scrollbar-width: none; }
+  .top nav ul { flex-wrap: nowrap; }
+  .intro--home { padding: 64px 0 56px; gap: 28px; }
+  .toc { position: static; }
+  .fortnight { grid-template-columns: minmax(0, 1fr); }
+  .fortnight .day { display: none; }
+  .phase, .p1, .p2, .p3, .p4 { grid-column: 1; padding: 14px 0 18px; margin-top: 0; }
+  .stack-table thead { display: none; }
+  .stack-table, .stack-table tbody, .stack-table tr, .stack-table td { display: block; width: 100%; }
+  .stack-table tr { padding: 16px 0; box-shadow: inset 0 -1px 0 var(--line); }
+  .stack-table td { padding: 2px 0; box-shadow: none; }
+  .prose { font-size: 17px; line-height: 28px; }
+  .prose h2 { font-size: 23px; line-height: 30px; margin-top: 44px; }
+}
+@media (max-width: 520px) {
+  .terms { grid-template-columns: minmax(0, 1fr); }
+  .terms dd { border-top: 0; padding-top: 0; }
+  .posts li > a { grid-template-columns: minmax(0, 1fr); }
+  .posts .x { grid-column: 1; }
+  .btns .rv-btn { flex: 1 1 100%; }
+  .top .book { display: none; }
+  .faq details > div { padding-right: 0; }
+}

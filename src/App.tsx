@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Link, Route, Routes, useLocation } from 'react-router-dom';
-import './App.css';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import AboutPage from './components/AboutPage';
 import BackendAnswersPage from './components/BackendAnswersPage';
 import BlogIndexPage from './components/BlogIndexPage';
@@ -12,13 +11,14 @@ import DevelopersPage from './components/DevelopersPage';
 import DynamicServicePage from './components/DynamicServicePage';
 import HiringLandingPage from './components/HiringLandingPage';
 import HomePage from './components/HomePage';
+import NotFoundPage from './components/NotFoundPage';
 import PricingPage from './components/PricingPage';
 import PrivacyPage from './components/PrivacyPage';
 import ReviewsPage from './components/ReviewsPage';
 import ServicesPage from './components/ServicesPage';
-import ThemeToggle from './components/ThemeToggle';
 import WorkPage from './components/WorkPage';
-import { COPYRIGHT_YEAR, OFFER, POSITIONING, UPWORK_URL, primaryLandingPages } from './data/site';
+import { SiteFooter, SiteHeader } from './components/layout';
+import { primaryLandingPages } from './data/site';
 import {
   ANALYTICS_CONSENT_KEY,
   clearAnalyticsCookies,
@@ -29,30 +29,10 @@ import {
   updateAnalyticsConsent,
 } from './utils/analytics';
 
-const navItems = [
-  { href: '/#services', label: 'Services' },
-  { href: '/#work', label: 'Work' },
-  { href: '/#writing', label: 'Writing' },
-  { href: '/#contact', label: 'Hire Me' },
-];
-
 function App() {
   const location = useLocation();
-  const [theme, setTheme] = useState<'light' | 'dark'>('dark');
-  const [analyticsConsent, setAnalyticsConsent] = useState<AnalyticsConsent | null>(null);
+  const [analyticsConsent, setAnalyticsConsent] = useState<AnalyticsConsent | null | undefined>(undefined);
   const lastTrackedRoute = useRef(`${location.pathname}${location.search}`);
-
-  useEffect(() => {
-    const savedTheme = window.localStorage.getItem('theme');
-    const nextTheme = savedTheme === 'dark' || savedTheme === 'light' ? savedTheme : 'dark';
-
-    setTheme(nextTheme);
-  }, []);
-
-  useEffect(() => {
-    document.documentElement.dataset.theme = theme;
-    window.localStorage.setItem('theme', theme);
-  }, [theme]);
 
   useEffect(() => {
     const savedConsent = getSavedAnalyticsConsent();
@@ -77,6 +57,16 @@ function App() {
     trackPageView(location.pathname, location.search);
     lastTrackedRoute.current = route;
   }, [analyticsConsent, location.pathname, location.search]);
+
+  // Client-side navigation keeps the scroll position by default: go to the
+  // linked anchor if there is one, otherwise to the top of the new page.
+  useEffect(() => {
+    if (location.hash) {
+      document.getElementById(decodeURIComponent(location.hash.slice(1)))?.scrollIntoView();
+      return;
+    }
+    window.scrollTo(0, 0);
+  }, [location.pathname, location.hash]);
 
   useEffect(() => {
     const handleDocumentClick = (event: MouseEvent) => {
@@ -133,33 +123,10 @@ function App() {
 
   return (
     <>
-      <a className="skip-link" href="#main-content">
-        Skip to content
-      </a>
-      <div className="page-wrapper">
-        <header className="site-header">
-          <div className="container header-container">
-            <div className="header-brand">
-              <Link to="/" className="brand-name">
-                Ashish Sharma
-              </Link>
-              <p>{POSITIONING}</p>
-            </div>
-            <nav className="header-nav" aria-label="Primary navigation">
-              {navItems.map((item) => (
-                <a key={item.href} href={item.href} className="nav-link">
-                  {item.label}
-                </a>
-              ))}
-            </nav>
-            <ThemeToggle
-              theme={theme}
-              onToggle={() => setTheme((currentTheme) => (currentTheme === 'light' ? 'dark' : 'light'))}
-            />
-          </div>
-        </header>
-
-        <main id="main-content" className="container">
+      <a className="skip-link" href="#main-content">Skip to content</a>
+      <div className="wrap">
+        <SiteHeader />
+        <main id="main-content">
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/en-us" element={<HomePage />} />
@@ -180,76 +147,12 @@ function App() {
             {primaryLandingPages.map((page) => (
               <Route key={page.slug} path={`/${page.slug}`} element={<HiringLandingPage page={page} />} />
             ))}
-            <Route
-              path="*"
-              element={(
-                <section className="page-hero">
-                  <p className="eyebrow">404</p>
-                  <h1>Page not found.</h1>
-                  <p>The page you requested does not exist or may have moved.</p>
-                  <Link className="btn-primary" to="/">Return home</Link>
-                </section>
-              )}
-            />
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </main>
-
-        <footer className="site-footer">
-          <div className="container footer-grid">
-            <div>
-              <h2>Ashish Sharma</h2>
-              <p>{OFFER}</p>
-              <p className="small-text">Available for remote US, EU, and UK contracts.</p>
-              <button type="button" className="privacy-settings" onClick={reopenConsentChoice}>
-                Cookie settings
-              </button>
-            </div>
-            <div>
-              <h2>Contact</h2>
-              <ul className="link-list">
-                <li>
-                  <Link to="/contact">Start a project</Link>
-                </li>
-                <li>
-                  <Link to="/developers">Developer portal</Link>
-                </li>
-                <li>
-                  <Link to="/privacy">Privacy</Link>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h2>Profiles</h2>
-              <ul className="link-list">
-                <li>
-                  <a href="https://www.linkedin.com/in/sarmaasis" target="_blank" rel="noopener noreferrer">
-                    LinkedIn
-                  </a>
-                </li>
-                <li>
-                  <a href="https://github.com/sarmaasis" target="_blank" rel="noopener noreferrer">
-                    GitHub
-                  </a>
-                </li>
-                <li>
-                  <a href="https://x.com/sarmaasis" target="_blank" rel="noopener noreferrer">
-                    X
-                  </a>
-                </li>
-                <li>
-                  <a href={UPWORK_URL} target="_blank" rel="noopener noreferrer">
-                    Upwork
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className="container footer-bottom">
-            <p>&copy; {COPYRIGHT_YEAR} Ashish Sharma. All rights reserved.</p>
-          </div>
-        </footer>
+        <SiteFooter onCookieSettings={reopenConsentChoice} />
       </div>
-      <ConsentBanner consent={analyticsConsent} onConsentChange={handleConsentChange} />
+      {analyticsConsent === null ? <ConsentBanner onConsentChange={handleConsentChange} /> : null}
     </>
   );
 }

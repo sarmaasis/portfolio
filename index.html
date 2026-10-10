@@ -1,7 +1,13 @@
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#fcfaf7" />
+  <!-- Same no-flash theme script as src/server.tsx -->
+  <script>(function(){var d=document.documentElement,t;try{t=localStorage.getItem('theme')}catch(e){}if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}d.classList.add('t-'+t);d.dataset.theme=t;var m=document.querySelector('meta[name="theme-color"]');if(m)m.content=t==='dark'?'#000000':'#fcfaf7'})();</script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-E2R2ZM1SDT"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -16,17 +22,18 @@
     gtag('js', new Date());
     gtag('config', 'G-E2R2ZM1SDT');
   </script>
-  <meta charset="UTF-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" />
   <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
   <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description"
-    content="Ashish Sharma is a full-stack backend developer for Cloudflare Workers, AWS, Next.js, Node.js/TypeScript, Python APIs, backend architecture, search migration, and cloud cost optimization." />
+    content="Full-stack, backend-first engineer. Focused web MVPs built in 14 days for a flat $4,500, on Cloudflare Workers, AWS, Next.js, TypeScript and Python." />
   <link rel="llms-txt" href="/llms.txt" />
   <link rel="alternate" type="text/plain" href="/llm.txt" />
-  <title>Ashish Sharma - Full-Stack Backend Developer for Cloudflare and AWS</title>
+  <title>Ashish Sharma — 14-Day MVP Builds on Cloudflare and AWS</title>
 </head>
 
 <body>

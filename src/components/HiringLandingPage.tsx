@@ -1,141 +1,85 @@
 import { Link } from 'react-router-dom';
 import { SEO } from './SEO';
+import { Breadcrumbs, ClosingCta, FaqList, PageIntro, Row } from './layout';
 import { SITE_URL, landingPageDetails, type landingPages } from '../data/site';
 
 type LandingPage = (typeof landingPages)[number];
 
-interface HiringLandingPageProps {
-  page: LandingPage;
+function List({ items }: { items: string[] }) {
+  return (
+    <ul className="prose" style={{ fontSize: 16, lineHeight: '26px' }}>
+      {items.map((item) => <li key={item}>{item}</li>)}
+    </ul>
+  );
 }
 
-export default function HiringLandingPage({ page }: HiringLandingPageProps) {
+export default function HiringLandingPage({ page }: { page: LandingPage }) {
   const path = `/${page.slug}`;
   const details = landingPageDetails[page.slug];
   const faqs = details ? [...page.faqs, ...details.expandedFaqs] : page.faqs;
-  const faqSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: faqs.map((faq) => ({
-      '@type': 'Question',
-      name: faq.question,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: faq.answer,
-      },
-    })),
-  };
-  const serviceSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Service',
-    name: page.h1,
-    description: page.description,
-    provider: {
-      '@type': 'Person',
-      name: 'Ashish Sharma',
-      url: SITE_URL,
-    },
-    areaServed: ['United States', 'European Union', 'United Kingdom', 'Worldwide'],
-    serviceType: page.title.replace(' - Ashish Sharma', ''),
-  };
+  const name = page.title.replace(' - Ashish Sharma', '');
+  const crumbs = [{ name: 'Home', path: '/' }, { name: 'Services', path: '/services' }, { name, path }];
 
   return (
     <>
       <SEO
-        title={page.title}
+        title={page.title.replace(' - ', ' — ')}
         description={page.description}
         path={path}
-        structuredData={[serviceSchema, faqSchema]}
+        breadcrumbs={crumbs}
+        structuredData={[
+          {
+            '@type': 'Service',
+            '@id': `${SITE_URL}${path}#service`,
+            name,
+            description: page.description,
+            provider: { '@id': `${SITE_URL}/#person` },
+            areaServed: ['United States', 'European Union', 'United Kingdom', 'Worldwide'],
+          },
+          {
+            '@type': 'FAQPage',
+            '@id': `${SITE_URL}${path}#faq`,
+            mainEntity: faqs.map((faq) => ({ '@type': 'Question', name: faq.question, acceptedAnswer: { '@type': 'Answer', text: faq.answer } })),
+          },
+        ]}
       />
 
-      <article>
-        <section className="page-hero">
-          <p className="eyebrow">Hiring Guide</p>
-          <h1>{page.h1}</h1>
-          <p className="answer-capsule">{page.capsule}</p>
-        </section>
+      <PageIntro title={page.h1} lede={page.capsule}>
+        <Breadcrumbs items={crumbs.slice(0, 2)} />
+      </PageIntro>
 
-        <section className="prose">
-          <h2>Who this is for</h2>
-          <p>{page.intent}</p>
-
-          <h2>Best fit projects</h2>
-          <ul>
-            {page.bestFor.map((item) => (
-              <li key={item}>{item}</li>
+      <Row id="for" label="Who this is for">
+        <p style={{ fontSize: 17, lineHeight: '28px', maxWidth: '66ch' }}>{page.intent}</p>
+      </Row>
+      <Row id="fit" label="Best-fit projects"><List items={page.bestFor} /></Row>
+      <Row id="proof" label="Relevant proof">
+        <div className="stack">
+          <List items={page.proof} />
+          <p className="meta">
+            Read more:{' '}
+            {page.related.map((url, index) => (
+              <span key={url}>{index ? ', ' : ''}<Link className="ln" to={url}>{url}</Link></span>
             ))}
-          </ul>
-
-          <h2>Relevant proof</h2>
-          <ul>
-            {page.proof.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-
-          <h2>How I work</h2>
-          <ul>
-            {page.howIWork.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-
-          {details ? (
-            <>
-              <h2>Problems I Usually Solve</h2>
-              <ul>
-                {details.problems.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-
-              <h2>Architecture Signals I Check</h2>
-              <ul>
-                {details.architectureSignals.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-
-              <h2>What You Get</h2>
-              <ul>
-                {details.deliverables.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-
-              <h2>Typical Engagement Plan</h2>
-              <ul>
-                {details.engagementPlan.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </>
-          ) : null}
-
-          <h2>Related proof pages</h2>
-          <ul>
-            {page.related.map((url) => (
-              <li key={url}>
-                <Link to={url}>{url}</Link>
-              </li>
-            ))}
-          </ul>
-
-          <h2>Questions founders usually ask</h2>
-          {faqs.map((faq) => (
-            <div key={faq.question}>
-              <h3>{faq.question}</h3>
-              <p>{faq.answer}</p>
-            </div>
-          ))}
-
-          <h2>Next step</h2>
-          <p>
-            Send the current stack, the bottleneck, and the business outcome you want. I will reply with the
-            smallest useful next step: audit, scoped implementation, or a short technical plan.
           </p>
-          <Link className="btn-primary" to="/contact">Discuss this project</Link>
-        </section>
-      </article>
+        </div>
+      </Row>
+      <Row id="how" label="How I work"><List items={page.howIWork} /></Row>
+      {details ? (
+        <>
+          <Row id="problems" label="Problems I usually solve"><List items={details.problems} /></Row>
+          <Row id="signals" label="What I check"><List items={details.architectureSignals} /></Row>
+          <Row id="deliverables" label="What you get"><List items={details.deliverables} /></Row>
+          <Row id="plan" label="Typical engagement"><List items={details.engagementPlan} /></Row>
+        </>
+      ) : null}
+      <Row id="faq" label="Questions"><FaqList items={faqs} /></Row>
+
+      <ClosingCta
+        compact
+        title="Discuss this project"
+        lede="Send the current stack, the bottleneck and the outcome you want. I'll reply with the smallest useful next step."
+        placement={`landing-${page.slug}`}
+      />
     </>
   );
 }

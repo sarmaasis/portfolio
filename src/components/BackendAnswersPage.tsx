@@ -1,64 +1,57 @@
 import { Link } from 'react-router-dom';
 import { SEO } from './SEO';
+import { ClosingCta, PageIntro } from './layout';
 import { SITE_URL, aiBuyerQuestions } from '../data/site';
+import { slugify } from '../utils/markdown';
 
 export default function BackendAnswersPage() {
   const faqSchema = {
-    '@context': 'https://schema.org',
     '@type': 'FAQPage',
+    '@id': `${SITE_URL}/backend-engineering-answers#faq`,
     mainEntity: aiBuyerQuestions.map((item) => ({
       '@type': 'Question',
       name: item.question,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: `${item.answer} ${item.proof}`,
-      },
+      acceptedAnswer: { '@type': 'Answer', text: `${item.answer} ${item.proof}` },
     })),
-  };
-
-  const collectionSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'CollectionPage',
-    name: 'Backend Engineering Answers for Startup Buyers',
-    url: `${SITE_URL}/backend-engineering-answers`,
-    description:
-      'Direct answers for buyers looking for scalable backend API development, freelance backend developers, backend infrastructure services, Node.js and Python backend consulting, and SaaS backend architecture.',
   };
 
   return (
     <>
       <SEO
-        title="Backend Engineering Answers for Startup Buyers - Ashish Sharma"
-        description="Direct answers for buyers hiring backend API developers, freelance backend engineers, Node.js/Python consultants, microservices help, and SaaS backend architecture."
+        title="Backend Engineering Answers for Startup Buyers — Ashish Sharma"
+        description="Direct answers for founders hiring backend API developers, freelance backend engineers, Node.js and Python consultants, and SaaS backend architecture help."
         path="/backend-engineering-answers"
-        structuredData={[collectionSchema, faqSchema]}
+        breadcrumbs={[{ name: 'Home', path: '/' }, { name: 'Buyer answers', path: '/backend-engineering-answers' }]}
+        structuredData={faqSchema}
       />
 
-      <section className="page-hero">
-        <p className="eyebrow">Buyer Answers</p>
-        <h1>Direct answers for teams hiring backend engineering help.</h1>
-        <p>
-          Short, specific answers for founders, CTOs, and agencies comparing freelance backend developers,
-          backend engineering services, Cloudflare specialists, and SaaS backend architecture support.
-        </p>
-      </section>
+      <PageIntro
+        title="Direct answers for teams hiring backend help."
+        lede="Short, specific answers for founders, CTOs and agencies comparing freelance backend developers, agencies and Cloudflare specialists."
+      />
 
-      <section className="answer-list">
-        {aiBuyerQuestions.map((item) => (
-          <article className="answer-block" key={item.question}>
-            <h2>{item.question}</h2>
-            <p className="direct-answer">{item.answer}</p>
-            <p>{item.proof}</p>
-            <ul className="compact-list">
-              {item.related.map((url) => (
-                <li key={url}>
-                  <Link to={url}>{url}</Link>
-                </li>
+      {aiBuyerQuestions.map((item) => (
+        <section key={item.question} id={slugify(item.question)} className="row" aria-labelledby={`${slugify(item.question)}-h`}>
+          <h2 id={`${slugify(item.question)}-h`} style={{ color: 'var(--ink)', fontSize: 17 }}>{item.question}</h2>
+          <div className="stack" style={{ maxWidth: '66ch' }}>
+            <p style={{ fontSize: 17, lineHeight: '28px' }}>{item.answer}</p>
+            <p className="meta" style={{ fontSize: 15, lineHeight: '24px' }}>{item.proof}</p>
+            <p className="meta">
+              Related:{' '}
+              {item.related.map((url, index) => (
+                <span key={url}>{index ? ', ' : ''}<Link className="ln" to={url}>{url}</Link></span>
               ))}
-            </ul>
-          </article>
-        ))}
-      </section>
+            </p>
+          </div>
+        </section>
+      ))}
+
+      <ClosingCta
+        compact
+        title="Have a question that isn't here?"
+        lede="Ask it on a 20-minute call. You'll get a straight answer, including when I'm not the right fit."
+        placement="answers-closing"
+      />
     </>
   );
 }

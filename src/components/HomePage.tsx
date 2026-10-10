@@ -1,239 +1,141 @@
 import { Link } from 'react-router-dom';
 import { SEO } from './SEO';
-import { articles, CAL_URL, caseStudies, SITE_URL } from '../data/site';
+import { FaqList, QuoteGrid, Row, ClosingCta } from './layout';
+import { plainText } from '../utils/markdown';
+import { CAL_URL, EMAIL, SITE_URL, caseStudies, testimonials, visibleArticles } from '../data/site';
+import { formatShortDate } from '../utils/date';
+import { mvpFaqs, mvpIncludes, mvpPhases } from '../data/offer';
 
-const mvpSteps = [
-  {
-    days: 'Days 01-02',
-    title: 'Scope the product',
-    description: 'We define the smallest version worth launching: core user flow, data model, integrations, and the production target.',
-  },
-  {
-    days: 'Days 03-05',
-    title: 'Build the foundation',
-    description: 'Application structure, Cloudflare and AWS choices, database, auth, API contracts, and a deployable baseline.',
-  },
-  {
-    days: 'Days 06-11',
-    title: 'Ship the core workflow',
-    description: 'The product path users came for, built end to end across frontend, backend, integrations, and data.',
-  },
-  {
-    days: 'Days 12-14',
-    title: 'Test, deploy, hand over',
-    description: 'Production checks, fixes, deployment, and the notes you need to keep building after launch.',
-  },
-];
+const workRows: Record<string, string> = {
+  'whydonate-api-scale': "Scaled the donation platform's API to 4M+ requests a day, through campaign traffic spikes, without a rewrite.",
+  'hudpro-real-estate-data': 'The application and backend for real estate inventory workflows, modelled around the queries the product actually runs.',
+  'aa-health-hipaa-backend': 'A HIPAA-ready backend for patient workflows, built from scratch with explicit access boundaries.',
+  'wakamiapp-backend-platform': 'The whole backend platform: core APIs, data model, authentication and production foundations.',
+};
 
-const included = [
-  'A focused web application or SaaS MVP',
-  'Next.js frontend and product flows',
-  'APIs, auth, database, and core integrations',
-  'Cloudflare-first deployment where it fits',
-  'Production deployment and source-code handover',
-];
+const workOrder = ['whydonate-api-scale', 'hudpro-real-estate-data', 'aa-health-hipaa-backend', 'wakamiapp-backend-platform'];
 
-const faqs = [
-  {
-    question: 'What fits in a 14-day MVP?',
-    answer: 'One clear product workflow. Think a customer-facing SaaS v1, internal tool, marketplace flow, or a focused existing-product feature. The scope is locked before Day 01 so the deadline is real.',
-  },
-  {
-    question: 'What happens if the idea needs more than two weeks?',
-    answer: 'I will say so in the first call. We can reduce it to a valuable launch slice or continue after the MVP as a clearly scoped follow-on build.',
-  },
-  {
-    question: 'Will I own the code and accounts?',
-    answer: 'Yes. The application code, deployment accounts, and technical handoff belong to you. The goal is a product you can operate and extend.',
-  },
-  {
-    question: 'Why Cloudflare?',
-    answer: 'Cloudflare Workers, Pages, R2, and Queues are a strong fit for many MVPs because they keep delivery fast without losing a production path. I use AWS or a hybrid setup where the workload needs it.',
-  },
-];
-
-const mvpOfferSchema = {
-  '@context': 'https://schema.org',
+const offerSchema = {
   '@type': 'Offer',
-  name: '14-Day Full-Stack MVP Build',
+  '@id': `${SITE_URL}/#mvp-offer`,
+  name: '14-day full-stack MVP build',
   description:
-    'A focused full-stack web MVP built in 14 days, including Next.js product flows, APIs, authentication, a database, core integrations, Cloudflare-first deployment where appropriate, production release, and source-code handover.',
-  url: `${SITE_URL}/`,
+    'A focused web MVP built in 14 days: one core workflow, Next.js frontend, APIs, auth, database and core integrations, deployed to production with the source code and accounts handed over.',
+  url: `${SITE_URL}/pricing`,
   price: '4500',
   priceCurrency: 'USD',
   availability: 'https://schema.org/InStock',
-  itemOffered: {
-    '@type': 'Service',
-    name: '14-Day Full-Stack MVP Build',
-    serviceType: 'Full-stack MVP development',
-    provider: {
-      '@type': 'Person',
-      name: 'Ashish Sharma',
-      url: SITE_URL,
-    },
-    areaServed: ['United States', 'European Union', 'United Kingdom', 'Worldwide'],
-  },
+  seller: { '@id': `${SITE_URL}/#person` },
+  itemOffered: { '@id': `${SITE_URL}/#service` },
 };
 
 export default function HomePage() {
-  const featuredArticles = articles.filter((article) => !article.slug.includes('rag')).slice(0, 3);
-  const featuredWork = caseStudies.filter((caseStudy) => caseStudy.company !== 'aa.health').slice(0, 3);
+  const work = workOrder
+    .map((slug) => caseStudies.find((item) => item.slug === slug))
+    .filter((item): item is (typeof caseStudies)[number] => Boolean(item));
+  const posts = visibleArticles.slice(0, 6);
 
   return (
     <>
       <SEO
-        title="14-Day Full-Stack MVP Build for $4,500 | Ashish Sharma"
-        description="Launch a focused full-stack MVP in 14 days for a flat $4,500. Cloudflare-specialized application development with Next.js, APIs, auth, databases, queues, and production deployment."
+        title="14-Day MVP Development for $4,500 — Ashish Sharma"
+        description="I build focused web MVPs in 14 days for a flat $4,500: Next.js, APIs, auth and a database on Cloudflare or AWS, with the code and accounts handed over."
         path="/"
-        structuredData={mvpOfferSchema}
+        structuredData={[
+          offerSchema,
+          {
+            '@type': 'FAQPage',
+            '@id': `${SITE_URL}/#faq`,
+            mainEntity: mvpFaqs.map((faq) => ({ '@type': 'Question', name: faq.question, acceptedAnswer: { '@type': 'Answer', text: plainText(faq.answer) } })),
+          },
+        ]}
       />
 
-      <section className="home-hero mvp-hero">
-        <p className="availability">[ Full-stack MVP delivery / Cloudflare specialized ]</p>
-        <div className="mvp-hero-grid">
-          <div>
-            <h1>A real product, ready to test in 14 days.</h1>
-            <p className="hero-statement">
-              I build focused web MVPs for founders who need a working product, not another prototype. One senior
-              engineer across the product flow, frontend, backend, cloud, and launch.
-            </p>
-            <div className="hero-actions">
-              <a
-                className="primary-link"
-                href={CAL_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                data-analytics-event="mvp_call_click"
-                data-analytics-placement="hero"
-              >
-                Book an MVP call
-              </a>
-              <a className="mvp-text-link" href="#work">See the proof</a>
-            </div>
+      <section className="intro intro--home">
+        <h1 className="statement">
+          I build focused web products in 14 days, for a flat $4,500.{' '}
+          <span className="dim">Mostly on Cloudflare, sometimes AWS, always handed over with the code and the accounts.</span>
+        </h1>
+        <div className="stack" style={{ ['--gap' as string]: '20px' }}>
+          <div className="btns">
+            <a className="rv-btn rv-btn--primary" href={CAL_URL} target="_blank" rel="noopener noreferrer" data-analytics-event="mvp_call_click" data-analytics-placement="hero">
+              Book a 20-minute call
+            </a>
+            <a className="rv-btn" href={`mailto:${EMAIL}?subject=MVP%20build`}>{EMAIL}</a>
           </div>
-          <aside className="mvp-offer" aria-label="14-day MVP offer">
-            <p>Focused MVP build</p>
-            <strong>14 days</strong>
-            <span>Flat $4,500 USD</span>
-            <small>Scope, build, deploy, and handover included.</small>
-          </aside>
-        </div>
-        <p className="mvp-hero-note">Best for a clear product idea, a launch deadline, and one core workflow worth putting in front of real users.</p>
-      </section>
-
-      <section className="home-section mvp-proof-section" aria-label="Delivery proof">
-        <div className="mvp-proof-grid">
-          <article>
-            <strong>4M+</strong>
-            <p>API requests/day scaled on Whydonate</p>
-          </article>
-          <article>
-            <strong>Cloudflare</strong>
-            <p>Workers, Pages, R2, Queues, TypeScript</p>
-          </article>
-          <article>
-            <strong>Full stack</strong>
-            <p>Next.js, APIs, auth, databases, search</p>
-          </article>
-          <article>
-            <strong>Yours</strong>
-            <p>Source code, accounts, and technical handover</p>
-          </article>
+          <p className="meta">Full-stack, backend-first engineer. Remote, working with teams in the US, EU and UK.</p>
         </div>
       </section>
 
-      <section id="services" className="home-section mvp-process-section">
-        <p className="item-label">How the 14 days work</p>
-        <h2>A short build needs a sharp scope.</h2>
-        <p className="mvp-intro">The goal is not to squeeze a large product into two weeks. It is to get the right version live quickly, with enough engineering underneath it to learn from real users.</p>
-        <div className="mvp-process-list">
-          {mvpSteps.map((step, index) => (
-            <article key={step.title}>
-              <p>{String(index + 1).padStart(2, '0')} / {step.days}</p>
-              <h3>{step.title}</h3>
-              <span>{step.description}</span>
-            </article>
-          ))}
+      <Row id="offer" label="The 14-day build" note="One workflow, live">
+        <div className="stack" style={{ ['--gap' as string]: '48px' }}>
+          <p className="lede" style={{ color: 'var(--ink)' }}>
+            The goal isn't to squeeze a big product into two weeks. It's to get the right first version in front of real users, with enough engineering underneath to keep building on.
+          </p>
+          <div className="fortnight" role="list" aria-label="The fourteen days">
+            {Array.from({ length: 14 }, (_, index) => (
+              <span key={index} className={index === 13 ? 'day num launch' : 'day num'} aria-hidden="true">{index + 1}</span>
+            ))}
+            {mvpPhases.map((phase, index) => (
+              <div key={phase.title} className={`phase p${index + 1}`} role="listitem">
+                <span className="when">{phase.days}</span>
+                <h3 className="h-item">{phase.title}</h3>
+                <p className="meta">{phase.summary}</p>
+              </div>
+            ))}
+          </div>
+          <dl className="terms">
+            <dt>Price</dt><dd>$4,500 USD, flat. Scope is agreed before day one, so the deadline is real.</dd>
+            <dt>You get</dt><dd><ul>{mvpIncludes.map((item) => <li key={item}>{item}</li>)}</ul></dd>
+            <dt>You own</dt><dd>The source code, the deployment accounts and the technical handover.</dd>
+            <dt>Good fit</dt><dd>A clear idea, a launch date, and one workflow worth putting in front of real users. <Link className="ln" to="/pricing">Pricing and other engagements</Link></dd>
+          </dl>
         </div>
-      </section>
+      </Row>
 
-      <section className="home-section mvp-includes-section">
-        <div className="mvp-includes-heading">
-          <p className="item-label">What the $4,500 includes</p>
-          <h2>Everything needed for a credible first release.</h2>
+      <Row id="work" label="Selected work" note={<Link className="ln" to="/work">All projects</Link>}>
+        <div className="table-scroll">
+          <table className="rv-table stack-table">
+            <thead><tr><th scope="col">Client</th><th scope="col">What I built</th><th scope="col">Stack</th></tr></thead>
+            <tbody>
+              {work.map((item) => (
+                <tr key={item.slug}>
+                  <td><Link className="ln" to={`/work/${item.slug}`}>{item.company}</Link></td>
+                  <td>{workRows[item.slug] ?? item.summary}</td>
+                  <td className="quiet">{item.stack.slice(0, 5).join(', ')}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
-        <ul className="mvp-includes-list">
-          {included.map((item) => (
-            <li key={item}>{item}</li>
+      </Row>
+
+      <Row id="reviews" label="What clients said" note="Via Upwork">
+        <QuoteGrid quotes={testimonials} />
+      </Row>
+
+      <Row id="writing" label="Writing" note={<Link className="ln" to="/blog">All posts</Link>}>
+        <ul className="posts">
+          {posts.map((post) => (
+            <li key={post.slug}>
+              <Link to={`/blog/${post.slug}`}>
+                <time className="d num" dateTime={post.updated ?? post.date}>{formatShortDate(post.updated ?? post.date)}</time>
+                <span className="t">{post.title}</span>
+              </Link>
+            </li>
           ))}
         </ul>
-      </section>
+      </Row>
 
-      <section id="work" className="home-section mvp-work-section">
-        <div className="section-heading-row">
-          <div>
-            <p className="item-label">Selected work</p>
-            <h2>Built for the moment the product gets real.</h2>
-          </div>
-          <Link to="/work">all work</Link>
-        </div>
-        <div className="work-feed">
-          {featuredWork.map((caseStudy) => (
-            <article className="featured-work" key={caseStudy.slug}>
-              <p className="item-label">{caseStudy.company}</p>
-              <h3><Link to={`/work/${caseStudy.slug}`}>{caseStudy.title}</Link></h3>
-              <p>{caseStudy.summary}</p>
-              <ul className="inline-list">
-                {caseStudy.metrics.slice(0, 3).map((metric) => <li key={metric}>{metric}</li>)}
-              </ul>
-            </article>
-          ))}
-        </div>
-      </section>
+      <Row id="faq" label="Questions">
+        <FaqList items={mvpFaqs} />
+      </Row>
 
-      <section className="home-section mvp-faq-section">
-        <p className="item-label">Questions, answered</p>
-        <h2>Clear scope. No surprise handoff.</h2>
-        <div className="mvp-faq-list">
-          {faqs.map((faq, index) => (
-            <article key={faq.question}>
-              <h3><span>{String(index + 1).padStart(2, '0')}</span>{faq.question}</h3>
-              <p>{faq.answer}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section id="writing" className="home-section mvp-writing-section">
-        <div className="section-heading-row">
-          <h2>Notes on building it well</h2>
-          <Link to="/blog">all posts</Link>
-        </div>
-        <div className="writing-list">
-          {featuredArticles.map((article) => (
-            <article key={article.slug}>
-              <h3><Link to={`/blog/${article.slug}`}>{article.title}</Link></h3>
-              <p>{article.capsule}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section id="contact" className="home-section contact-section mvp-contact-section">
-        <p className="item-label">Day 01 starts with a clear brief</p>
-        <h2>Bring the idea. Leave with something people can use.</h2>
-        <p>Book a short call with the product goal, key user, and launch date. I will tell you whether it fits a 14-day build before we start.</p>
-        <a
-          className="primary-link"
-          href={CAL_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          data-analytics-event="mvp_call_click"
-          data-analytics-placement="closing"
-        >
-          Book an MVP call
-        </a>
-      </section>
+      <ClosingCta
+        title="Got a product that needs to exist in two weeks?"
+        lede="Send the product goal, the key user and the launch date. I'll tell you on the call whether it fits a 14-day build, before anything starts."
+        placement="home-closing"
+      />
     </>
   );
 }

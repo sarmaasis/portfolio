@@ -13,7 +13,8 @@
     "preview": "vite preview",
     "sitemap": "npx tsx scripts/generate-sitemap.ts",
     "indexnow": "npx tsx scripts/submit-indexnow.ts",
-    "build:ssr": "npm run sitemap && vite build --outDir dist/client && vite build --ssr src/server.tsx --outDir dist/server"
+    "build:ssr": "npm run posts && npm run sitemap && vite build --outDir dist/client && vite build --ssr src/server.tsx --outDir dist/server",
+    "posts": "npx tsx scripts/build-posts.ts"
   },
   "dependencies": {
     "@cloudflare/workers-types": "^4.20250515.0",

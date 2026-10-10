@@ -1,21 +1,11 @@
 import { useEffect } from 'react';
 import { buildSEOState, setCurrentSEOState, type SEOProps } from '../utils/seo-state';
 
-function setMetaByName(name: string, content: string) {
-  let element = document.head.querySelector<HTMLMetaElement>(`meta[name="${name}"]`);
+function setMeta(attribute: 'name' | 'property', key: string, content: string) {
+  let element = document.head.querySelector<HTMLMetaElement>(`meta[${attribute}="${key}"]`);
   if (!element) {
     element = document.createElement('meta');
-    element.name = name;
-    document.head.appendChild(element);
-  }
-  element.content = content;
-}
-
-function setMetaByProperty(property: string, content: string) {
-  let element = document.head.querySelector<HTMLMetaElement>(`meta[property="${property}"]`);
-  if (!element) {
-    element = document.createElement('meta');
-    element.setAttribute('property', property);
+    element.setAttribute(attribute, key);
     document.head.appendChild(element);
   }
   element.content = content;
@@ -31,6 +21,18 @@ function setCanonical(href: string) {
   element.href = href;
 }
 
+function setJsonLd(json: string) {
+  let element = document.head.querySelector<HTMLScriptElement>('script[type="application/ld+json"]');
+  if (!element) {
+    element = document.createElement('script');
+    element.type = 'application/ld+json';
+    document.head.appendChild(element);
+  }
+  element.textContent = json;
+}
+
+/* The server renders every tag (seo-state.getSEOHeadTags); this keeps them in
+   step during client-side navigation. */
 export function SEO(props: SEOProps) {
   const state = buildSEOState(props);
 
@@ -38,22 +40,23 @@ export function SEO(props: SEOProps) {
     setCurrentSEOState(state);
   }
 
+  const json = JSON.stringify(state.graph);
+
   useEffect(() => {
     document.title = state.title;
-    setMetaByName('description', state.description);
-    setMetaByName('robots', 'index, follow');
+    setMeta('name', 'description', state.description);
+    setMeta('name', 'robots', state.robots);
     setCanonical(state.canonicalUrl);
-    setMetaByProperty('og:title', state.title);
-    setMetaByProperty('og:description', state.description);
-    setMetaByProperty('og:url', state.canonicalUrl);
-    setMetaByProperty('og:type', state.type);
-    setMetaByProperty('og:site_name', 'Ashish Sharma');
-    setMetaByProperty('og:image', 'https://sarmaasis.com/favicon-192.png');
-    setMetaByProperty('og:image:alt', 'Ashish Sharma Backend Engineering');
-    setMetaByName('twitter:card', 'summary');
-    setMetaByName('twitter:title', state.title);
-    setMetaByName('twitter:description', state.description);
-  }, [state.canonicalUrl, state.description, state.title, state.type]);
+    setMeta('property', 'og:title', state.title);
+    setMeta('property', 'og:description', state.description);
+    setMeta('property', 'og:url', state.canonicalUrl);
+    setMeta('property', 'og:type', state.type);
+    setMeta('property', 'og:image', state.image);
+    setMeta('name', 'twitter:title', state.title);
+    setMeta('name', 'twitter:description', state.description);
+    setMeta('name', 'twitter:image', state.image);
+    setJsonLd(json);
+  }, [state.canonicalUrl, state.description, state.title, state.type, state.robots, state.image, json]);
 
   return null;
 }

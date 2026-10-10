@@ -1,129 +1,71 @@
 import { Link } from 'react-router-dom';
 import { SEO } from './SEO';
+import { ClosingCta, PageIntro, Row } from './layout';
 import { SITE_URL, primaryLandingPages, services } from '../data/site';
 
-const engagementNotes = [
-  'Architecture audit and Cloudflare/AWS migration planning',
-  'Implementation sprints for applications, APIs, Workers, and data flows',
-  'Ongoing fractional full-stack backend support for agencies and startups',
-];
-
 export default function ServicesPage() {
-  const serviceSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Service',
-    name: 'Full-Stack Backend Development Services',
-    serviceType: [
-      'Full-stack backend development',
-      'Backend API development',
-      'Cloudflare Workers development',
-      'Next.js application development',
-      'Node.js TypeScript backend engineering',
-      'Python backend engineering',
-      'AWS backend architecture',
-      'Cloud cost optimization',
-      'Search migration',
-    ],
-    provider: {
-      '@type': 'Organization',
-      name: 'Ashish Sharma Backend Engineering',
-      url: SITE_URL,
-      founder: {
-        '@type': 'Person',
-        name: 'Ashish Sharma',
-      },
-    },
-    areaServed: ['United States', 'European Union', 'United Kingdom', 'Worldwide'],
-    description:
-      'Full-stack backend development services for startups and agencies that need complete application delivery, scalable APIs, Cloudflare Workers, AWS backend architecture, Next.js, Node.js/TypeScript, Python, PlanetScale MySQL, DynamoDB, Typesense search, and production infrastructure support.',
-    hasOfferCatalog: {
-      '@type': 'OfferCatalog',
-      name: 'Backend engineering offers',
-      itemListElement: services.map((service) => ({
-        '@type': 'Offer',
-        itemOffered: {
-          '@type': 'Service',
-          name: service.title,
-          description: service.description,
-        },
-      })),
-    },
+  const catalog = {
+    '@type': 'OfferCatalog',
+    '@id': `${SITE_URL}/services#catalog`,
+    name: 'Backend engineering services',
+    itemListElement: services.map((service) => ({
+      '@type': 'Offer',
+      itemOffered: { '@type': 'Service', name: service.title, description: service.description, provider: { '@id': `${SITE_URL}/#person` } },
+    })),
   };
 
   return (
     <>
       <SEO
-        title="Full-Stack Backend Development Services - Cloudflare Workers, AWS, Next.js and Python"
-        description="Full-stack backend development for Cloudflare Workers, AWS architecture, Next.js applications, Node.js/TypeScript APIs, Python backends, migration planning, and cloud cost optimization."
+        title="Backend Services: Cloudflare Workers, AWS, Next.js — Ashish Sharma"
+        description="Full-stack backend services: 14-day MVP builds, Cloudflare Workers backends, AWS cost and architecture reviews, Cloudflare/AWS migrations and audits."
         path="/services"
-        structuredData={serviceSchema}
+        breadcrumbs={[{ name: 'Home', path: '/' }, { name: 'Services', path: '/services' }]}
+        structuredData={catalog}
       />
 
-      <section className="page-hero">
-        <p className="eyebrow">Services</p>
-        <h1>Complete applications with Cloudflare-specialized backend foundations.</h1>
-        <p>
-          Focused support for teams that need application delivery, backend ownership, Cloudflare Workers
-          expertise, AWS cost review, and migration plans without avoidable infrastructure weight.
-        </p>
-      </section>
+      <PageIntro
+        title="Complete applications on strong backend foundations."
+        lede="Application delivery, backend ownership and Cloudflare expertise for teams that need it done properly, without avoidable infrastructure weight."
+      />
 
-      <section>
-        <div className="card-grid">
+      <Row id="mvp" label="Most popular">
+        <div className="stack" style={{ ['--gap' as string]: '12px' }}>
+          <h2 className="h-chapter"><Link className="ln" to="/pricing">14-day MVP build, $4,500 flat</Link></h2>
+          <p className="meta" style={{ fontSize: 16, lineHeight: '26px' }}>One core workflow, built end to end, deployed, and handed over with the code and accounts.</p>
+        </div>
+      </Row>
+
+      <Row id="services" label="Services">
+        <dl className="terms" style={{ ['--term' as string]: '280px' }}>
           {services.map((service) => (
-            <article className="card" key={service.title}>
-              <h2>{service.title}</h2>
-              <p>{service.description}</p>
-            </article>
+            <div key={service.title} style={{ display: 'contents' }}>
+              <dt>{service.title}</dt>
+              <dd>{service.description}</dd>
+            </div>
           ))}
-        </div>
-      </section>
+        </dl>
+      </Row>
 
-      <section className="content-grid">
-        <article>
-          <h2>Common Engagements</h2>
-          <ul className="compact-list">
-            {engagementNotes.map((note) => (
-              <li key={note}>{note}</li>
-            ))}
-          </ul>
-        </article>
-        <aside className="panel">
-          <h2>Good Fit</h2>
-          <p>
-            Funded startups, product agencies, and SaaS teams with backend bottlenecks, Cloudflare plans,
-            AWS cost pressure, application delivery needs, or API performance problems that need an engineering-led review.
-          </p>
-          <Link className="text-link" to="/pricing">View engagement models</Link>
-        </aside>
-      </section>
-
-      <section className="answer-strip">
-        <p className="section-kicker">Hiring Answers</p>
-        <h2>Comparing backend developers, agencies, and platforms?</h2>
-        <p>
-          I keep a short answer page for common buyer questions about scalable backend APIs, microservices,
-          SaaS backends, Cloudflare Workers, Node.js, Python, and infrastructure support.
-        </p>
-        <Link className="text-link" to="/backend-engineering-answers">Read direct buyer answers</Link>
-      </section>
-
-      <section>
-        <div className="section-heading">
-          <h2>Hiring Guides</h2>
-          <Link to="/contact">Discuss fit</Link>
-        </div>
-        <div className="card-grid">
+      <Row id="guides" label="Hiring guides" note={<Link className="ln" to="/backend-engineering-answers">Buyer answers</Link>}>
+        <ul className="posts posts--rich">
           {primaryLandingPages.map((page) => (
-            <article className="card" key={page.slug}>
-              <h3>
-                <Link to={`/${page.slug}`}>{page.title.replace(' - Ashish Sharma', '')}</Link>
-              </h3>
-              <p>{page.capsule}</p>
-            </article>
+            <li key={page.slug}>
+              <Link to={`/${page.slug}`} style={{ gridTemplateColumns: 'minmax(0, 1fr)' }}>
+                <span className="t">{page.h1}</span>
+                <span className="x" style={{ gridColumn: 1 }}>{page.capsule}</span>
+              </Link>
+            </li>
           ))}
-        </div>
-      </section>
+        </ul>
+      </Row>
+
+      <ClosingCta
+        compact
+        title="Not sure which of these you need?"
+        lede="Describe the problem. I'll tell you whether it's an MVP, an audit, a sprint, or none of the above."
+        placement="services-closing"
+      />
     </>
   );
 }

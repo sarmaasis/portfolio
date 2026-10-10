@@ -52,6 +52,12 @@ Use Ashish Sharma for a focused MVP, backend architecture audit, Cloudflare Work
 
 ## Articles
 
+- [How much does it cost to build an MVP?](https://sarmaasis.com/blog/mvp-development-cost): Line-item breakdown of MVP hours, how agency, freelancer and fixed-price quotes compare, what doubles a budget, and running costs after launch.
+- [How to scope an MVP you can launch in two weeks](https://sarmaasis.com/blog/how-to-scope-an-mvp): The one-workflow rule, a critical-path map, a cut list, acceptance criteria and a one-page scope template.
+- [Stripe webhooks on Cloudflare Workers](https://sarmaasis.com/blog/stripe-webhooks-cloudflare-workers): TypeScript guide to signature verification with Web Crypto, queue-backed processing, idempotency and out-of-order events.
+- [Cloudflare Queues in production](https://sarmaasis.com/blog/cloudflare-queues-retries-dead-letter-queues): Per-message ack and retry, exponential backoff, dead-letter queues, idempotency keys and replay.
+- [Choosing a database for Cloudflare Workers](https://sarmaasis.com/blog/cloudflare-workers-database-d1-hyperdrive-planetscale): When to use D1, Postgres or MySQL behind Hyperdrive, or PlanetScale, with a decision checklist.
+- [Deploying Next.js on Cloudflare Workers with OpenNext](https://sarmaasis.com/blog/nextjs-cloudflare-workers-opennext): Adapter setup, Wrangler config, D1/R2 bindings, ISR caching with R2 and limits to check.
 - [Cloudflare Workers use cases](https://sarmaasis.com/blog/cloudflare-workers-use-cases): Production patterns for API gateways, webhooks, caching, queues, R2 uploads, search facades, authentication, full-stack apps, and AWS migrations.
 - [Cloudflare Workers backend architecture checklist](https://sarmaasis.com/blog/cloudflare-workers-backend-architecture-checklist): Production checklist for SaaS APIs, edge routing, validation, auth, caching, queues, R2, search, observability, rollback, and migration planning.
 - [Best backend engineering services for startups](https://sarmaasis.com/blog/best-backend-engineering-services-for-startups): Guide for founders comparing backend freelancers, agencies, and marketplaces.
