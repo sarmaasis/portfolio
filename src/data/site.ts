@@ -381,10 +381,9 @@ export const testimonials = [
 const legacyArticles: Article[] = [
   {
     slug: 'cloudflare-workers-use-cases',
-    seoTitle: 'Cloudflare Workers Use Cases: 12 Production Patterns',
-    title: 'Cloudflare Workers use cases: 12 production patterns for APIs, webhooks, caching and queues',
+    title: '12 Cloudflare Workers Use Cases That Ship in Production',
     description:
-      '12 Cloudflare Workers use cases from production: API gateways, webhooks, caching, queues, R2 uploads, search and auth, plus what should stay off the edge.',
+      'APIs, webhooks, caching, gateways, queues, R2, search, and auth. Plus what should stay off the edge runtime so you do not rebuild AWS badly.',
     capsule:
       'The best Cloudflare Workers use cases are narrow, high-leverage request paths: protect an API, receive a webhook, serve a cacheable read, issue a signed upload, or move slow work to a queue. The mistake is treating Workers as a place to put every backend decision.',
     date: '2026-07-11',
@@ -465,14 +464,18 @@ const legacyArticles: Article[] = [
         body:
           'Choose the route with the clearest contract and the clearest success metric. Good first candidates are a webhook receiver that needs reliable acknowledgement, a public read endpoint with safe cache behavior, a search proxy that needs tenant controls, a signed file flow, or an API gateway that can reduce browser-to-service coupling. Define the baseline before building: current latency, error rate, origin load, request volume, cost, and failure behavior. Then include observability and rollback in the scope. The first Worker should create evidence, not create another backend mystery.',
       },
+      {
+        heading: 'From use case to scoped build',
+        body:
+          'Pick one production path, not twelve. For a ranked cut of what to ship first, use the [$5,000 architecture audit](/services/architecture-audit). For a scoped Workers build, see [hire a Cloudflare Workers developer](/hire-cloudflare-workers-developer) and [/pricing](/pricing).',
+      }
     ],
   },
   {
     slug: 'cloudflare-workers-backend-architecture-checklist',
-    seoTitle: 'Cloudflare Workers Backend Architecture Checklist for SaaS',
-    title: 'Cloudflare Workers backend architecture checklist for SaaS APIs',
+    title: 'Cloudflare Workers Architecture Checklist (SaaS APIs)',
     description:
-      'A production checklist for Cloudflare Workers SaaS backends: routing, validation, auth, caching, queues, storage, database access, observability and rollback.',
+      'Production checklist for Workers APIs: routing, queues, storage, caching, and when to stay on AWS. For founders hiring edge backend help.',
     capsule:
       'A Cloudflare Workers backend ranks in production when every edge responsibility is explicit: routing, validation, auth, caching, queues, storage, database access, observability, and rollback.',
     date: '2026-07-10',
@@ -563,14 +566,18 @@ const legacyArticles: Article[] = [
         body:
           'Before shipping a Cloudflare Workers backend, confirm the workload map, edge responsibility, route ownership, validation rules, auth model, cache keys, storage responsibilities, queue retry behavior, database boundaries, search limits, observability fields, deployment path, rollback plan, and cost model. Then document it in plain language. The best Cloudflare backend is not the one with the most products attached. It is the one where every component has a job, every failure has a place to be observed, and the next engineer can understand the system without guessing.',
       },
+      {
+        heading: 'When you want help applying the checklist',
+        body:
+          'Use this checklist as a hiring brief. If you want it applied to your system, book the [$5,000 architecture audit](/services/architecture-audit) or go straight to [hire a Cloudflare Workers developer](/hire-cloudflare-workers-developer) when the scope is already clear. Prices live on [/pricing](/pricing).',
+      }
     ],
   },
   {
     slug: 'best-backend-engineering-services-for-startups',
-    seoTitle: 'Backend Engineering Services for Startups: How to Choose',
-    title: 'Best backend engineering services for startups: what to look for before you hire',
+    title: 'Backend Engineering for Startups: How to Hire Well',
     description:
-      'How startups should choose backend engineering help: ownership, architecture judgment, production proof, and how clearly the engineer reduces backend risk.',
+      'Freelance vs agency vs platform. What solid API and infra delivery looks like before you sign. Written by a $4,500+ backend engineer.',
     capsule:
       'The best backend engineering hire is not always the biggest agency or marketplace. For startups, the right choice depends on ownership, architecture judgment, production proof, and how clearly the engineer can reduce backend risk.',
     date: '2026-07-10',
@@ -626,13 +633,18 @@ const legacyArticles: Article[] = [
         body:
           'Choose a senior freelancer when you need focused backend ownership, architecture judgment, and direct implementation. Choose an agency when you need a multi-role delivery team. Use a marketplace when you need discovery and contracting support, but still evaluate the individual engineer carefully. For startup backend work, the best choice is the one that can reduce production risk fastest while leaving a system your team can understand after launch.',
       },
+      {
+        heading: 'If you want a senior backend engineer, not a marketplace',
+        body:
+          'I take $4,500+ backend and Cloudflare Workers work as a single senior engineer. Start with [pricing](/pricing), the [$5,000 architecture audit](/services/architecture-audit), or [hire a Cloudflare Workers developer](/hire-cloudflare-workers-developer) when edge APIs are the bottleneck.',
+      }
     ],
   },
   {
     slug: 'cloudflare-workers-vs-aws-lambda-cost',
-    title: 'Cloudflare Workers vs AWS Lambda: a practical cost breakdown',
+    title: 'Workers vs Lambda Cost: When the Bill Flips',
     description:
-      'A hiring-focused guide to deciding when Cloudflare Workers can cut serverless API cost and latency compared with AWS Lambda.',
+      'CPU time vs wall-clock, real limits, and when to stay on AWS. Ends with a $5,000 review if your bill is the reason you searched.',
     capsule:
       'Cloudflare Workers often wins for latency-sensitive edge APIs; AWS Lambda still fits heavy regional compute and deep AWS integrations.',
     date: '2026-07-02',
@@ -703,13 +715,18 @@ const legacyArticles: Article[] = [
         body:
           'Choose Cloudflare Workers when the work is close to the request, benefits from global placement, and can stay small. Choose AWS Lambda when the work needs regional depth, AWS-native integrations, larger execution windows, or private infrastructure access. Choose both when the product has a global request edge but regional business logic. The best backend architecture is rarely about loyalty to one provider. It is about reducing latency, cost, and operational complexity at the same time.',
       },
+      {
+        heading: 'If you want a decision on your stack',
+        body:
+          'If Lambda cost or latency is the reason you are reading this, a fixed [$5,000 architecture audit](/services/architecture-audit) maps which paths should move to Workers and which should stay on AWS. Implementation is quoted after that, from [$4,500](/pricing). See also [hire a Cloudflare Workers developer](/hire-cloudflare-workers-developer).',
+      }
     ],
   },
   {
     slug: 'typesense-cloudflare-workers-search-migration',
-    title: 'Migrating AWS Elasticsearch to Typesense on Cloudflare Workers',
+    title: 'Elasticsearch to Typesense on Cloudflare Workers',
     description:
-      'How to evaluate a search migration from AWS Elasticsearch to Typesense with Cloudflare Workers as the API edge.',
+      'When to leave AWS Elasticsearch, how Workers sits at the API edge, and a migration path that keeps search quality intact.',
     capsule:
       'A search migration works when index shape, query paths, sync jobs, and rollback plans are designed before any production cutover.',
     date: '2026-07-02',
@@ -790,14 +807,18 @@ const legacyArticles: Article[] = [
         body:
           'A successful migration should make future changes easier. Adding a searchable field, adjusting a filter, or debugging a missing result should be understandable to a backend engineer who did not perform the migration. That is why I care about small schemas, explicit sync jobs, narrow edge APIs, and written examples. Search touches the product experience directly, so maintainability is part of search quality.',
       },
+      {
+        heading: 'Need the migration planned on your data',
+        body:
+          'Search migrations fail on relevance and rollback, not on the demo. A [$5,000 architecture audit](/services/architecture-audit) can map Elasticsearch to Typesense with Workers at the edge. Builds start from [$4,500](/pricing).',
+      }
     ],
   },
   {
     slug: 'cloudflare-workers-queues-r2-planetscale-typesense-backend',
-    seoTitle: 'Cloudflare-First Backend: Workers, Queues, R2, PlanetScale',
-    title: 'Cloudflare-first backend architecture: Workers, Queues, R2, PlanetScale and Typesense',
+    title: 'Workers, Queues, R2, PlanetScale, Typesense: One Backend',
     description:
-      'How a Cloudflare-first backend fits together: Workers for requests, Queues for slow work, R2 for files, PlanetScale for transactions, Typesense for search.',
+      'How Whydonate-scale stacks combine Workers with Queues, R2, PlanetScale, and Typesense without making the edge a second messy backend.',
     capsule:
       'A Cloudflare-first backend works when each piece has a narrow job: Workers handle request logic, Queues protect slow work, R2 stores objects, PlanetScale owns transactions, and Typesense serves search.',
     date: '2026-07-10',
@@ -858,11 +879,15 @@ const legacyArticles: Article[] = [
         body:
           'The practical rule is simple: give every platform component a job it is naturally good at. Workers handle the request edge. Queues absorb work that can happen later. R2 stores objects. PlanetScale MySQL owns transactional truth. Typesense serves search. When those responsibilities stay clear, a Cloudflare-first backend can be fast, cost-sensitive, and maintainable. When the boundaries blur, the stack may still look modern, but the product becomes harder to operate.',
       },
+      {
+        heading: 'Want this stack on your product',
+        body:
+          'This is the shape used at Whydonate scale. For a fit check on your traffic and cost, use the [$5,000 architecture audit](/services/architecture-audit) or [hire a Cloudflare Workers developer](/hire-cloudflare-workers-developer).',
+      }
     ],
   },
   {
     slug: 'rag-production-backend-checklist',
-    hidden: true,
     title: 'RAG pipeline production checklist: what breaks at scale',
     description:
       'A backend engineer checklist for making retrieval-augmented generation systems reliable beyond demo traffic.',
@@ -1054,9 +1079,9 @@ export const visibleArticles = articles.filter((article) => !article.hidden);
 export const landingPages = [
   {
     slug: 'hire-cloudflare-workers-developer',
-    title: 'Hire a Cloudflare Workers Developer - Ashish Sharma',
+    title: 'Hire a Cloudflare Workers Developer ($4,500+)',
     description:
-      'Hire Ashish Sharma for Cloudflare Workers backend development, edge APIs, reverse proxies, webhooks, auth gateways, and cost-sensitive serverless architecture.',
+      'Production Workers backends from $4,500. Or a $5,000 review in 5 days before you migrate. Hybrid AWS OK. Not CDN or $500 scripts.',
     h1: 'Hire a Cloudflare Workers developer for production backend systems.',
     capsule:
       'I build Cloudflare Workers backends for APIs, edge routing, webhooks, auth checks, search facades, and cost-sensitive serverless workloads.',
@@ -1069,8 +1094,8 @@ export const landingPages = [
       'Designing safe migration paths from regional services to edge-first architecture',
     ],
     proof: [
-      'Delivered highly technical Cloudflare Workers architecture and implementation work for client projects',
-      'Built backend systems handling 4M+ API requests/day with Cloudflare in the production stack',
+      'Whydonate: Cloudflare-first APIs at 4M+ requests/day (Workers, Pages, R2, Queues, PlanetScale, Typesense)',
+      'Client Cloudflare Workers architecture with a written design, not a demo Worker',
       'Designed search and backend API layers where Cloudflare Workers protect and simplify the request path',
     ],
     howIWork: [
@@ -1079,8 +1104,13 @@ export const landingPages = [
       'Implement validation, logging, rate limits, and testable API contracts',
       'Document deployment, failure modes, and ownership so the team can maintain it',
     ],
-    related: ['/blog/cloudflare-workers-vs-aws-lambda-cost', '/work/whydonate-api-scale'],
+    related: ['/blog/cloudflare-workers-vs-aws-lambda-cost', '/work/whydonate-api-scale', '/services/architecture-audit'],
     faqs: [
+      {
+        question: 'What is the minimum project?',
+        answer:
+          '$4,500. If the system already exists, the default entry is a $5,000 architecture review in five business days.',
+      },
       {
         question: 'When should I hire a Cloudflare Workers developer?',
         answer:
@@ -1095,19 +1125,19 @@ export const landingPages = [
   },
   {
     slug: 'cloudflare-workers-backend-freelancer',
-    title: 'Cloudflare Workers Backend Freelancer - Ashish Sharma',
+    title: 'Agency Cloudflare Workers Freelancer ($4,500+)',
     description:
-      'Freelance Cloudflare Workers backend engineering for startups and agencies that need production APIs, edge architecture, and serverless cost optimization.',
-    h1: 'Cloudflare Workers backend freelancer for startups and agencies.',
+      'Quiet Workers delivery behind your client. Docs, rollback, hybrid AWS. $4,500 minimum. Founders: use the hire page.',
+    h1: 'Cloudflare Workers freelancer for agencies and fractional teams.',
     capsule:
-      'I help teams use Cloudflare Workers as a practical backend layer for production APIs, integrations, search facades, and edge-first request handling.',
+      'I join agency delivery quietly: Workers implementation, architecture judgment, and handoff notes the client can keep.',
     intent:
-      'This page is for teams that need a freelance backend engineer who can own Cloudflare Workers architecture and implementation without over-engineering the stack.',
+      'This page is for agencies and fractional engagements that need a senior Cloudflare Workers engineer behind their client relationship, not a public staffing marketplace.',
     bestFor: [
       'Agencies needing full-stack backend delivery for client Cloudflare projects',
-      'Startups with slow API paths or rising cloud bills',
-      'Teams that need Workers, KV, R2, D1, or edge routing decisions reviewed',
-      'Founders who want implementation plus architecture judgment',
+      'Quiet subcontracting with client-ready documentation and rollback notes',
+      'Fractional Cloudflare Workers support on an existing product team',
+      'Hybrid Workers plus AWS work where the agency owns the client relationship',
     ],
     proof: [
       'Top-rated client feedback for Cloudflare Workers architecture and advanced implementation',
@@ -1136,7 +1166,7 @@ export const landingPages = [
   },
   {
     slug: 'rag-backend-engineer',
-    title: 'RAG Backend Engineer for Production AI Systems - Ashish Sharma',
+    title: 'RAG Backend Engineer for Production AI ($4,500+)',
     description:
       'Hire a backend engineer for production RAG systems, AI pipelines, retrieval, vector search, permissions, ingestion jobs, and FastAPI/OpenAI integrations.',
     h1: 'RAG backend engineer for production AI systems.',
@@ -1177,7 +1207,7 @@ export const landingPages = [
   },
   {
     slug: 'python-fastapi-backend-freelancer',
-    title: 'Python FastAPI Backend Freelancer - Ashish Sharma',
+    title: 'Python FastAPI Backend Freelancer ($4,500+)',
     description:
       'Freelance Python/FastAPI backend engineering for APIs, AI/RAG systems, PostgreSQL workflows, integrations, and production backend architecture.',
     h1: 'Python/FastAPI backend freelancer for production APIs and AI systems.',
@@ -1218,7 +1248,7 @@ export const landingPages = [
   },
   {
     slug: 'nodejs-typescript-backend-engineer',
-    title: 'Node.js TypeScript Backend Engineer - Ashish Sharma',
+    title: 'Node.js TypeScript Backend Engineer ($4,500+)',
     description:
       'Senior Node.js/TypeScript backend engineering for APIs, integrations, Cloudflare Workers, SaaS workflows, and production backend systems.',
     h1: 'Node.js/TypeScript backend engineer for scalable APIs and integrations.',
@@ -1267,9 +1297,31 @@ export const landingPageDetails: Record<
     deliverables: string[];
     engagementPlan: string[];
     expandedFaqs: { question: string; answer: string }[];
+    packages?: { name: string; detail: string }[];
+    notFit?: string[];
   }
 > = {
   'hire-cloudflare-workers-developer': {
+    packages: [
+      {
+        name: 'Architecture review, $5,000, 5 business days',
+        detail: 'Route map, what moves to Workers, what stays on AWS, first endpoint to migrate, rollback plan, 60-minute walkthrough.',
+      },
+      {
+        name: '14-day MVP, $4,500 flat',
+        detail: 'One core workflow, Next.js plus APIs plus Cloudflare-first deploy, source and accounts handed over.',
+      },
+      {
+        name: 'Implementation sprint, quoted after the review',
+        detail: 'Workers APIs, gateways, webhooks, R2, Queues. Quote only after the review so the ticket is real.',
+      },
+    ],
+    notFit: [
+      'DNS, WAF, or WordPress CDN setup',
+      'A single Worker script with no production constraints',
+      'Full AWS landing-zone or MAP programmes',
+      'Staffing requests that need three Cloudflare developers',
+    ],
     problems: [
       'A regional API is doing lightweight request work that could happen closer to users, such as routing, validation, webhooks, auth checks, or cacheable reads.',
       'AWS Lambda, API Gateway, containers, logs, or proxy services are costing more than the business value of the workload justifies.',
@@ -1492,6 +1544,8 @@ export const sitemapPaths = [
   '/',
   '/about',
   '/services',
+  '/services/architecture-audit',
+  '/services/aws-lambda-to-cloudflare-workers',
   '/backend-engineering-answers',
   '/pricing',
   '/work',
@@ -1500,7 +1554,7 @@ export const sitemapPaths = [
   '/developers',
   '/privacy',
   '/reviews',
-  ...primaryLandingPages.map((page) => `/${page.slug}`),
+  ...landingPages.map((page) => `/${page.slug}`),
   ...caseStudies.map((caseStudy) => `/work/${caseStudy.slug}`),
   ...visibleArticles.map((article) => `/blog/${article.slug}`),
 ];

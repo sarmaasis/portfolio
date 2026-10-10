@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { SEO } from './SEO';
 import { ClosingCta, PageIntro, Row } from './layout';
-import { SITE_URL, primaryLandingPages, services } from '../data/site';
+import { SITE_URL, landingPages, services } from '../data/site';
 
 export default function ServicesPage() {
   const catalog = {
@@ -28,6 +28,16 @@ export default function ServicesPage() {
         title="Complete applications on strong backend foundations."
         lede="Application delivery, backend ownership and Cloudflare expertise for teams that need it done properly, without avoidable infrastructure weight."
       />
+      <p className="meta" style={{ marginTop: -24, paddingBottom: 56 }}>
+        Packaged entry points:{' '}
+        <Link className="ln" to="/services/architecture-audit">$5,000 architecture audit</Link>
+        {' · '}
+        <Link className="ln" to="/hire-cloudflare-workers-developer">hire a Cloudflare Workers developer</Link>
+        {' · '}
+        <Link className="ln" to="/services/aws-lambda-to-cloudflare-workers">Lambda to Workers migration</Link>
+        {' · '}
+        <Link className="ln" to="/pricing">14-day MVP for $4,500</Link>.
+      </p>
 
       <Row id="mvp" label="Most popular">
         <div className="stack" style={{ ['--gap' as string]: '12px' }}>
@@ -49,7 +59,7 @@ export default function ServicesPage() {
 
       <Row id="guides" label="Hiring guides" note={<Link className="ln" to="/backend-engineering-answers">Buyer answers</Link>}>
         <ul className="posts posts--rich">
-          {primaryLandingPages.map((page) => (
+          {landingPages.map((page) => (
             <li key={page.slug}>
               <Link to={`/${page.slug}`} style={{ gridTemplateColumns: 'minmax(0, 1fr)' }}>
                 <span className="t">{page.h1}</span>

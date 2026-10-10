@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import AboutPage from './components/AboutPage';
+import ArchitectureAuditPage from './components/ArchitectureAuditPage';
 import BackendAnswersPage from './components/BackendAnswersPage';
 import BlogIndexPage from './components/BlogIndexPage';
 import BlogPostPage from './components/BlogPostPage';
@@ -11,6 +12,7 @@ import DevelopersPage from './components/DevelopersPage';
 import DynamicServicePage from './components/DynamicServicePage';
 import HiringLandingPage from './components/HiringLandingPage';
 import HomePage from './components/HomePage';
+import LambdaMigrationPage from './components/LambdaMigrationPage';
 import NotFoundPage from './components/NotFoundPage';
 import PricingPage from './components/PricingPage';
 import PrivacyPage from './components/PrivacyPage';
@@ -18,7 +20,7 @@ import ReviewsPage from './components/ReviewsPage';
 import ServicesPage from './components/ServicesPage';
 import WorkPage from './components/WorkPage';
 import { SiteFooter, SiteHeader } from './components/layout';
-import { primaryLandingPages } from './data/site';
+import { landingPages } from './data/site';
 import {
   ANALYTICS_CONSENT_KEY,
   clearAnalyticsCookies,
@@ -134,6 +136,8 @@ function App() {
             <Route path="/about" element={<AboutPage />} />
             <Route path="/backend-engineering-answers" element={<BackendAnswersPage />} />
             <Route path="/services" element={<ServicesPage />} />
+            <Route path="/services/architecture-audit" element={<ArchitectureAuditPage />} />
+            <Route path="/services/aws-lambda-to-cloudflare-workers" element={<LambdaMigrationPage />} />
             <Route path="/services/:slug" element={<DynamicServicePage />} />
             <Route path="/pricing" element={<PricingPage />} />
             <Route path="/work" element={<WorkPage />} />
@@ -144,7 +148,7 @@ function App() {
             <Route path="/developers" element={<DevelopersPage />} />
             <Route path="/privacy" element={<PrivacyPage />} />
             <Route path="/reviews" element={<ReviewsPage />} />
-            {primaryLandingPages.map((page) => (
+            {landingPages.map((page) => (
               <Route key={page.slug} path={`/${page.slug}`} element={<HiringLandingPage page={page} />} />
             ))}
             <Route path="*" element={<NotFoundPage />} />

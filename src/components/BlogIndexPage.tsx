@@ -37,8 +37,8 @@ export default function BlogIndexPage() {
   return (
     <>
       <SEO
-        title="Writing on MVPs, Cloudflare Workers and Backends — Ashish Sharma"
-        description="Practical guides on building MVPs, Cloudflare Workers, Queues, D1, Stripe webhooks, Next.js on Cloudflare, and backend architecture that holds up in production."
+        title="MVP, Cloudflare Workers and Backend Notes"
+        description="Practical posts on MVP cost and scoping, Workers vs Lambda, Queues, Stripe webhooks, architecture checklists, and hiring a backend engineer."
         path="/blog"
         breadcrumbs={[{ name: 'Home', path: '/' }, { name: 'Writing', path: '/blog' }]}
         structuredData={blogSchema}

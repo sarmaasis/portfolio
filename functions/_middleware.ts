@@ -5,7 +5,6 @@ import {
   apiCatalogResponse,
   handleDiscoveryApi,
   handleMcp,
-  isAgentUserAgent,
   isKnownPublicRoute,
   markdownFallbackResponse,
   markdownResponse,
@@ -19,6 +18,18 @@ interface CloudflareContext {
 export const onRequest = async (context: CloudflareContext) => {
 
   const url = new URL(context.request.url);
+
+  // Canonicalize trailing slashes so /pricing/ does not 404 while /pricing works.
+  if (
+    context.request.method === 'GET'
+    && url.pathname.length > 1
+    && url.pathname.endsWith('/')
+    && !url.pathname.startsWith('/assets/')
+  ) {
+    url.pathname = url.pathname.replace(/\/+$/, '') || '/';
+    return Response.redirect(url.toString(), 301);
+  }
+
   if (url.pathname.startsWith('/api/')) {
     return handleDiscoveryApi(context.request);
   }
@@ -39,7 +50,8 @@ export const onRequest = async (context: CloudflareContext) => {
   if (context.request.method === 'GET' && isHtmlPageRequest && !isKnownPublicRoute(url.pathname)) {
     return markdownFallbackResponse(url.pathname, 404);
   }
-  if (context.request.method === 'GET' && isHtmlPageRequest && (acceptsMarkdown(context.request) || isAgentUserAgent(context.request))) {
+  // Opt-in markdown only (Accept: text/markdown or ?mode=agent). Agent crawlers get HTML.
+  if (context.request.method === 'GET' && isHtmlPageRequest && acceptsMarkdown(context.request)) {
     return markdownResponse();
   }
 

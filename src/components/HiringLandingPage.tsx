@@ -51,6 +51,14 @@ export default function HiringLandingPage({ page }: { page: LandingPage }) {
       <Row id="for" label="Who this is for">
         <p style={{ fontSize: 17, lineHeight: '28px', maxWidth: '66ch' }}>{page.intent}</p>
       </Row>
+      {details?.packages ? (
+        <Row id="engagements" label="Engagements">
+          <ul className="prose" style={{ fontSize: 16, lineHeight: '26px' }}>
+            {details.packages.map((item) => <li key={item.name}><strong>{item.name}.</strong> {item.detail}</li>)}
+          </ul>
+        </Row>
+      ) : null}
+      {details?.notFit ? <Row id="not-fit" label="Not a fit"><List items={details.notFit} /></Row> : null}
       <Row id="fit" label="Best-fit projects"><List items={page.bestFor} /></Row>
       <Row id="proof" label="Relevant proof">
         <div className="stack">

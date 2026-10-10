@@ -30,6 +30,10 @@ export const mvpFaqs = [
     answer: 'Workers, Pages, R2 and Queues keep delivery fast without giving up a production path. Where a workload needs AWS, I use AWS or a mix of both.',
   },
   {
+    question: 'I already have a product. Where do I start?',
+    answer: 'With the [$5,000 architecture audit](/services/architecture-audit): five business days, a ranked fix list and a Workers-vs-AWS decision. Implementation is quoted after that, from $4,500.',
+  },
+  {
     question: 'How does $4,500 compare to other ways of building an MVP?',
     answer: 'It depends on scope more than anything. I broke down the hours and the trade-offs in [what an MVP really costs](/blog/mvp-development-cost).',
   },

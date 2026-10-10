@@ -38,8 +38,8 @@ export default function HomePage() {
   return (
     <>
       <SEO
-        title="14-Day MVP Development for $4,500 — Ashish Sharma"
-        description="I build focused web MVPs in 14 days for a flat $4,500: Next.js, APIs, auth and a database on Cloudflare or AWS, with the code and accounts handed over."
+        title="Ship a Full-Stack MVP in 14 Days for $4,500"
+        description="Flat $4,500. One senior engineer. Next.js, APIs, auth, database, Cloudflare-first deploy. Book a call if you have one core workflow and a real launch date."
         path="/"
         structuredData={[
           offerSchema,
@@ -64,6 +64,10 @@ export default function HomePage() {
             <a className="rv-btn" href={`mailto:${EMAIL}?subject=MVP%20build`}>{EMAIL}</a>
           </div>
           <p className="meta">Full-stack, backend-first engineer. Remote, working with teams in the US, EU and UK.</p>
+          <p className="meta">
+            Already have a product? A <Link className="ln" to="/services/architecture-audit">$5,000 architecture review</Link> produces a ranked fix list in five days.
+            {' '}Or <Link className="ln" to="/hire-cloudflare-workers-developer">hire a Cloudflare Workers developer</Link>, or move <Link className="ln" to="/services/aws-lambda-to-cloudflare-workers">Lambda to Workers</Link>.
+          </p>
         </div>
       </section>
 
@@ -89,6 +93,15 @@ export default function HomePage() {
             <dt>You get</dt><dd><ul>{mvpIncludes.map((item) => <li key={item}>{item}</li>)}</ul></dd>
             <dt>You own</dt><dd>The source code, the deployment accounts and the technical handover.</dd>
             <dt>Good fit</dt><dd>A clear idea, a launch date, and one workflow worth putting in front of real users. <Link className="ln" to="/pricing">Pricing and other engagements</Link></dd>
+            <dt>Not a fit</dt>
+            <dd>
+              <ul>
+                <li>You want a staffing marketplace to send three candidates</li>
+                <li>The first useful version needs more than one core workflow</li>
+                <li>You need a large multi-disciplinary agency team</li>
+                <li>The budget is under $4,500</li>
+              </ul>
+            </dd>
           </dl>
         </div>
       </Row>

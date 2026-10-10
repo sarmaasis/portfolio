@@ -4,10 +4,10 @@ import ThemeToggle from './ThemeToggle';
 import { CAL_URL, COPYRIGHT_YEAR, UPWORK_URL } from '../data/site';
 
 const navItems = [
+  { to: '/services', label: 'Services' },
   { to: '/work', label: 'Work' },
   { to: '/blog', label: 'Writing' },
   { to: '/pricing', label: 'Pricing' },
-  { to: '/about', label: 'About' },
   { to: '/contact', label: 'Contact' },
 ];
 
@@ -48,7 +48,9 @@ export function SiteFooter({ onCookieSettings }: { onCookieSettings: () => void 
         <li><a href="https://www.linkedin.com/in/sarmaasis" rel="me noopener noreferrer" target="_blank">LinkedIn</a></li>
         <li><a href="https://x.com/sarmaasis" rel="me noopener noreferrer" target="_blank">X</a></li>
         <li><a href={UPWORK_URL} rel="me noopener noreferrer" target="_blank">Upwork</a></li>
-        <li><Link to="/services">Services</Link></li>
+        <li><Link to="/services/architecture-audit">Architecture audit</Link></li>
+        <li><Link to="/hire-cloudflare-workers-developer">Hire Cloudflare Workers</Link></li>
+        <li><Link to="/about">About</Link></li>
         <li><Link to="/reviews">Reviews</Link></li>
         <li><Link to="/developers">Developers</Link></li>
         <li><Link to="/privacy">Privacy</Link></li>

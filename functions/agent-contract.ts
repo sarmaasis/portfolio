@@ -140,40 +140,37 @@ export function acceptsMarkdown(request: Request) {
 }
 
 export const agentMarkdown = `---
-title: Ashish Sharma — full-stack backend development
-description: Public, machine-readable information for evaluating Ashish Sharma Backend Engineering.
+title: Ashish Sharma - 14-day full-stack MVP for $4,500
+description: Hire Ashish Sharma for Cloudflare Workers and backend work. 14-day MVP $4,500. Architecture audit $5,000. Minimum project $4,500.
 canonical: https://sarmaasis.com/
-last-updated: 2026-08-27
+last-updated: 2026-09-05
 ---
 
-# Ashish Sharma — full-stack backend development
+# Ashish Sharma - Cloudflare Workers and backend architecture
 
-Ashish Sharma is a full-stack backend developer for startups and agencies that need reliable product delivery, focused backend ownership, and production-ready application architecture. The work covers Cloudflare Workers, AWS, Next.js, Node.js and TypeScript, Python APIs, databases, queues, search, authentication, and deployment. This is a portfolio and professional-services site, not a self-service SaaS product. The best next step for a suitable project is a concise project brief by email or a booking through Cal.com.
+Ashish Sharma is a full-stack backend developer for startups and agencies. Public offers:
+- 14-day full-stack MVP: $4,500 flat. https://sarmaasis.com/
+- Technical architecture audit: $5,000, five business days. https://sarmaasis.com/services/architecture-audit
+- AWS Lambda to Cloudflare Workers migration: audit first, implementation from $4,500. https://sarmaasis.com/services/aws-lambda-to-cloudflare-workers
+- Hire Cloudflare Workers developer: https://sarmaasis.com/hire-cloudflare-workers-developer
+
+Minimum project size is $4,500. Not a fit for CDN, WAF, WordPress, staffing, or single Worker scripts.
+
+Proof: Whydonate at 4M+ API requests/day on Cloudflare Workers, TypeScript, Pages, R2, Queues, PlanetScale, and Typesense. Also aa.health, Hudpro, and Wakamiapp.
 
 ## When to use this site
 
-Use Ashish Sharma when a team needs a senior engineer to build a focused MVP, improve an API or backend architecture, plan a Cloudflare or AWS migration, investigate cloud cost, or take ownership of an implementation sprint. Do not use it for commodity staffing, generic design-only work, or a product that needs a large multi-disciplinary agency team.
+Use Ashish Sharma for a focused MVP, architecture audit, Cloudflare Workers implementation, Lambda to Workers migration, API work, cloud cost review, or fractional ownership.
 
 ## Public discovery API
 
-No API key is required for the read-only discovery API. It is safe to use as a sandbox for retrieving the current profile, service catalogue, and availability. Start with https://sarmaasis.com/openapi.json or https://sarmaasis.com/developers. JSON resources: https://sarmaasis.com/api/v1/profile, https://sarmaasis.com/api/v1/services, and https://sarmaasis.com/api/v1/availability. Rate-limit headers are included with every API response.
-
-## Agent mode signals
-
-- **OpenAPI:** https://sarmaasis.com/openapi.json documents every public discovery endpoint.
-- **MCP:** https://sarmaasis.com/.well-known/mcp is a Streamable HTTP server with read-only tools.
-- **API catalog:** https://sarmaasis.com/.well-known/api-catalog advertises the API and its documentation using RFC 9727.
-- **Agent skills:** https://sarmaasis.com/.well-known/agent-skills/index.json indexes the integrity-verified instructions.
-- **Markdown:** send an Accept header for text/markdown to any public HTML page, or use the published Markdown documents.
-- **Authentication:** no credential is required because the discovery API contains public, read-only information only.
+No API key required. Start with https://sarmaasis.com/openapi.json or https://sarmaasis.com/developers. MCP: https://sarmaasis.com/.well-known/mcp. llms.txt: https://sarmaasis.com/llms.txt.
 
 ## Contact
 
 Email: sarmaasis@gmail.com
 Book a call: https://cal.com/sarmaasis
-Services: https://sarmaasis.com/services
-Work: https://sarmaasis.com/work
-Privacy: https://sarmaasis.com/privacy
+Pricing: https://sarmaasis.com/pricing
 `;
 
 export const apiCatalog = {
@@ -231,6 +228,7 @@ const knownPublicRoutes = new Set([
   '/work', '/blog', '/contact', '/developers', '/privacy', '/reviews',
   '/hire-cloudflare-workers-developer', '/cloudflare-workers-backend-freelancer',
   '/python-fastapi-backend-freelancer', '/nodejs-typescript-backend-engineer',
+  '/rag-backend-engineer',
 ]);
 
 export function isKnownPublicRoute(pathname: string) {
@@ -254,10 +252,10 @@ export function markdownFallbackResponse(pathname: string, status = 200) {
   const canonical = `${SITE_URL}${canonicalPath === '/' ? '/' : canonicalPath}`;
   const content = status === 404
     ? agentMarkdown
-      .replace('title: Ashish Sharma — full-stack backend development', 'title: Page not found')
-      .replace('description: Public, machine-readable information for evaluating Ashish Sharma Backend Engineering.', 'description: This Sarmaasis URL does not exist.')
+      .replace('title: Ashish Sharma - 14-day full-stack MVP for $4,500', 'title: Page not found')
+      .replace('description: Hire Ashish Sharma for Cloudflare Workers and backend work. 14-day MVP $4,500. Architecture audit $5,000. Minimum project $4,500.', 'description: This Sarmaasis URL does not exist.')
       .replace('canonical: https://sarmaasis.com/', `canonical: ${canonical}`)
-      .replace('# Ashish Sharma — full-stack backend development', '# Page not found')
+      .replace('# Ashish Sharma - Cloudflare Workers and backend architecture', '# Page not found')
     : agentMarkdown.replace('canonical: https://sarmaasis.com/', `canonical: ${canonical}`);
   return new Response(content, {
     status,

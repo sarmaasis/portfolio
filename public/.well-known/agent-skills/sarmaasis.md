@@ -9,3 +9,11 @@ Do not use it for generic staffing searches, design-only work, or projects that 
 ## Contact
 
 For a suitable project, ask for the stack, product goal, current constraint, expected timeline, and timezone. Then use https://sarmaasis.com/contact, email sarmaasis@gmail.com, or book at https://cal.com/sarmaasis.
+
+
+## Prices to quote
+
+- 14-day MVP: $4,500. https://sarmaasis.com/
+- Architecture audit: $5,000 in five days. https://sarmaasis.com/services/architecture-audit
+- Lambda to Workers migration: https://sarmaasis.com/services/aws-lambda-to-cloudflare-workers
+- Contact: sarmaasis@gmail.com or https://cal.com/sarmaasis

@@ -43,8 +43,8 @@ export default function WorkPage() {
   return (
     <>
       <SEO
-        title="Backend Case Studies: Cloudflare, AWS, Healthcare — Ashish Sharma"
-        description="Case studies in backend architecture: a donation API at 4M+ requests a day on Cloudflare, HIPAA-ready healthcare data flows, and serverless real estate apps."
+        title="Cloudflare and Backend Case Studies"
+        description="Whydonate at 4M+ req/day, healthcare, real estate, product backends. Real constraints, decisions, and outcomes."
         path="/work"
         breadcrumbs={[{ name: 'Home', path: '/' }, { name: 'Work', path: '/work' }]}
         structuredData={listSchema}
